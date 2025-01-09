@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:app.View.Usuarios.Login"
         mc:Ignorable="d"
-        Title="LogIn" Height="700" Width="1200">
+        Title="LogIn" Height="600" Width="1000"
+        WindowStyle="none"
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize"
+        AllowsTransparency="True" 
+        Background="Transparent" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,35 +19,50 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Border CornerRadius="20" Background="White" BorderThickness="5">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0 ,1">
+                    <GradientStop Color="#43BC73" Offset="1"></GradientStop>
+                    <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
+                    <GradientStop Color="#68EB9C" Offset="0.0"></GradientStop>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
 
-        <StackPanel Margin="50,20">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="/View/Usuarios/Login/Logo.png" />
-                <TextBlock Text="Hotel Pere María" FontFamily="Montserrat" FontWeight="Bold" FontSize="50"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,70,0,20">
-                <Border BorderBrush="Black" Width="80" BorderThickness="2" Margin="20"></Border>
-                <TextBlock Text="Acceso" VerticalAlignment="Center" Foreground="{StaticResource ColorPrimario}" Style="{StaticResource TextBlockGeneral}" />
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Email" Margin="0,10" Style="{StaticResource TextBlockGeneral}"/>
-                <TextBox Name="TextBoxEmail" Style="{StaticResource TextBoxGeneral}"/>
-                <TextBlock Text="Password" Margin="0,10" Style="{StaticResource TextBlockGeneral}"/>
-                <PasswordBox Style="{StaticResource PasswordBoxGeneral}"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Left">
-                <Button Margin="0,10" Style="{StaticResource ButtonLogin}" >
-                    <Image Height="150" Source="/View/Usuarios/Login/btn-login.png"   />
-                </Button>
-            </StackPanel>
-            <Label Content="¿Recordar contraseña?" Style="{StaticResource LabelGeneral}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <Image Source="/View/Usuarios/Login/img-cover-login.png"  />
-        </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="30,20">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/View/Usuarios/Login/Logo.png" />
+                        <TextBlock Text="Hotel Pere María" FontFamily="Montserrat" FontWeight="Bold" FontSize="39"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,50,0,20">
+                        <Border BorderBrush="Black" Width="80" BorderThickness="2" Margin="0,20,20,20"></Border>
+                        <TextBlock Text="Acceso" VerticalAlignment="Center" Foreground="{StaticResource ColorPrimario}" Style="{StaticResource TextBlockGeneral}" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Email" Margin="0,10" Style="{StaticResource TextBlockGeneral}"/>
+                        <TextBox Name="TextBoxEmail" Style="{StaticResource TextBoxGeneral}" TextChanged="TextBoxEmail_TextChanged"/>
+                        <TextBlock x:Name="ErrorTextEmail" Text="* Email no válido" Style="{StaticResource ErrorText}" />
+                        <TextBlock Text="Password" Margin="0,10" Style="{StaticResource TextBlockGeneral}"/>
+                        <PasswordBox Name="PasswordBoxEmail" Style="{StaticResource PasswordBoxGeneral}" PasswordChanged="PasswordBoxEmail_PasswordChanged"/>
+                        <TextBlock x:Name="ErrorTextPassword" Text="* Password no válidan. Es necesario 1 máyuscula, 1 minuscula y 1 número" Style="{StaticResource ErrorText}"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left">
+                        <Button Name="BtnLogin" IsEnabled="False" Style="{StaticResource ButtonLogin}" Click="BtnLogin_Click" >
+                            <!--<Image Height="100" Source="/View/Usuarios/Login/btn-login.png"   />-->
+                            
+                        </Button>
+                    </StackPanel>
+                    <Label Content="¿Recordar contraseña?" Style="{StaticResource LabelGeneral}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Image Source="/View/Usuarios/Login/img-cover-login.png"   />
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

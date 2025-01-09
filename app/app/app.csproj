@@ -55,11 +55,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Usuarios\Perfil.cs" />
     <Compile Include="View\Usuarios\LogIn\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usuarios\MainUsuarios\MainUsuarios.xaml.cs">
       <DependentUpon>MainUsuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuarios\RegistroUsuarios\CodigoDeVerificacion.xaml.cs">
+      <DependentUpon>CodigoDeVerificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuarios\RegistroUsuarios\RegistroPerfil.xaml.cs">
+      <DependentUpon>RegistroPerfil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuarios\RegistroUsuarios\RegistroUsuario.xaml.cs">
+      <DependentUpon>RegistroUsuario.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary1.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -82,6 +92,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Usuarios\MainUsuarios\MainUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usuarios\RegistroUsuarios\CodigoDeVerificacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usuarios\RegistroUsuarios\RegistroPerfil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usuarios\RegistroUsuarios\RegistroUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\MainUsuarios\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\RegistroUsuarios\Close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

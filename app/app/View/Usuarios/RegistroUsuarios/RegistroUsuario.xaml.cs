@@ -12,36 +12,34 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using app.View.Usuarios.MainUsuarios;
+using app.View.Usuarios.RegistroUsuarios;
 
-
-
-namespace app.View.Usuarios.Login
+namespace app.View.Usuarios.RegistroUsuario
 {
     /// <summary>
-    /// Lógica de interacción para LogIn.xaml
+    /// Lógica de interacción para RegistroUsuario.xaml
     /// </summary>
-    public partial class LogIn : Window
+    public partial class RegistroUsuario : Window
     {
-        public LogIn()
+        public RegistroUsuario()
         {
             InitializeComponent();
         }
 
-        private void TextBoxEmail_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ValidateLogin();
-        }
-        private void PasswordBoxEmail_PasswordChanged(object sender, RoutedEventArgs e)
+        private void txtNombre_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateLogin();
         }
 
+        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ValidateLogin();
+        }
         private void ValidateLogin()
         {
             // Obtengo los valores ingresados en los campos de texto para email y contraseña
-            string email = TextBoxEmail.Text;
-            string password = PasswordBoxEmail.Password;
+            string email = txtEmail.Text;
+            string password = txtPassword.Password;
 
             // Valido el email y la contraseña utilizando los métodos correspondientes
             bool isEmailValid = IsValidEmail(email);
@@ -52,9 +50,8 @@ namespace app.View.Usuarios.Login
             ErrorTextPassword.Visibility = isPasswordValid ? Visibility.Collapsed : Visibility.Visible;
 
             // Habilito el botón de inicio de sesión solo si ambos campos son válidos
-            BtnLogin.IsEnabled = isEmailValid && isPasswordValid;
+            btnEnviar.IsEnabled = isEmailValid && isPasswordValid;
         }
-
         public bool IsValidEmail(string email)
         {
 
@@ -80,10 +77,10 @@ namespace app.View.Usuarios.Login
             return Regex.IsMatch(password, pattern);
         }
 
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        private void btnEnviar_Click(object sender, RoutedEventArgs e)
         {
-            Usuarios.MainUsuarios.MainUsuarios user = new Usuarios.MainUsuarios.MainUsuarios();
-            user.Show();
+            CodigoDeVerificacion codigo = new CodigoDeVerificacion();
+            codigo.Show();
             this.Close();
         }
     }

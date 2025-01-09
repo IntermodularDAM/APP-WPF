@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using app.View.Usuarios.Login;
+using app.View.Usuarios.RegistroUsuario;
 
 namespace app.View.Usuarios.MainUsuarios
 {
@@ -22,6 +24,13 @@ namespace app.View.Usuarios.MainUsuarios
         public MainUsuarios()
         {
             InitializeComponent();
+        }
+
+        private void btnAddWpfClient_Click(object sender, RoutedEventArgs e)
+        {
+            Usuarios.RegistroUsuario.RegistroUsuario registro = new Usuarios.RegistroUsuario.RegistroUsuario();
+            registro.Show();
+
         }
     }
 }

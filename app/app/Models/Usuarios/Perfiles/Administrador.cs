@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace app.Models.Usuarios.Perfiles
 {
-    internal class Administrador
+    public class Administrador
     {
+        private string _nivelDeAcceso;
+        private string _responsableDeArea;
+        private string _telefono;
+
+
+        public string NivelDeAcceso { get => _nivelDeAcceso; set => _nivelDeAcceso = value; }
+        public string ResponsableDeArea { get => _responsableDeArea; set => _responsableDeArea = value; }
+        public string Telefono { get => _telefono; set => _telefono = value; }
+
+
     }
 }
