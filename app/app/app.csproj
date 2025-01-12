@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,7 +58,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Usuarios\Perfil.cs" />
+    <Compile Include="Models\Usuarios\Perfiles\Administrador.cs" />
+    <Compile Include="UserSession.cs" />
+    <Compile Include="ViewModel\Usuarios\LogIn\LogInViewModel.cs" />
+    <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroPerfilViewModel.cs" />
+    <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroUsuarioViewModel.cs" />
     <Compile Include="View\Usuarios\LogIn\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
@@ -109,9 +116,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Usuarios\Perfiles\Administrador.cs" />
-    <Compile Include="Models\Usuarios\Perfiles\Cliente.cs" />
-    <Compile Include="Models\Usuarios\Perfiles\Empleado.cs" />
     <Compile Include="Models\Usuarios\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -130,6 +134,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,7 +144,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\Usuarios\" />
+    <Folder Include="ViewModel\Usuarios\MainUsuarios\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\LogIn\Logo.png" />

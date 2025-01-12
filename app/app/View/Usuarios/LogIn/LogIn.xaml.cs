@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,7 +13,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using app.Models.Usuarios;
 using app.View.Usuarios.MainUsuarios;
+using app.View.Usuarios.RegistroUsuarios;
+using app.ViewModel.Usuarios.LogIn;
+using IntermodularWPF;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 
@@ -80,11 +87,45 @@ namespace app.View.Usuarios.Login
             return Regex.IsMatch(password, pattern);
         }
 
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Usuarios.MainUsuarios.MainUsuarios user = new Usuarios.MainUsuarios.MainUsuarios();
-            user.Show();
-            this.Close();
+            var log = new LogInViewModel();
+
+            // Configurar los datos que se enviarán al servidor en el cuerpo de la solicitud
+            Usuario data = new Usuario { email = TextBoxEmail.Text, password = PasswordBoxEmail.Password };
+
+            var response = await log.LogIn(data);
+            var result = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                dynamic responseData = JsonConvert.DeserializeObject<dynamic>(result);
+
+                if (responseData != null)
+                {
+                    // Obtener los datos del usuario y mostrarlos en la pantalla principal
+                    UserSession.Instance.Token = responseData.data.token;
+                    UserSession.Instance.Data = JObject.FromObject(responseData.data.user);
+
+                    Usuarios.MainUsuarios.MainUsuarios user = new Usuarios.MainUsuarios.MainUsuarios();
+                    user.Show();
+                    this.Close();
+
+                }
+                else
+                {
+                    var error = JsonConvert.DeserializeObject<Exception>(result);
+                    MessageBox.Show(error + " : WPF = ERROR 500");
+                }
+            }
+            else
+            {
+                var error = JsonConvert.DeserializeObject<dynamic>(result);
+                MessageBox.Show(error + " : WPF : error 404");
+            }
+
+
+            
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,7 +13,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using app.Models.Usuarios;
 using app.View.Usuarios.RegistroUsuarios;
+using app.ViewModel.Usuarios.RegistroUsuarios;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace app.View.Usuarios.RegistroUsuario
 {
@@ -77,11 +82,74 @@ namespace app.View.Usuarios.RegistroUsuario
             return Regex.IsMatch(password, pattern);
         }
 
-        private void btnEnviar_Click(object sender, RoutedEventArgs e)
+        private async void btnEnviar_Click(object sender, RoutedEventArgs e)
         {
-            CodigoDeVerificacion codigo = new CodigoDeVerificacion();
-            codigo.Show();
-            this.Close();
+            btnEnviar.IsEnabled = false;
+            var registroUsuarioViewModel = new RegistroUsuarioViewModel();
+
+            // Obtengo los valores ingresados en los campos de texto para email y contraseña
+            string email = txtEmail.Text;
+            string password = txtPassword.Password;
+
+            try
+            {
+                Usuario registrarUsuario = new Usuario
+                {
+                    email = email,
+                    password = password
+                };
+
+                var response = await registroUsuarioViewModel.RegistrarUsuario(registrarUsuario);
+                 var result = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    // Convertir la respuesta JSON a un objeto dynamic
+                    dynamic responseData = JsonConvert.DeserializeObject<dynamic>(result);
+
+
+                    // Guardar el token y los datos del usuario en la sesión de usuario
+
+                    if (responseData != null)
+                    {
+                        CodigoDeVerificacion codigo = new CodigoDeVerificacion
+                        {
+                            Email = responseData.data.email
+                        };
+                        codigo.Show();
+                       
+
+                        // Cerrar la pantalla de inicio de sesión
+                        this.Close();
+                    }
+                        // Obtener los datos del usuario y enviarlos a verificación
+                        //UserSession.Instance.Token = responseData.data.token;
+                        //UserSession.Instance.Data = JObject.FromObject(responseData.data.user);
+                    else
+                    {
+                        // Manejar el caso en que responseData es nulo
+                        var error = JsonConvert.DeserializeObject<dynamic>(result);
+                        MessageBox.Show(error + " : WPF = ERROR 500");
+                        btnEnviar.IsEnabled = true;
+
+                    }
+                }
+                else
+                {
+                    // La solicitud no fue exitosa, manejar el error
+                    var error = JsonConvert.DeserializeObject<dynamic>(result);
+                    MessageBox.Show(error + " : WPF  = ERROR 4047");
+                    btnEnviar.IsEnabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"WPF : Ocurrió un error al cargar los datos : {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                btnEnviar.IsEnabled = true;
+            }
+
+            
         }
     }
 }

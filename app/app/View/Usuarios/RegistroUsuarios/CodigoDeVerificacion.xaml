@@ -10,7 +10,7 @@
        ResizeMode="NoResize"
        Background="Transparent"
        AllowsTransparency="True"
-       WindowStartupLocation="CenterScreen">
+       WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,7 +31,9 @@
             <Border Height="280" Width="500" Background="#D9D9D9" CornerRadius="20" >
                 <StackPanel   Width="400" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock Text="Verificaión de email" Foreground="#43BC73" FontWeight="Bold" FontSize="30" Margin="0,0,0,20"/>
-                    <TextBlock Text="Se ha enviado un código de verificaión al email [email@] introduzcalo..." TextWrapping="Wrap" Style="{StaticResource TextBlockGeneral}" Margin="20,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap"  Style="{StaticResource TextBlockGeneral}" Margin="20,0,0,0">
+                        "Se ha enviado un código de verificaión al email <TextBlock x:Name="TextEmail" Foreground="#43BC73" Style="{StaticResource TextBlockGeneral}"></TextBlock> introduzcalo..."
+                    </TextBlock>
                     <TextBox x:Name="txtCodigo" Margin="10" FontSize="16" Height="35" TextChanged="txtCodigo_TextChanged" >
                         <TextBox.Resources>
                             <Style TargetType="Border">

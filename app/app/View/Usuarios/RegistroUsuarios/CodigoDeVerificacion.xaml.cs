@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using app.Models.Usuarios;
+using app.ViewModel.Usuarios.RegistroUsuarios;
+using Newtonsoft.Json;
 
 namespace app.View.Usuarios.RegistroUsuarios
 {
@@ -20,10 +23,19 @@ namespace app.View.Usuarios.RegistroUsuarios
     /// </summary>
     public partial class CodigoDeVerificacion : Window
     {
+        public string Email { get; set; }
         public CodigoDeVerificacion()
         {
             InitializeComponent();
+            Loaded += Window_Loaded;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Asignar valores a los campos de texto al cargar el diálogo
+            TextEmail.Text = Email;
+        }
+
 
         private void txtCodigo_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -62,11 +74,47 @@ namespace app.View.Usuarios.RegistroUsuarios
             return true;
         }
 
-        private void btnEnviar_Click(object sender, RoutedEventArgs e)
+        private async void btnEnviar_Click(object sender, RoutedEventArgs e)
         {
-            RegistroPerfil registro = new RegistroPerfil();
-            registro.Show();
-            this.Close();   
+            var verificarUsuario = new RegistroUsuarioViewModel();
+
+            Usuario usuario = new Usuario
+            {
+                email = Email,
+                verificationCode = txtCodigo.Text
+            };
+            var response = await verificarUsuario.ValidarUsuario(usuario);
+            var result = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                dynamic responseData = JsonConvert.DeserializeObject<dynamic>(result);
+
+                if (responseData != null) {
+                    
+                    RegistroPerfil perfil = new RegistroPerfil{
+                        Email = responseData.data.email,
+                        IdUsuario = responseData.data.idUsuario
+                    };
+                   
+                    perfil.Show();
+                    this.Close();
+
+                }
+                else {
+                    var error = JsonConvert.DeserializeObject<Exception>(result);
+                    MessageBox.Show(error + " : WPF = ERROR 500");
+                }
+            }
+            else 
+            {
+                var error = JsonConvert.DeserializeObject<dynamic>(result);
+                MessageBox.Show(error+" : WPF : error 404");
+            }
+
+         
         }
+
+
     }
 }

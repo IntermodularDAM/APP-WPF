@@ -6,37 +6,36 @@ using System.Threading.Tasks;
 
 namespace app.Models.Usuarios.Perfiles
 {
-    public class Administrador : Perfil
+    public class Administrador
     {
-        private string _nivelDeAcceso; /*Superadmin, Gerente */
-        private string _responsableDeArea; /*Recepcionista, Personal de apoyo, Limpieza interna, Servicio de comida, Cocina, Planificacion de eventos, Administracion*/
-        private string _telefono;
+        private string _id;
+        private string _idUsuario;
+        private string _nombre;
+        private string _apellido;
+        private string _dni;
+        private string _rol;
+        private string _date;
+        private string _ciudad;
+        private string _sexo;
+        private string _registro;
+        private string _rutaFoto;
 
+        private string _nivelDeAcceso;
+        private string _responsableDeArea;
 
-        public string NivelDeAcceso { get => _nivelDeAcceso; set => _nivelDeAcceso = value; }
-        public string ResponsableDeArea { get => _responsableDeArea; set => _responsableDeArea = value; }
-        public string Telefono { get => _telefono; set => _telefono = value; }
+        public string id { get => _id; set => _id = value; }
+        public string idUsuario { get => _idUsuario; set => _idUsuario = value; }
+        public string nombre { get => _nombre; set => _nombre = value; }
+        public string apellido { get => _apellido; set => _apellido = value; }
+        public string dni { get => _dni; set => _dni = value; }
+        public string rol { get => _rol; set => _rol = value; }
+        public string date { get => _date; set => _date = value; }
+        public string ciudad { get => _ciudad; set => _ciudad = value; }
+        public string sexo { get => _sexo; set => _sexo = value; }
+        public string registro { get => _registro; set => _registro = value; }
+        public string rutaFoto { get => _rutaFoto; set => _rutaFoto = value; }
 
-        public Administrador(
-        string id,
-        string nombre,
-        string apellido,
-        string dni,
-        Usuario usuario,
-        string rol,
-        string date,
-        string ciudad,
-        string sexo,
-        string registro,
-        string rutaFoto,
-        string nivelDeAcceso,
-        string responsableDeArea,
-        string telefono
-)       : base(id, nombre, apellido, dni, usuario, rol,date,ciudad,sexo,registro,rutaFoto) // Llama al constructor base
-        {
-            _nivelDeAcceso = nivelDeAcceso;
-            _responsableDeArea = responsableDeArea;
-            _telefono = telefono;
-        }
+        public string nivelDeAcceso { get => _nivelDeAcceso; set => _nivelDeAcceso = value; }
+        public string responsableDeArea { get => _responsableDeArea; set => _responsableDeArea = value; }
     }
 }
