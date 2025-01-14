@@ -3,6 +3,15 @@
 
     <SolidColorBrush x:Key="ColorPrimario">#68EB9C</SolidColorBrush>
 
+
+    <Style TargetType="GridViewColumnHeader" x:Key="ColumListView">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
     <Style x:Key="TextBlockGeneral" TargetType="TextBlock">
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="Bold"/>

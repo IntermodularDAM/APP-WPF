@@ -26,8 +26,17 @@ namespace app.View.Usuarios.MainUsuarios
         public MainUsuario()
         {
             InitializeComponent();
+            
             _viewModel = new UsuarioViewModel();
-            this.DataContext = _viewModel;
+            this.DataContext =  _viewModel;
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { 
+                _viewModel.CargarTodosLosUsuarios();
+            } catch(Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnRegistrarUsuario_Click(object sender, RoutedEventArgs e)
@@ -42,6 +51,8 @@ namespace app.View.Usuarios.MainUsuarios
             ListViewPerfilUsuarios.Visibility = Visibility.Visible;
             btnToggleButtonCambiarLista.Content = "ListView";
             imgToggleButton.Source = new BitmapImage(new Uri("/View/Usuarios/MainUsuarios/imgListView.png", UriKind.RelativeOrAbsolute)); ;
+            
+            _viewModel.CargarTodosLosUsuarios();
 
         }
 
@@ -51,6 +62,7 @@ namespace app.View.Usuarios.MainUsuarios
             DataGridPerfilUsuarios.Visibility = Visibility.Visible;
             btnToggleButtonCambiarLista.Content = "DataGrid";
             imgToggleButton.Source = new BitmapImage(new Uri("/View/Usuarios/MainUsuarios/imgDataGrid.png", UriKind.RelativeOrAbsolute)); ;
+            _viewModel.CargarTodosLosUsuarios();
         }
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
@@ -67,5 +79,7 @@ namespace app.View.Usuarios.MainUsuarios
         {
 
         }
+
+
     }
 }

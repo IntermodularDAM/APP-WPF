@@ -10,15 +10,19 @@
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize"
         AllowsTransparency="True" 
-        Background="Transparent"
+        Background="Transparent" Loaded="Window_Loaded"
         >
+    
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../../Dictionary1.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        <!-- Estilo personalizado para GridViewColumnHeader -->
+
     </Window.Resources>
+
     <Grid>
         <Border CornerRadius="20" Background="White" BorderThickness="5">
             <Border.BorderBrush>
@@ -30,6 +34,7 @@
             </Border.BorderBrush>
 
             <Grid>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="3*"/>
@@ -55,7 +60,7 @@
                 </StackPanel>
                 <!--Ficha-->
                 <Label x:Name="txtTituloBuscador"  Grid.Row="1" FontWeight="Bold" FontSize="40" Content="Buscador" Foreground="#FF68EB9C" Height="70" VerticalAlignment="Top" HorizontalAlignment="Center"></Label>
-                <Border Grid.Row="1" Width="230" Height="400" CornerRadius="20" HorizontalAlignment="Center" >
+                <Border Grid.Row="1" Width="230" Height="420" CornerRadius="20" HorizontalAlignment="Center" >
                     <Border.Background>
                         <SolidColorBrush Color="#FFD9D9D9" Opacity="0.19"/>
                     </Border.Background>
@@ -119,7 +124,7 @@
                         </Button>
                     </StackPanel>
                 </Border>
-                <!--Titulo y DataGrid-->
+                <!--Titulo y (DataGrid - ListView)-->
                 <Canvas Grid.Column="1" Grid.Row="1" Height="63" VerticalAlignment="Top">
                     <Label  Content="Usuarios" Canvas.Left="20" FontSize="45" FontWeight="Bold" Foreground="#FF06080D"></Label>
                     <StackPanel Canvas.Right="20" Canvas.Top="20" Orientation="Horizontal" VerticalAlignment="Center">
@@ -127,65 +132,261 @@
                         <ToggleButton x:Name="btnToggleButtonCambiarLista" 
                                   Checked="ToggleButtonCambiarLista_Checked" 
                                   Unchecked="ToggleButtonCambiarLista_Unchecked"
+                                      Cursor="Hand"
                                   Content="DataGrid" Background="Transparent" BorderBrush="Transparent" FontSize="25">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Style.Triggers>
+                                        <!-- Cambiar el fondo cuando el botón está activado -->
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                        <!-- Cambiar el fondo cuando el mouse está sobre el botón -->
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
                         </ToggleButton>
                     </StackPanel>
-
                 </Canvas>
-                <DataGrid x:Name="DataGridPerfilUsuarios" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="350" VerticalAlignment="Top" HorizontalAlignment="Center" AutoGenerateColumns="True"
-                          ItemsSource="{Binding WpfClients}" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding idReserva}" />
-                        <DataGridTemplateColumn Header="Foto">
+                <!--Listas-->
+                <DataGrid x:Name="DataGridPerfilUsuarios" HeadersVisibility="None" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="350" VerticalAlignment="Top" HorizontalAlignment="Center" AutoGenerateColumns="False" GridLinesVisibility="None" Background="White" BorderBrush="Transparent" BorderThickness="0"
+                          ItemsSource="{Binding AllUsers}" >
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <!-- Fondo predeterminado -->
+
+                            <Setter Property="Background" Value="#FFF1F1F1" />
+                            <Setter Property="Margin" Value="10,8" />
+                            <Setter Property="Height" Value="70" />
+                            <Setter Property="FontWeight" Value="Medium" />
+
+
+                            <!-- Cambiar fondo al pasar el mouse -->
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFD7FFE7" />
+
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#FFD7FFE7"/>
+                                    <Setter Property="BorderBrush" Value="#43BC73" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                </Trigger>  
+                                <!-- Alternar colores de fila -->
+                                <Trigger Property="AlternationIndex" Value="1">
+                                    <Setter Property="Background" Value="White" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns >
+                        <DataGridTemplateColumn Header="Foto" Width="80">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Foto}" Width="50" Height="50"/>
+                                    <Grid>
+                                        <Ellipse Width="50" Height="50" Stroke="Transparent" StrokeThickness="1">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{Binding rutaFoto}" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                    </Grid>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7"/>
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7"/>
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTemplateColumn.CellStyle>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Nombre" Binding="{Binding usuario}" />
-                        <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" />
-                        <DataGridTemplateColumn Header="Acción">
+                        <DataGridTextColumn Header="Nombre" Width="200" Binding="{Binding nombre}" >
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="FontSize" Value="20"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7" />
+
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7"/>
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Rol" Width="150" Binding="{Binding rol}" >
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7" />
+
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7"/>
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="ID" Width="50" Binding="{Binding _id}" >
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    <Setter Property="Foreground" Value="#43BC73"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7" />
+
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7"/>
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Acción" Width="150" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="btnModificar" Content="Editar" Width="20" Height="20" Click="btnEditar_Click">
-                                            
+                                    <StackPanel Orientation="Vertical">
+                                        <Button x:Name="btnModificar" Content="Editar" Width="80" Height="25" Margin="0,3" Background="#68EB9C" BorderBrush="White" Cursor="Hand" Click="btnEditar_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
                                         </Button>
-                                        <Button x:Name="btnEliminar" Content="Eliminar" Width="20" Height="20" Click="btnBorrar_Click" >
-                                            
+                                        <Button x:Name="btnEliminar" Content="Eliminar" Width="80" Height="25" Margin="0,3" Background="#FFEB6868" BorderBrush="White" Cursor="Hand"  Click="btnBorrar_Click"  >
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
                                         </Button>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7"/>
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFD7FFE7"/>
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTemplateColumn.CellStyle>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <ListView x:Name="ListViewPerfilUsuarios" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="350" VerticalAlignment="Top" HorizontalAlignment="Center"  
-                          ItemsSource="{Binding allWpfUsuerClient}" >
+
+                <ListView x:Name="ListViewPerfilUsuarios" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="350" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="White" BorderBrush="Transparent" BorderThickness="0" 
+                          ItemsSource="{Binding AllUsers}" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <!-- Fondo predeterminado -->
+                            <Setter Property="BorderBrush" Value="#D9D9D9" />
+                            <Setter Property="Height" Value="50" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="FontWeight" Value="Medium" />
+                            <Setter Property="Margin" Value="1,1" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <!-- Cambiar fondo al pasar el mouse -->
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFD7FFE7" />
+                                </Trigger>
+                                <!-- Alternar colores de fila -->
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                    <Setter Property="Background" Value="White" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#FFD7FFE7" />
+                                    <Setter Property="BorderBrush" Value="#43BC73" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.View>
-                        <GridView>
+                        <GridView >
                             <GridView.Columns>
-                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding _id}" />
-                                <GridViewColumn Header="Foto" DisplayMemberBinding="{Binding Foto}" />
+                                <GridViewColumn Header="ID"   DisplayMemberBinding="{Binding _id}" />
+                                <GridViewColumn Header="Foto" Width="60"  >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Ellipse Width="40" Height="40" Stroke="Transparent" StrokeThickness="1">
+                                                    <Ellipse.Fill>
+                                                        <ImageBrush ImageSource="{Binding rutaFoto}" />
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                                 <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding nombre}" />
-                                <GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding apellido}" />
-                                <GridViewColumn Header="Email" DisplayMemberBinding="{Binding email}" />
-                                <GridViewColumn Header="Dni" DisplayMemberBinding="{Binding dni}" />
                                 <GridViewColumn Header="Rol" DisplayMemberBinding="{Binding rol}" />
-                                <GridViewColumn Header="Date" DisplayMemberBinding="{Binding date}" />
-                                <GridViewColumn Header="Cuidad" DisplayMemberBinding="{Binding cuidad}" />
-                                <GridViewColumn Header="Acción">
+                                <GridViewColumn Header="ID Usuario"    DisplayMemberBinding="{Binding idUsuario}" />
+                                <GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding apellido}" />
+                                <GridViewColumn Header="Dni" DisplayMemberBinding="{Binding dni}" />
+                                <GridViewColumn Header="Rol" DisplayMemberBinding="{Binding date}" />
+                                <GridViewColumn Header="Acción" Width="89">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Button x:Name="btnEditar" Width="20" Height="20" Click="btnEditar_Click">
-                                                    <Image Source="/View/Usuarios/MainUsuarios/pen.png" ></Image>
+                                                <Button x:Name="btnEditar" Cursor="Hand"  Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Click="btnEditar_Click">
+                                                <Image Source="/View/Usuarios/MainUsuarios/pen.png"></Image>
                                                 </Button>
-                                                <Button x:Name="btnInfo" Width="20" Height="20" Click="btnInfo_Click" >
+                                                <Button x:Name="btnInfo" Cursor="Hand"  Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Click="btnInfo_Click" >
                                                     <Image Source="/View/Usuarios/MainUsuarios/info.png" ></Image>
                                                 </Button>
-                                                <Button x:Name="btnBorrar" Width="20" Height="20" Click="btnBorrar_Click">
+                                                <Button x:Name="btnBorrar" Cursor="Hand"  Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Click="btnBorrar_Click">
                                                     <Image Source="/View/Usuarios/MainUsuarios/delete.png" ></Image>
                                                 </Button>
                                             </StackPanel>
@@ -196,13 +397,13 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+                
 
+                <!--Boton Enviar-->
                 <Button x:Name="btnRegistrarUsuario" Grid.Column="1" Grid.Row="1" Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Background="Transparent" BorderBrush="Transparent" Click="btnRegistrarUsuario_Click"  >
                     <Image Source="/View/Usuarios/MainUsuarios/add.png" />
                 </Button>
             </Grid>
-
         </Border>
     </Grid>
-
 </Window>

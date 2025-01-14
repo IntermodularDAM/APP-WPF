@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace app.Models.Usuarios.Perfiles
 {
-    public class Administrador : UsuarioBase
+    public class Cliente : UsuarioBase
     {
 
 
-        public string nivelDeAcceso { get; set; }
-        public string responsableDeArea { get; set; }
-
+        private string _vip;
+        private string _telefono;
     }
 }

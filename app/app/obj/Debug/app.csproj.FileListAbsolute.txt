@@ -1,6 +1,5 @@
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.csproj.AssemblyReference.cache
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\Dictionary1.baml
-C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\MainWindow.g.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\LogIn\LogIn.g.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\App.g.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app_MarkupCompile.cache
@@ -8,7 +7,6 @@ C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app_Ma
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\bin\Debug\app.exe.config
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\bin\Debug\app.exe
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\bin\Debug\app.pdb
-C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\MainWindow.baml
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\LogIn\LogIn.baml
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.g.resources
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.Properties.Resources.resources
@@ -16,8 +14,6 @@ C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.csproj.CoreCompileInputs.cache
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.exe
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.pdb
-C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\MainUsuarios\MainUsuarios.g.cs
-C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\MainUsuarios\MainUsuarios.baml
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\RegistroUsuarios\RegistroUsuario.g.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\RegistroUsuarios\RegistroUsuario.baml
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\RegistroUsuarios\CodigoDeVerificacion.g.cs
