@@ -27,3 +27,5 @@ C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\U
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\bin\Debug\Newtonsoft.Json.dll
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\bin\Debug\Newtonsoft.Json.xml
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.csproj.Up2Date
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\MainUsuarios\MainUsuario.g.cs
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\MainUsuarios\MainUsuario.baml

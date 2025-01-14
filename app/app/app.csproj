@@ -63,8 +63,12 @@
     <Compile Include="ViewModel\Usuarios\LogIn\LogInViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroPerfilViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroUsuarioViewModel.cs" />
+    <Compile Include="ViewModel\Usuarios\UsuarioViewModel.cs" />
     <Compile Include="View\Usuarios\LogIn\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuarios\MainUsuarios\MainUsuario.xaml.cs">
+      <DependentUpon>MainUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usuarios\MainUsuarios\MainUsuarios.xaml.cs">
       <DependentUpon>MainUsuarios.xaml</DependentUpon>
@@ -95,6 +99,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Usuarios\LogIn\LogIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usuarios\MainUsuarios\MainUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +177,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\RegistroUsuarios\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\imgDataGrid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\imgListView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\pen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

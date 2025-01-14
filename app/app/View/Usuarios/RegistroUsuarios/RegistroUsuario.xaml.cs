@@ -148,8 +148,12 @@ namespace app.View.Usuarios.RegistroUsuario
                 MessageBox.Show($"WPF : Ocurrió un error al cargar los datos : {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 btnEnviar.IsEnabled = true;
             }
+            finally
+            {
+                btnEnviar.IsEnabled = true;
+            }   
 
-            
+
         }
     }
 }

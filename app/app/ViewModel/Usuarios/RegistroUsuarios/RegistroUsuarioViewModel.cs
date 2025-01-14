@@ -29,18 +29,18 @@ namespace app.ViewModel.Usuarios.RegistroUsuarios
 
                     if (response.IsSuccessStatusCode)
                     {
-                        Debug.WriteLine("Usuario creado correctamente");
+                        Debug.WriteLine("Usuario creado correctamente : En ViewModel");
                         return response;
                     }
                     else
                     {
-                        Debug.WriteLine($"Error: {response.StatusCode}");
+                        Debug.WriteLine($"Error : {response.StatusCode} : En ViewModel");
                         return response;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"Exception: {ex.Message}");
+                    Debug.WriteLine($"Exception: {ex.Message} : En ViewModel");
                     return null;
                 }
             }

@@ -273,8 +273,8 @@ namespace app.View.Usuarios.RegistroUsuarios
                     return;
                 }
 
-                var contentString = await formData.ReadAsStringAsync();
-                MessageBox.Show(contentString);
+                //var contentString = await formData.ReadAsStringAsync();
+                //MessageBox.Show(contentString);
 
                 // Enviar la solicitud POST al servidor
                 var response = await viewModel.RegistrarPerfil(formData, rolSeleccionado);

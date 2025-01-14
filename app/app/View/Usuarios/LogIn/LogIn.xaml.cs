@@ -95,7 +95,7 @@ namespace app.View.Usuarios.Login
             Usuario data = new Usuario { email = TextBoxEmail.Text, password = PasswordBoxEmail.Password };
 
             var response = await log.LogIn(data);
-            var result = await response.Content.ReadAsStringAsync();
+             var result = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
@@ -107,9 +107,10 @@ namespace app.View.Usuarios.Login
                     UserSession.Instance.Token = responseData.data.token;
                     UserSession.Instance.Data = JObject.FromObject(responseData.data.user);
 
-                    Usuarios.MainUsuarios.MainUsuarios user = new Usuarios.MainUsuarios.MainUsuarios();
+                    MainUsuario user = new MainUsuario();
                     user.Show();
                     this.Close();
+                    
 
                 }
                 else

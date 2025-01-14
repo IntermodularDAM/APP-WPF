@@ -23,5 +23,6 @@ namespace app.Models.Usuarios
         public string verificationCode { get => _verificationCode; set => _verificationCode = value; }
         public string codeExpiresAt { get => _codeExpiresAt; set => _codeExpiresAt = value; }
         public string isVerified { get => _isVerified; set => _isVerified = value; }
+        public string id { get => _id; set => _id = value; }
     }
 }
