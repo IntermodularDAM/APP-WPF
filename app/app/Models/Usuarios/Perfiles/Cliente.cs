@@ -10,7 +10,7 @@ namespace app.Models.Usuarios.Perfiles
     {
 
 
-        private string _vip;
-        private string _telefono;
+        public string _vip;
+        public string _telefono;
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using app.Models.Usuarios;
 using app.View.Usuarios.RegistroUsuarios;
+using app.ViewModel.Usuarios;
 using app.ViewModel.Usuarios.RegistroUsuarios;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -26,36 +27,45 @@ namespace app.View.Usuarios.RegistroUsuario
     /// </summary>
     public partial class RegistroUsuario : Window
     {
-        public RegistroUsuario()
+        private readonly UsuarioViewModel _viewModel;
+        public RegistroUsuario(UsuarioViewModel viewMode)
         {
             InitializeComponent();
+            _viewModel = viewMode;
         }
 
         private void txtNombre_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ValidateLogin();
+            ValidarRegistroUsuario();
         }
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            ValidateLogin();
+            ValidarRegistroUsuario(); 
         }
-        private void ValidateLogin()
+        private void txtPasswordConfirmacion_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ValidarRegistroUsuario(); 
+        }
+        private void ValidarRegistroUsuario()
         {
             // Obtengo los valores ingresados en los campos de texto para email y contraseña
             string email = txtEmail.Text;
             string password = txtPassword.Password;
+            string passwordConfirmacion = txtPasswordConfirmacion.Password;
 
             // Valido el email y la contraseña utilizando los métodos correspondientes
             bool isEmailValid = IsValidEmail(email);
             bool isPasswordValid = IsValidPassword(password);
-
+            bool isPasswordValidConfirm = password == passwordConfirmacion;
+        
             // Muestro u oculto el mensaje de error para el campos dependiendo de su validez
             ErrorTextEmail.Visibility = isEmailValid ? Visibility.Collapsed : Visibility.Visible;
             ErrorTextPassword.Visibility = isPasswordValid ? Visibility.Collapsed : Visibility.Visible;
+            ErrorTextPasswordConfirmacion.Visibility = isPasswordValidConfirm ? Visibility.Collapsed : Visibility.Visible;
 
             // Habilito el botón de inicio de sesión solo si ambos campos son válidos
-            btnEnviar.IsEnabled = isEmailValid && isPasswordValid;
+            btnEnviar.IsEnabled = isEmailValid && isPasswordValid && isPasswordValidConfirm;
         }
         public bool IsValidEmail(string email)
         {
@@ -113,15 +123,18 @@ namespace app.View.Usuarios.RegistroUsuario
 
                     if (responseData != null)
                     {
-                        CodigoDeVerificacion codigo = new CodigoDeVerificacion
+                        CodigoDeVerificacion codigo = new CodigoDeVerificacion(_viewModel)
                         {
-                            Email = responseData.data.email
+                            Email = responseData.data.email,
+                            
                         };
-                        codigo.Show();
-                       
-
+                        codigo.Owner = this.Owner;
                         // Cerrar la pantalla de inicio de sesión
+                        this.Hide();
+                        codigo.ShowDialog();
                         this.Close();
+
+
                     }
                         // Obtener los datos del usuario y enviarlos a verificación
                         //UserSession.Instance.Token = responseData.data.token;
@@ -154,6 +167,11 @@ namespace app.View.Usuarios.RegistroUsuario
             }   
 
 
+        }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -9,9 +9,9 @@ namespace app.Models.Usuarios.Perfiles
     public class Administrador : UsuarioBase
     {
 
+        public string _nivelDeAcceso { get; set; }
+        public string _responsableDeArea { get; set; }
 
-        public string nivelDeAcceso { get; set; }
-        public string responsableDeArea { get; set; }
 
     }
 }

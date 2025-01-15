@@ -65,6 +65,7 @@
     <Compile Include="Models\Usuarios\UsuarioBase.cs" />
     <Compile Include="UserSession.cs" />
     <Compile Include="ViewModel\Usuarios\LogIn\LogInViewModel.cs" />
+    <Compile Include="ViewModel\Usuarios\RegistroUsuarios\CodigoVerificacionViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroPerfilViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroUsuarioViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\UsuarioViewModel.cs" />

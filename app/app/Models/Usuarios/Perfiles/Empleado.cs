@@ -11,8 +11,8 @@ namespace app.Models.Usuarios.Perfiles
 
 
 
-        private string _salario;
-        private string _puesto;
+        public string _salario;
+        public string _puesto;
 
 
     }

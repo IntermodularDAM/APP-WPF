@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using app.Models.Usuarios;
+using app.ViewModel.Usuarios;
 using app.ViewModel.Usuarios.RegistroUsuarios;
 using Newtonsoft.Json;
 
@@ -23,10 +25,12 @@ namespace app.View.Usuarios.RegistroUsuarios
     /// </summary>
     public partial class CodigoDeVerificacion : Window
     {
+        private readonly UsuarioViewModel _viewModel;
         public string Email { get; set; }
-        public CodigoDeVerificacion()
+        public CodigoDeVerificacion(UsuarioViewModel viewMode)
         {
             InitializeComponent();
+            _viewModel = viewMode;
             Loaded += Window_Loaded;
         }
 
@@ -92,13 +96,16 @@ namespace app.View.Usuarios.RegistroUsuarios
 
                 if (responseData != null) {
                     
-                    RegistroPerfil perfil = new RegistroPerfil{
+                    RegistroPerfil perfil = new RegistroPerfil(_viewModel){
                         Email = responseData.data.email,
                         IdUsuario = responseData.data.idUsuario
                     };
                    
-                    perfil.Show();
+                    perfil.Owner = this.Owner;
+                    this.Hide();
+                    perfil.ShowDialog();
                     this.Close();
+
 
                 }
                 else {
@@ -115,6 +122,48 @@ namespace app.View.Usuarios.RegistroUsuarios
          
         }
 
+        private async void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            var confirmacion = MessageBox.Show(
+                "Estas seguro que quieres cerrar ?",
+                "Se va a eliminar el usuario ya registrado...",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
 
+            if (confirmacion == MessageBoxResult.Yes)
+            {
+                var viewModelCodigoVerificacion = new CodigoVerificacionViewModel();
+          
+                var response = await viewModelCodigoVerificacion.EliminarUsuario(Email);
+
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var status = JsonConvert.DeserializeObject(result);
+                    MessageBox.Show(
+                    $"usuario Eliminado. {status}",
+                    "Status : 200",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                    );
+                    this.Close();
+                }
+                else {
+                    var error = JsonConvert.DeserializeObject(result);
+                    MessageBox.Show(
+                        $"Error al eliminar el usuario. {error}",
+                        "Error : 500",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                        );
+         
+                }
+
+            }
+            
+
+            
+        }
     }
 }

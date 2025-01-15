@@ -109,9 +109,7 @@ namespace app.View.Usuarios.Login
 
                     MainUsuario user = new MainUsuario();
                     user.Show();
-                    this.Close();
-                    
-
+                    this.Close();                  
                 }
                 else
                 {
@@ -123,10 +121,7 @@ namespace app.View.Usuarios.Login
             {
                 var error = JsonConvert.DeserializeObject<dynamic>(result);
                 MessageBox.Show(error + " : WPF : error 404");
-            }
-
-
-            
+            } 
         }
     }
 }

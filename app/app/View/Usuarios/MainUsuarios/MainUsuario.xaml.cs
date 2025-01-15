@@ -11,8 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using app.Models.Usuarios;
 using app.View.Usuarios.RegistroUsuarios;
 using app.ViewModel.Usuarios;
+using Newtonsoft.Json;
 
 namespace app.View.Usuarios.MainUsuarios
 {
@@ -30,6 +32,16 @@ namespace app.View.Usuarios.MainUsuarios
             _viewModel = new UsuarioViewModel();
             this.DataContext =  _viewModel;
         }
+
+        private void btnRegistrarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            Usuarios.RegistroUsuario.RegistroUsuario registro = new Usuarios.RegistroUsuario.RegistroUsuario(_viewModel);
+            registro.Owner = this;
+            registro.ShowDialog();
+
+            
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try { 
@@ -39,19 +51,13 @@ namespace app.View.Usuarios.MainUsuarios
             }
         }
 
-        private void btnRegistrarUsuario_Click(object sender, RoutedEventArgs e)
-        {
-            Usuarios.RegistroUsuario.RegistroUsuario registro = new Usuarios.RegistroUsuario.RegistroUsuario();
-            registro.Show();
-        }
-
         private void ToggleButtonCambiarLista_Checked(object sender, RoutedEventArgs e)
         {
             DataGridPerfilUsuarios.Visibility = Visibility.Collapsed;
             ListViewPerfilUsuarios.Visibility = Visibility.Visible;
             btnToggleButtonCambiarLista.Content = "ListView";
             imgToggleButton.Source = new BitmapImage(new Uri("/View/Usuarios/MainUsuarios/imgListView.png", UriKind.RelativeOrAbsolute)); ;
-            
+
             _viewModel.CargarTodosLosUsuarios();
 
         }
@@ -65,8 +71,9 @@ namespace app.View.Usuarios.MainUsuarios
             _viewModel.CargarTodosLosUsuarios();
         }
 
-        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        private  void btnEditar_Click(object sender, RoutedEventArgs e)
         {
+           
 
         }
 
@@ -74,10 +81,34 @@ namespace app.View.Usuarios.MainUsuarios
         {
 
         }
-
-        private void btnBorrar_Click(object sender, RoutedEventArgs e)
+        private async void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
+            UsuarioBase usuarioSeleccionado = null;
 
+            if (DataGridPerfilUsuarios.SelectedItem != null) { usuarioSeleccionado = (UsuarioBase)DataGridPerfilUsuarios.SelectedItem; }
+            else if (ListViewPerfilUsuarios.SelectedItem != null) { usuarioSeleccionado = (UsuarioBase)ListViewPerfilUsuarios.SelectedItem; }
+            if (usuarioSeleccionado == null)
+            {
+                MessageBox.Show("Por favor, selecciona una usuario para borrar.", "Error !", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            var result = MessageBox.Show($"¿Estás seguro de que quieres eliminar la cuenta seleccionado ?", "Confirmar eliminación", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+
+                var response = await _viewModel.EliminarPerfil(usuarioSeleccionado._id.ToString(),usuarioSeleccionado.rol.ToString());
+                var resultEliminar = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var status = JsonConvert.DeserializeObject(resultEliminar);
+                    MessageBox.Show("Correctamente...", "Usuario Eliminado", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error al eliminar el usuario . Por favor, intenta de nuevo.");
+                }
+            }
         }
 
 
