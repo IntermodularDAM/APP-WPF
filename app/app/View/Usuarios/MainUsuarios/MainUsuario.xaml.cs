@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using app.Models.Usuarios;
+using app.View.Usuarios.EditarUsuarios;
+using app.View.Usuarios.InformacionUsuarios;
 using app.View.Usuarios.RegistroUsuarios;
 using app.ViewModel.Usuarios;
 using Newtonsoft.Json;
@@ -73,12 +75,18 @@ namespace app.View.Usuarios.MainUsuarios
 
         private  void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-           
+           EditarUsuario edit = new EditarUsuario();
+            edit.Owner = this;
+            edit.ShowDialog();
+
+            _viewModel.CargarTodosLosUsuarios();
 
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
+            InformacionUsuario info = new InformacionUsuario(); info.Owner = this;
+            info.ShowDialog();
 
         }
         private async void btnBorrar_Click(object sender, RoutedEventArgs e)

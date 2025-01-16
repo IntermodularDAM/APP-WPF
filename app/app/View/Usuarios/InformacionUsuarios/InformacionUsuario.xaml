@@ -1,0 +1,72 @@
+﻿<Window x:Class="app.View.Usuarios.InformacionUsuarios.InformacionUsuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:app.View.Usuarios.InformacionUsuarios"
+        mc:Ignorable="d"
+        Title="InformacionUsuario" Height="600" Width="1000"
+                WindowStyle="None"
+       ResizeMode="NoResize"
+       Background="Transparent"
+       AllowsTransparency="True"
+       WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Dictionary1.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Border CornerRadius="20" Background="#CC000000" BorderThickness="5">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0 ,1">
+                    <GradientStop Color="#43BC73" Offset="1"></GradientStop>
+                    <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
+                    <GradientStop Color="#68EB9C" Offset="0.0"></GradientStop>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border Grid.Row="1" Width="265" Height="550" CornerRadius="20" >
+                <Border.Background>
+                    <SolidColorBrush Color="#FFD9D9D9" />
+                </Border.Background>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Ellipse x:Name="imgPerfil"  Width="200" Height="200">
+                        <Ellipse.Fill>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Grid Background="#FFC4C4C4">
+                                        <Image Source="/View/Usuarios/InformacionUsuarios/58ffe72b95350c2b3440659d5f9631ce.png"  ></Image>
+                                    </Grid>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock x:Name="txtNombre" Text="Leobardo Ríos" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0"/>
+                    <TextBlock x:Name="txtRol" Text="Administrador" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF43BC73"/>
+                    <TextBlock Text="Ciudad" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
+                    <TextBlock x:Name="txtCiudad" Text="Alicante" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
+                    <TextBlock Text="Email" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
+                    <TextBlock x:Name="txtEmail" Text="Leo@peremaria.com" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
+                    <TextBlock Text="DNI" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
+                    <TextBlock x:Name="txtDni" Text="Y8262855G" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
+                    <TextBlock Text="Fecha nacimiento" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
+                    <TextBlock x:Name="txtDate" Text="13/04/2023" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
+
+                    <Button x:Name="btnCerrar"  Height="45" Width="160"
+                          HorizontalAlignment="Center"   Content="Cerrar"
+                          Background="#68EB9C" BorderBrush="#68EB9C" FontSize="14" Click="btnCerrar_Click" >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+        </Border>
+    </Grid>
+</Window>

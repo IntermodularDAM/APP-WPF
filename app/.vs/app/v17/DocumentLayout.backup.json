@@ -7,12 +7,60 @@
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\mainusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\viewmodel\\usuarios\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\mainusuarios\\mainusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\mainusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\srleo\\documents\\github\\intermodulardam\\app-wpf\\app\\app\\view\\usuarios\\editarusuarios\\editarusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\editarusuarios\\editarusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\srleo\\documents\\github\\intermodulardam\\app-wpf\\app\\app\\view\\usuarios\\editarusuarios\\editarusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\editarusuarios\\editarusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\login\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\login\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\srleo\\documents\\github\\intermodulardam\\app-wpf\\app\\app\\view\\usuarios\\informacionusuarios\\informacionusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\informacionusuarios\\informacionusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\srleo\\documents\\github\\intermodulardam\\app-wpf\\app\\app\\view\\usuarios\\informacionusuarios\\informacionusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\informacionusuarios\\informacionusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\srleo\\documents\\github\\intermodulardam\\app-wpf\\app\\app\\viewmodel\\usuarios\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\srleo\\documents\\github\\intermodulardam\\app-wpf\\app\\app\\view\\usuarios\\login\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\login\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\viewmodel\\usuarios\\login\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\login\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\viewmodel\\usuarios\\registrousuarios\\registroperfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\registrousuarios\\registroperfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\viewmodel\\usuarios\\registrousuarios\\registrousuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\registrousuarios\\registrousuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\srleo\\documents\\github\\intermodulardam\\app-wpf\\app\\app\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registroperfil.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registroperfil.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\viewmodel\\usuarios\\registrousuarios\\codigoverificacionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,32 +71,12 @@
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\codigodeverificacion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\viewmodel\\usuarios\\registrousuarios\\registrousuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\registrousuarios\\registrousuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\srleo\\documents\\github\\intermodulardam\\app-wpf\\app\\app\\view\\usuarios\\mainusuarios\\mainusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\mainusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\login\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\login\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\codigodeverificacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\codigodeverificacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registrousuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registrousuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\viewmodel\\usuarios\\registrousuarios\\registroperfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\registrousuarios\\registroperfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registrousuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -93,10 +121,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\models\\usuarios\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\models\\usuarios\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\viewmodel\\usuarios\\login\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\login\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -116,7 +140,7 @@
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
               "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
               "RelativeToolTip": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAmwFMAAABMAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAtwFkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-12T10:03:20.113Z",
               "IsPinned": true,
@@ -124,13 +148,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "UsuarioViewModel.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
               "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
               "RelativeToolTip": "app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAzwLAAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAUwKwAAABxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-12T10:46:46.011Z",
               "IsPinned": true,
@@ -138,58 +162,44 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CodigoVerificacionViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\CodigoVerificacionViewModel.cs",
-              "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\CodigoVerificacionViewModel.cs",
-              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\CodigoVerificacionViewModel.cs",
-              "RelativeToolTip": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\CodigoVerificacionViewModel.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAewB4AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T14:29:41.627Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RegistroPerfil.xaml",
-              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml",
-              "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml",
-              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml",
-              "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-15T14:49:18.075Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CodigoDeVerificacion.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
-              "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
-              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
-              "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAtwIcAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T12:00:28.859Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "RegistroUsuarioViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroUsuarioViewModel.cs",
-              "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroUsuarioViewModel.cs",
-              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroUsuarioViewModel.cs",
-              "RelativeToolTip": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroUsuarioViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml.cs",
+              "RelativeToolTip": "app\\View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAtwBwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T11:55:44.322Z",
+              "WhenOpened": "2025-01-16T18:11:54.52Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
+              "Title": "LogIn.xaml",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\LogIn\\LogIn.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\LogIn\\LogIn.xaml",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\LogIn\\LogIn.xaml",
+              "RelativeToolTip": "app\\View\\Usuarios\\LogIn\\LogIn.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-16T17:10:14.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EditarUsuario.xaml",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml",
+              "RelativeToolTip": "app\\View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-16T17:10:07.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainUsuario.xaml",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml",
@@ -201,31 +211,147 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RegistroPerfil.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
-              "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
-              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
-              "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
-              "ViewState": "AgIAAD0BAAAAAAAAAAAkwEwBAAACAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml.cs",
+              "RelativeToolTip": "app\\View\\Usuarios\\EditarUsuarios\\EditarUsuario.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAtwBwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T10:59:46.15Z"
+              "WhenOpened": "2025-01-16T18:13:10.809Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
+              "Title": "LogInViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\LogIn\\LogInViewModel.cs",
+              "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\LogIn\\LogInViewModel.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\LogIn\\LogInViewModel.cs",
+              "RelativeToolTip": "app\\ViewModel\\Usuarios\\LogIn\\LogInViewModel.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAgwBAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T22:31:19.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "LogIn.xaml.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\LogIn\\LogIn.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\LogIn\\LogIn.xaml.cs",
               "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\LogIn\\LogIn.xaml.cs",
               "RelativeToolTip": "app\\View\\Usuarios\\LogIn\\LogIn.xaml.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAtwFkAAABLAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAMwGsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T13:36:12.055Z"
+              "WhenOpened": "2025-01-15T13:36:12.055Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
+              "Title": "InformacionUsuario.xaml",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml",
+              "RelativeToolTip": "app\\View\\Usuarios\\InformacionUsuarios\\InformacionUsuario.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-16T17:25:49.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RegistroPerfilViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
+              "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
+              "RelativeToolTip": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwC0AAABlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T12:16:19.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RegistroUsuarioViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroUsuarioViewModel.cs",
+              "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroUsuarioViewModel.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroUsuarioViewModel.cs",
+              "RelativeToolTip": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroUsuarioViewModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T11:55:44.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserSession.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\UserSession.cs",
+              "RelativeDocumentMoniker": "app\\UserSession.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\UserSession.cs",
+              "RelativeToolTip": "app\\UserSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T15:01:02.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RegistroPerfil.xaml",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml",
+              "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-15T14:49:18.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "RegistroPerfil.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
+              "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
+              "ViewState": "AgIAAD4BAAAAAAAAAAAAAEwBAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T10:59:46.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CodigoVerificacionViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\CodigoVerificacionViewModel.cs",
+              "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\CodigoVerificacionViewModel.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\CodigoVerificacionViewModel.cs",
+              "RelativeToolTip": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\CodigoVerificacionViewModel.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAWwB4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T14:29:41.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CodigoDeVerificacion.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
+              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
+              "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAtwIcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T12:00:28.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "CodigoDeVerificacion.xaml",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml",
@@ -236,7 +362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "RegistroUsuario.xaml.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml.cs",
@@ -248,19 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "RegistroPerfilViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
-              "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
-              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
-              "RelativeToolTip": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAQwBEAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T12:16:19.094Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 19,
               "Title": "RegistroUsuario.xaml",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
@@ -271,7 +385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 20,
               "Title": "UsuarioBase.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\Models\\Usuarios\\UsuarioBase.cs",
               "RelativeDocumentMoniker": "app\\Models\\Usuarios\\UsuarioBase.cs",
@@ -283,7 +397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 21,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\Models\\Usuarios\\Usuario.cs",
               "RelativeDocumentMoniker": "app\\Models\\Usuarios\\Usuario.cs",
@@ -295,7 +409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 22,
               "Title": "Empleado.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\Models\\Usuarios\\Perfiles\\Empleado.cs",
               "RelativeDocumentMoniker": "app\\Models\\Usuarios\\Perfiles\\Empleado.cs",
@@ -307,7 +421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "Cliente.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\Models\\Usuarios\\Perfiles\\Cliente.cs",
               "RelativeDocumentMoniker": "app\\Models\\Usuarios\\Perfiles\\Cliente.cs",
@@ -319,7 +433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "Administrador.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\Models\\Usuarios\\Perfiles\\Administrador.cs",
               "RelativeDocumentMoniker": "app\\Models\\Usuarios\\Perfiles\\Administrador.cs",
@@ -331,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 25,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\App.config",
               "RelativeDocumentMoniker": "app\\App.config",
@@ -343,7 +457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 26,
               "Title": "Dictionary1.xaml",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\Dictionary1.xaml",
               "RelativeDocumentMoniker": "app\\Dictionary1.xaml",
@@ -355,7 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 28,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\App.xaml",
               "RelativeDocumentMoniker": "app\\App.xaml",
@@ -367,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 27,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\App.xaml.cs",
               "RelativeDocumentMoniker": "app\\App.xaml.cs",
@@ -379,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 29,
               "Title": "ApiResponse.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\Models\\Usuarios\\ApiResponse.cs",
               "RelativeDocumentMoniker": "app\\Models\\Usuarios\\ApiResponse.cs",
@@ -388,18 +502,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-14T12:51:33.995Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "LogInViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\LogIn\\LogInViewModel.cs",
-              "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\LogIn\\LogInViewModel.cs",
-              "ToolTip": "C:\\Users\\srleo\\Documents\\GitHub\\IntermodularDAM\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\LogIn\\LogInViewModel.cs",
-              "RelativeToolTip": "app\\ViewModel\\Usuarios\\LogIn\\LogInViewModel.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAgwBAAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-11T22:31:19.143Z"
             }
           ]
         }

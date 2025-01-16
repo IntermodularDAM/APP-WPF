@@ -25,3 +25,7 @@ C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\bin\Debug\Newton
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.csproj.Up2Date
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\MainUsuarios\MainUsuario.g.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\MainUsuarios\MainUsuario.baml
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\EditarUsuarios\EditarUsuario.g.cs
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\EditarUsuarios\EditarUsuario.baml
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\InformacionUsuarios\InformacionUsuario.g.cs
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\InformacionUsuarios\InformacionUsuario.baml

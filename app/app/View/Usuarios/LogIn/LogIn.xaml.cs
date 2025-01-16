@@ -95,7 +95,8 @@ namespace app.View.Usuarios.Login
             Usuario data = new Usuario { email = TextBoxEmail.Text, password = PasswordBoxEmail.Password };
 
             var response = await log.LogIn(data);
-             var result = await response.Content.ReadAsStringAsync();
+             
+            var result = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {

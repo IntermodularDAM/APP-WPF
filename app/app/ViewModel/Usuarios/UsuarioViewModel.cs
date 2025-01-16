@@ -169,7 +169,7 @@ namespace app.ViewModel.Usuarios
             using (var client = new HttpClient()) {
                 try {
 
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(UserSession.Instance.Token);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UserSession.Instance.Token);
                     client.DefaultRequestHeaders.Add("x-role-user", UserSession.Instance.Data["rol"].ToString());
 
                     var json = JsonConvert.SerializeObject(new { _id = id, rol = role });
