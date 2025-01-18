@@ -26,8 +26,13 @@ namespace app.ViewModel.Usuarios
         private const string ApiUrlEliminarEmpleado = "http://127.0.0.1:3505/Empleado/eliminarEmpleado";
         private const string ApiUrlEliminarCliente = "http://127.0.0.1:3505/Cliente/eliminarCliente";
 
+        private const string ApiUrlTodosLosUsuarios = "http://127.0.0.1:3505/Usuario/todosLosUsuarios";
+        private const string ApiUrlEmailDisponible = "http://127.0.0.1:3505/Usuario/emailDisponible";
+
         private ObservableCollection<UsuarioBase> allPerfiles;
+        private ObservableCollection<Usuario> allUsers;
         public ObservableCollection<UsuarioBase> AllPerfiles { get => allPerfiles; set { allPerfiles = value; OnPropertyChanged("AllPerfiles"); } }
+        public ObservableCollection<Usuario> AllUsers{ get => allUsers; set { allUsers = value; OnPropertyChanged("AllUsers"); } }
 
 
 
@@ -53,11 +58,16 @@ namespace app.ViewModel.Usuarios
                     HttpResponseMessage responseEmpleados = await client.GetAsync(ApiUrlAllEmpleados);
                     HttpResponseMessage responseCliente = await client.GetAsync(ApiUrlAllClientes);
 
-                    if (responseAdministradores.IsSuccessStatusCode && responseCliente.IsSuccessStatusCode && responseEmpleados.IsSuccessStatusCode)
+                    HttpResponseMessage responseUsuarios = await client.GetAsync(ApiUrlTodosLosUsuarios);
+
+                    if (responseAdministradores.IsSuccessStatusCode && responseCliente.IsSuccessStatusCode && responseEmpleados.IsSuccessStatusCode && responseUsuarios.IsSuccessStatusCode)
                     {
                         var jsonAdministrador = await responseAdministradores.Content.ReadAsStringAsync();
                         var jsonEmpleado = await responseEmpleados.Content.ReadAsStringAsync();
                         var jsonCliente = await responseCliente.Content.ReadAsStringAsync();
+
+                        var jsonUsuario = await responseUsuarios.Content.ReadAsStringAsync();
+
 
                         // Muestra el JSON crudo para depuración
                         //MessageBox.Show($"JSON Administradores: {jsonAdministrador}, \n JSON Empleados : {jsonEmpleado}, JSON Clientes: {jsonCliente}");
@@ -66,12 +76,27 @@ namespace app.ViewModel.Usuarios
                         var empleadosResponse = JsonConvert.DeserializeObject<ApiResponse<List<Empleado>>>(jsonEmpleado);
                         var clientesResponse = JsonConvert.DeserializeObject<ApiResponse<List<Cliente>>>(jsonCliente);
 
+                        var usuariosResponse = JsonConvert.DeserializeObject<ApiResponse<List<Usuario>>>(jsonUsuario);
+
                         //MessageBox.Show($"Adminitradores : {administradoresResponse.data.Count()}, \n Empleado : {empleadosResponse.data.Count()} \n Cliente : {clientesResponse.data.Count()}");
 
 
 
                         AllPerfiles = new ObservableCollection<UsuarioBase>();
+                        AllUsers= new ObservableCollection<Usuario>();
 
+                        foreach (var user in usuariosResponse.data)
+                        {
+                            if (!string.IsNullOrEmpty(user._id) && user != null)
+                                AllUsers.Add(new Usuario
+                                {
+                                    _id = user._id,
+                                    password = user.password,
+                                    email = user.email,
+
+                                });
+
+                        }
 
                         foreach (var administrador in administradoresResponse.data) 
                         {
@@ -130,17 +155,11 @@ namespace app.ViewModel.Usuarios
                                 rutaFoto = "http://127.0.0.1:3505/" + cliente.rutaFoto,
                             });
                         }
-                    
-                        //string allUsersInfo = "Usuarios en AllUsers:\n";
 
-                        //foreach (var user in AllUsers)
-                        //{
-                        //    allUsersInfo += $"ID: {user.idUsuario}, Nombre: {user.nombre}, Apellido: {user.apellido}, Rol: {user.rol}\n";
-                        //}
-
-                        //MessageBox.Show(allUsersInfo+ $"\n Cantidad Usuarios : {AllUsers.Count()}" );
+ 
 
                         OnPropertyChanged("AllPerfiles");
+                        OnPropertyChanged("AllUsers");
 
 
                     }
@@ -197,6 +216,38 @@ namespace app.ViewModel.Usuarios
                     }
 
                 }catch (Exception e) { throw new Exception(e.Message); }
+            }
+        }
+
+        public async Task<bool> EmailDisponible(string emailDisponible)
+        {
+            using (var cliente = new HttpClient())
+            {
+                try
+                {
+                    var json = JsonConvert.SerializeObject(new {email = emailDisponible});
+                    var content = new StringContent (json,Encoding.UTF8,"application/json");
+
+                    var responseEmail = await cliente.PostAsync(ApiUrlEmailDisponible, content);
+
+                    if (responseEmail.IsSuccessStatusCode)
+                    {
+                       
+                      
+                            return true;
+                        
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"Errors: {responseEmail.StatusCode}");
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Exception: {ex.Message}");
+                    return false;
+                }
             }
         }
     }

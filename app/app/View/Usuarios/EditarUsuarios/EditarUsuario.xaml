@@ -111,6 +111,7 @@
                                 </TextBox.Resources>
                             </TextBox>
                             <TextBlock x:Name="ErrorTextEmail" Margin="20,0,0,0" Text="* Campo obligatorio" Style="{StaticResource ErrorText}" />
+                            <TextBlock x:Name="ErrorTextEmailChange" Margin="20,0,0,0" Text="* Email no disponible" Style="{StaticResource ErrorText}" />
 
                         </StackPanel>
 

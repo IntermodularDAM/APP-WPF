@@ -250,14 +250,14 @@ namespace app.View.Usuarios.RegistroUsuarios
                     //// Agregar los campos del formulario a la petición
                     { new StringContent(""), "_id" },
                     { new StringContent(IdUsuario), "idUsuario" },
-                    { new StringContent(txtNombre.Text), "nombre" },
-                    { new StringContent(txtApellidos.Text), "apellido" },
-                    { new StringContent(txtEmail.Text), "email" },
+                    { new StringContent(txtNombre.Text.Trim()), "nombre" },
+                    { new StringContent(txtApellidos.Text.Trim()), "apellido" },
+                    { new StringContent(txtEmail.Text.Trim()), "email" },
                     { new StringContent(rolSeleccionado), "rol" },
                     { new StringContent(sexo), "sexo" },
-                    { new StringContent(txtDni.Text), "dni" },
-                    { new StringContent(txtDate.Text), "date"},
-                    { new StringContent(txtCiudad.Text), "ciudad"},
+                    { new StringContent(txtDni.Text.Trim()), "dni" },
+                    { new StringContent(txtDate.Text.Trim()), "date"},
+                    { new StringContent(txtCiudad.Text.Trim()), "ciudad"},
 
 
                 };
