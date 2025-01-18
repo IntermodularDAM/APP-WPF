@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\App.xaml
-8729048406
+111204011035
 
-24-2103259118
+27-1776492583
 15230800638
-Dictionary1.xaml;View\Usuarios\EditarUsuarios\EditarUsuario.xaml;View\Usuarios\InformacionUsuarios\InformacionUsuario.xaml;View\Usuarios\LogIn\LogIn.xaml;View\Usuarios\MainUsuarios\MainUsuario.xaml;View\Usuarios\RegistroUsuarios\CodigoDeVerificacion.xaml;View\Usuarios\RegistroUsuarios\RegistroPerfil.xaml;View\Usuarios\RegistroUsuarios\RegistroUsuario.xaml;
+Dictionary1.xaml;View\Usuarios\CambiarContraseña\CambiarContraseña.xaml;View\Usuarios\EditarUsuarios\EditarUsuario.xaml;View\Usuarios\InformacionUsuarios\InformacionUsuario.xaml;View\Usuarios\LogIn\LogIn.xaml;View\Usuarios\MainUsuarios\MainUsuario.xaml;View\Usuarios\Notificaciones\Notificacion.xaml;View\Usuarios\RecordarContraseñas\RecordarContraseña.xaml;View\Usuarios\RegistroUsuarios\CodigoDeVerificacion.xaml;View\Usuarios\RegistroUsuarios\RegistroPerfil.xaml;View\Usuarios\RegistroUsuarios\RegistroUsuario.xaml;
 
-False
+True
 

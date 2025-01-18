@@ -12,8 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using app.Models.Usuarios;
+using app.View.Usuarios.CambiarContraseña;
 using app.View.Usuarios.EditarUsuarios;
 using app.View.Usuarios.InformacionUsuarios;
+using app.View.Usuarios.Notificaciones;
 using app.View.Usuarios.RegistroUsuarios;
 using app.ViewModel.Usuarios;
 using Newtonsoft.Json;
@@ -48,6 +50,8 @@ namespace app.View.Usuarios.MainUsuarios
         {
             try { 
                 _viewModel.CargarTodosLosUsuarios();
+
+
             } catch(Exception ex) {
                 MessageBox.Show(ex.Message);
             }
@@ -75,7 +79,13 @@ namespace app.View.Usuarios.MainUsuarios
 
         private  void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-           EditarUsuario edit = new EditarUsuario();
+            UsuarioBase usuarioSeleccionado = null;
+            if (DataGridPerfilUsuarios.SelectedItem != null) { usuarioSeleccionado = (UsuarioBase)DataGridPerfilUsuarios.SelectedItem; }
+            else if (ListViewPerfilUsuarios.SelectedItem != null) { usuarioSeleccionado = (UsuarioBase)ListViewPerfilUsuarios.SelectedItem; }
+            else { MessageBox.Show("Por favor, selecciona una usuario para editar.", "Error.",MessageBoxButton.OK,MessageBoxImage.Error); return; }
+
+
+            EditarUsuario edit = new EditarUsuario(usuarioSeleccionado._id,  _viewModel);
             edit.Owner = this;
             edit.ShowDialog();
 
@@ -119,6 +129,17 @@ namespace app.View.Usuarios.MainUsuarios
             }
         }
 
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Notificacion noti = new Notificacion();
+            noti.Show();
+   
+        }
 
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Usuarios.CambiarContraseña.CambiarContraseña cambiar = new Usuarios.CambiarContraseña.CambiarContraseña();
+            cambiar.Show();
+        }
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using app.Models.Usuarios;
 using app.View.Usuarios.MainUsuarios;
+using app.View.Usuarios.RecordarContraseñas;
 using app.View.Usuarios.RegistroUsuarios;
 using app.ViewModel.Usuarios.LogIn;
 using IntermodularWPF;
@@ -123,6 +124,13 @@ namespace app.View.Usuarios.Login
                 var error = JsonConvert.DeserializeObject<dynamic>(result);
                 MessageBox.Show(error + " : WPF : error 404");
             } 
+        }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            RecordarContraseña recordar = new RecordarContraseña();
+            recordar.Show();
+            this.Close();
         }
     }
 }

@@ -10,7 +10,7 @@
        ResizeMode="NoResize"
        Background="Transparent"
        AllowsTransparency="True"
-       WindowStartupLocation="CenterScreen" >
+       WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -40,7 +40,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Ellipse x:Name="miEllipse" Height="55" Width="55" Stroke="White" StrokeThickness="2" Margin="20,0,10,0" />
                         <Label x:Name="lblTitulo" Content="Editar perfil de usuario" Width="474" Height="60" Foreground="#43BC73" FontWeight="Bold" FontSize="40 " Margin="15,0,0,5"></Label>
-                        <Button x:Name="btnCerrar" Margin="180,0,0,0" Background="Transparent" BorderBrush="Transparent" Width="40.9595867631593" Height="40"  >
+                        <Button x:Name="btnCerrar" Margin="180,0,0,0" Background="Transparent" BorderBrush="Transparent" Width="40.9595867631593" Height="40" Click="btnCerrar_Click"  >
                             <Image Source="/View/Usuarios/RegistroUsuarios/Close.png"></Image>
                         </Button>
                     </StackPanel>
@@ -61,7 +61,7 @@
                         <StackPanel>
 
                             <Label Content="Nombre" FontSize="14" Margin="15,0" />
-                            <TextBox x:Name="txtNombre" Margin="20,0" FontSize="16" Height="35" >
+                            <TextBox x:Name="txtNombre" Margin="20,0" FontSize="16" Height="35" TextChanged="txtNombre_TextChanged" >
                                 <TextBox.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="5"/>
@@ -74,7 +74,7 @@
 
                         <StackPanel  Grid.Column="1">
                             <Label Content="Apellidos"  FontSize="14" Margin="15,0"/>
-                            <TextBox x:Name="txtApellidos"  Height="35" Margin="20,0" >
+                            <TextBox x:Name="txtApellidos"  Height="35" Margin="20,0" TextChanged="txtApellidos_TextChanged" >
                                 <TextBox.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="5"/>
@@ -87,14 +87,14 @@
 
                         <StackPanel  Grid.Column="2" >
                             <Label Content="Rol" FontSize="14" Margin="15,0"/>
-                            <ComboBox  x:Name="txtRol"  Margin="20,0" FontSize="16" Height="35" >
+                            <ComboBox  x:Name="txtRol"  Margin="20,0" FontSize="16" Height="35" SelectionChanged="txtRol_SelectionChanged" >
                                 <ComboBox.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="5"></Setter>
                                     </Style>
                                 </ComboBox.Resources>
-                                <ComboBoxItem Content="Empleado"/>
                                 <ComboBoxItem Content="Administrador"/>
+                                <ComboBoxItem Content="Empleado"/>
                                 <ComboBoxItem Content="Cliente"/>
                             </ComboBox>
                             <TextBlock x:Name="ErrorTextRol" Margin="20,0,0,0" Text="* Campo obligatorio" Style="{StaticResource ErrorText}" />
@@ -103,7 +103,7 @@
 
                         <StackPanel  Grid.Column="0" Grid.Row="1">
                             <Label Content="Email" FontSize="14" Margin="15,0" />
-                            <TextBox x:Name="txtEmail" Margin="20,0" FontSize="16" Height="35" >
+                            <TextBox x:Name="txtEmail" Margin="20,0" FontSize="16" Height="35" TextChanged="txtEmail_TextChanged" >
                                 <TextBox.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="5"/>
@@ -116,7 +116,7 @@
 
                         <StackPanel Grid.Column="1" Grid.Row="1" >
                             <Label Content="DNI / NIE" FontSize="14" Margin="15,0" />
-                            <TextBox x:Name="txtDni"  Margin="20,0" FontSize="16" Height="35" >
+                            <TextBox x:Name="txtDni"  Margin="20,0" FontSize="16" Height="35" TextChanged="txtDni_TextChanged" >
                                 <TextBox.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="5"/>
@@ -129,7 +129,7 @@
 
                         <StackPanel Grid.Column="2" Grid.Row="1">
                             <Label Content="Fecha Nacimiento"  FontSize="14" Margin="15,0" />
-                            <DatePicker x:Name="txtDate"  Margin="20,0" FontSize="16" Height="35">
+                            <DatePicker x:Name="txtDate"  Margin="20,0" FontSize="16" Height="35" SelectedDateChanged="txtDate_SelectedDateChanged">
                                 <DatePicker.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="5"/>
@@ -142,7 +142,7 @@
 
                         <StackPanel Grid.Column="0" Grid.Row="2">
                             <Label Content="Ciudad"  FontSize="14" Margin="15,0" />
-                            <TextBox x:Name="txtCiudad" Margin="20,0" FontSize="16" Height="35" >
+                            <TextBox x:Name="txtCiudad" Margin="20,0" FontSize="16" Height="35" TextChanged="txtCiudad_TextChanged" >
                                 <TextBox.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="5"/>
@@ -163,7 +163,7 @@
 
                         <StackPanel Grid.Column="2" Grid.Row="2">
                             <TextBlock Text="Foto Perfil"  FontSize="14" Margin="15,0" />
-                            <Button x:Name="btnCargarImg" Content="Subir imagen"    BorderThickness="0" Foreground="White" FontSize="16" FontFamily="Montserrat" Cursor="Hand" Margin="0,0,0,0"  >
+                            <Button x:Name="btnCargarImg" Content="Subir imagen"    BorderThickness="0" Foreground="White" FontSize="16" FontFamily="Montserrat" Cursor="Hand" Margin="0,0,0,0" Click="btnCargarImg_Click"  >
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="#43BC73"/>
@@ -195,7 +195,7 @@
 
 
                     </Grid>
-                    <Button x:Name="btnGuardarPerfil" Grid.Row="2" Content="Enviar" IsEnabled="False" Width="120" Margin="0,14,30,20" Background="#43BC73" BorderBrush="#68EB9C" FontSize="14" Foreground="White" HorizontalAlignment="Right" Click="btnGuardarPerfil_Click">
+                    <Button x:Name="btnEditarPerfil" Grid.Row="2" Content="Enviar" IsEnabled="False" Width="120" Margin="0,14,30,20" Background="#43BC73" BorderBrush="#68EB9C" FontSize="14" Foreground="White" HorizontalAlignment="Right" Click="btnEditarPerfil_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"/>

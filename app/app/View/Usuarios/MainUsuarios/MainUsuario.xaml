@@ -47,16 +47,16 @@
                 <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" >
                     <DockPanel>
                         <Image  Height="30" VerticalAlignment="Top" Margin="10,15,0,0" Source="/View/Usuarios/MainUsuarios/Logo.png" />
-                        <TextBlock Text="Hotel Pere María" FontSize="27" Margin="5,10,0,0" FontWeight="Bold"/>
+                        <Label Content="Hotel Pere María" FontSize="27" Margin="5,10,0,0" FontWeight="Bold" MouseDown="TextBlock_MouseDown" />
                     </DockPanel>
                     <Button x:Name="btnBuscador" Content="Buscador" Style="{StaticResource BarSide}"/>
                     <Button x:Name="btnUsuarios" Content="Usuarios" Style="{StaticResource BarSide}"/>
                     <Button x:Name="btnReservas" Content="Reservas" Style="{StaticResource BarSide}"/>
                     <Button x:Name="btnHabitaciones" Content="Habitaciones"  Style="{StaticResource BarSide}"/>
                     <StackPanel VerticalAlignment="Center" Margin="40,0">
-                        <TextBlock Text="User Name" Foreground="#FF43BC73" FontSize="21" />
+                        <Label Content="User Name" Foreground="#FF43BC73" FontSize="21" MouseDown="Label_MouseDown" />
                     </StackPanel>
-                    <Image  Stretch="None" Margin="10,0,0,0" Source="/View/Usuarios/MainUsuarios/notification.png"/>
+                    <Image  Stretch="None" Margin="0,0,0,0" Source="/View/Usuarios/MainUsuarios/notification.png" />
                 </StackPanel>
                 <!--Ficha-->
                 <Label x:Name="txtTituloBuscador"  Grid.Row="1" FontWeight="Bold" FontSize="40" Content="Buscador" Foreground="#FF68EB9C" Height="70" VerticalAlignment="Top" HorizontalAlignment="Center"></Label>
@@ -149,6 +149,10 @@
                                             <Setter Property="BorderBrush" Value="Transparent" />
                                             <Setter Property="BorderThickness" Value="0" />
                                         </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
                                     </Style.Triggers>
                                 </Style>
                             </ToggleButton.Style>
@@ -157,7 +161,7 @@
                 </Canvas>
                 <!--Listas-->
                 <DataGrid x:Name="DataGridPerfilUsuarios" HeadersVisibility="None" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="350" VerticalAlignment="Top" HorizontalAlignment="Center" AutoGenerateColumns="False" GridLinesVisibility="None" Background="White" BorderBrush="Transparent" BorderThickness="0"
-                          ItemsSource="{Binding AllUsers}" >
+                          ItemsSource="{Binding AllPerfiles}" >
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <!-- Fondo predeterminado -->
@@ -327,7 +331,7 @@
                 </DataGrid>
 
                 <ListView x:Name="ListViewPerfilUsuarios" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="350" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="White" BorderBrush="Transparent" BorderThickness="0" 
-                          ItemsSource="{Binding AllUsers}" >
+                          ItemsSource="{Binding AllPerfiles}" >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <!-- Fondo predeterminado -->
@@ -376,7 +380,7 @@
                                 <GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding apellido}" />
                                 <GridViewColumn Header="Dni" DisplayMemberBinding="{Binding dni}" />
                                 <GridViewColumn Header="Rol" DisplayMemberBinding="{Binding date}" />
-                                <GridViewColumn Header="Acción" Width="89">
+                                <GridViewColumn Header="Acción" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">

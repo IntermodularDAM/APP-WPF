@@ -26,8 +26,8 @@ namespace app.ViewModel.Usuarios
         private const string ApiUrlEliminarEmpleado = "http://127.0.0.1:3505/Empleado/eliminarEmpleado";
         private const string ApiUrlEliminarCliente = "http://127.0.0.1:3505/Cliente/eliminarCliente";
 
-        private ObservableCollection<UsuarioBase> allUsers;
-        public ObservableCollection<UsuarioBase> AllUsers { get => allUsers; set { allUsers = value; OnPropertyChanged("AllUsers"); } }
+        private ObservableCollection<UsuarioBase> allPerfiles;
+        public ObservableCollection<UsuarioBase> AllPerfiles { get => allPerfiles; set { allPerfiles = value; OnPropertyChanged("AllPerfiles"); } }
 
 
 
@@ -68,15 +68,15 @@ namespace app.ViewModel.Usuarios
 
                         //MessageBox.Show($"Adminitradores : {administradoresResponse.data.Count()}, \n Empleado : {empleadosResponse.data.Count()} \n Cliente : {clientesResponse.data.Count()}");
 
-    
 
-                        AllUsers = new ObservableCollection<UsuarioBase>();
+
+                        AllPerfiles = new ObservableCollection<UsuarioBase>();
 
 
                         foreach (var administrador in administradoresResponse.data) 
                         {
-                            if (!string.IsNullOrEmpty(administrador._id))
-                                AllUsers.Add(new Administrador
+                            if (!string.IsNullOrEmpty(administrador._id) && administrador != null)
+                                AllPerfiles.Add(new Administrador
                                 {
                                     _id = administrador._id,
                                     idUsuario = administrador.idUsuario,
@@ -95,8 +95,8 @@ namespace app.ViewModel.Usuarios
 
                         foreach (var empleado in empleadosResponse.data) 
                         {
-                            if (!string.IsNullOrEmpty(empleado._id))
-                                AllUsers.Add(new Empleado
+                            if (!string.IsNullOrEmpty(empleado._id) && empleado != null)
+                                AllPerfiles.Add(new Empleado
                                 {
                                     _id = empleado._id,
                                     idUsuario = empleado.idUsuario,
@@ -114,8 +114,8 @@ namespace app.ViewModel.Usuarios
 
                         foreach (var cliente in clientesResponse.data) 
                         {
-                            if (!string.IsNullOrEmpty(cliente._id))
-                                AllUsers.Add(new Cliente
+                            if (!string.IsNullOrEmpty(cliente._id) && cliente!= null)
+                                AllPerfiles.Add(new Cliente
                             {
                                 _id = cliente._id,
                                 idUsuario = cliente.idUsuario,
@@ -140,7 +140,7 @@ namespace app.ViewModel.Usuarios
 
                         //MessageBox.Show(allUsersInfo+ $"\n Cantidad Usuarios : {AllUsers.Count()}" );
 
-                        OnPropertyChanged("AllUsers");
+                        OnPropertyChanged("AllPerfiles");
 
 
                     }

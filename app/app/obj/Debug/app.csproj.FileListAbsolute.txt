@@ -29,3 +29,9 @@ C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\U
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\EditarUsuarios\EditarUsuario.baml
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\InformacionUsuarios\InformacionUsuario.g.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\InformacionUsuarios\InformacionUsuario.baml
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\RecordarContraseñas\RecordarContraseña.g.cs
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\RecordarContraseñas\RecordarContraseña.baml
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\Notificaciones\Notificacion.g.cs
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\Notificaciones\Notificacion.baml
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\CambiarContraseña\CambiarContraseña.g.cs
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\CambiarContraseña\CambiarContraseña.baml
