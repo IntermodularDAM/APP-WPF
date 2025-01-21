@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -19,6 +20,7 @@ using System.Windows.Shapes;
 using app.Models.Usuarios;
 using app.ViewModel.Usuarios;
 using Microsoft.SqlServer.Server;
+using Newtonsoft.Json;
 
 namespace app.View.Usuarios.EditarUsuarios
 {
@@ -30,7 +32,8 @@ namespace app.View.Usuarios.EditarUsuarios
         private readonly UsuarioViewModel _viewModel;
         UsuarioBase usuarioEdita;
         Usuario usuarioDeEdita;
-        private string ID;
+        private readonly string ID;
+        private readonly string ROL;
         private byte[] imagenCargadaBytes;
         private MultipartFormDataContent formContent = new MultipartFormDataContent();
         bool isNombreValid = false;
@@ -41,11 +44,16 @@ namespace app.View.Usuarios.EditarUsuarios
         bool isFechaValid = false;
         bool isRolValid = false;
         bool isImgChange = false;
-        public EditarUsuario(string id,UsuarioViewModel viewModel)
+
+        bool rutaImagen = false;
+        bool rutaEmail = false;
+        bool rutaRol = false;
+        public EditarUsuario(string id,string rol,UsuarioViewModel viewModel)
         {
             InitializeComponent();
             _viewModel = viewModel;
             ID = id;
+            ROL = rol;
         }
 
 
@@ -317,10 +325,15 @@ namespace app.View.Usuarios.EditarUsuarios
             ComboBoxItem itemSeleccionado = (ComboBoxItem)txtRol.SelectedItem;
             string contenidoSeleccionado = itemSeleccionado.Content.ToString();
             if (isRolValid && contenidoSeleccionado != usuarioEdita.rol)
+            {
                 formContent.Add(new StringContent(contenidoSeleccionado), "rol");
+                rutaRol = true;
 
-            if (isEmailValid && txtEmail.Text.Trim() != usuarioDeEdita.email)
+            }
+            if (isEmailValid && txtEmail.Text.Trim() != usuarioDeEdita.email) { 
                 formContent.Add(new StringContent(txtEmail.Text.Trim()), "email");
+                rutaEmail = true;
+            }
 
             if (isDniValid && txtDni.Text.Trim() != usuarioEdita.dni)
                 formContent.Add(new StringContent(txtDni.Text.Trim()), "dni");
@@ -331,12 +344,21 @@ namespace app.View.Usuarios.EditarUsuarios
             if (isCiudadValid && txtCiudad.Text.Trim() != usuarioEdita.ciudad)
                 formContent.Add(new StringContent(txtCiudad.Text.Trim()), "ciudad");
 
+            string nuevoSexo = rbH.IsChecked == true ? "Hombre" :
+                               rbM.IsChecked == true ? "Mujer" :
+                               rb49.IsChecked == true ? "Indeterminado" : null;
+
+            if (!string.IsNullOrEmpty(nuevoSexo) && nuevoSexo != usuarioEdita.sexo)
+                formContent.Add(new StringContent(nuevoSexo), "sexo");
+            
+
             if (isImgChange)
             {
                 // Convertir los datos de la imagen a ByteArrayContent
                 ByteArrayContent imagenContent = new ByteArrayContent(imagenCargadaBytes);
                 // Agregar la imagen al contenido
                 formContent.Add(imagenContent, "picture", "imagen.jpg");
+                rutaImagen = true;
             }
 
             if (formContent.Count() == 0)
@@ -346,6 +368,53 @@ namespace app.View.Usuarios.EditarUsuarios
             }
 
 
+            // Caso 1: No cambia nada
+            if (!rutaRol && !rutaEmail)
+            {
+                //No se realizan cambios sensibles put a perfil
+
+                try
+                {
+                    HttpResponseMessage respuesta = await _viewModel.EditarPerfil(ID, ROL, formContent);
+                    var respuestaContenido = await respuesta.Content.ReadAsStringAsync();
+
+                    if (respuesta.IsSuccessStatusCode )
+                    {
+                       
+                        MessageBox.Show($"Perfil Editado!", "WPF... ", MessageBoxButton.OK, MessageBoxImage.Information);
+                        _viewModel.CargarTodosLosUsuarios();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Error result no success: {respuestaContenido}", "WPF... ", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                }
+                catch (Exception ePerfil) { MessageBox.Show($"Error Exeption : {ePerfil.Message}", "WPF... ", MessageBoxButton.OK, MessageBoxImage.Error); }
+            }
+
+            // Caso 2: Solo se cambia el rol
+            else if (isRolValid && !isEmailValid)
+            {
+                // Eliminar el perfil actual y crear uno nuevo con el nuevo rol
+            }
+
+            // Caso 3: Solo se cambia el email
+            else if (!isRolValid && isEmailValid)
+            {
+                // Actualizar el email del usuario
+            }
+
+
+            // Caso 4: Se cambia el rol y el email 
+            else if (isRolValid && isEmailValid)
+            {
+                // Eliminar el perfil actual, crear uno nuevo, actualizar el email 
+            }
+            else {
+                MessageBox.Show("Cabo suelto");
+            }
 
 
             //try
@@ -371,7 +440,7 @@ namespace app.View.Usuarios.EditarUsuarios
 
             //            // Guardar la imagen temporalmente
             //            string tempPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName);
-            //           // object value = await File.WriteAllBytes(tempPath, fileBytes); // Escribir el archivo de forma asíncrona
+            //            // object value = await File.WriteAllBytes(tempPath, fileBytes); // Escribir el archivo de forma asíncrona
 
             //            sb.AppendLine($"{name} (Imagen): {fileName}");
             //            sb.AppendLine($"Ruta temporal: {tempPath}");
@@ -385,6 +454,9 @@ namespace app.View.Usuarios.EditarUsuarios
             //{
             //    MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             //}
+
+
+
 
         }
     }

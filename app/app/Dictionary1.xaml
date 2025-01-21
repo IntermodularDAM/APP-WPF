@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="ColorPrimario">#68EB9C</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorPrimario">#CD6CE0</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorSecundario">#8C52FF</SolidColorBrush>
 
 
     <Style TargetType="GridViewColumnHeader" x:Key="ColumListView">
@@ -64,7 +65,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border BorderBrush="Transparent" Background="#68EB9C" BorderThickness="1" CornerRadius="40"  Width="70" Height="70" >
+                    <Border BorderBrush="Transparent" Background="#CD6CE0" BorderThickness="1" CornerRadius="40"  Width="70" Height="70" >
                         <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center" >
                             <Path Fill="White" Data="M 0 20 L 30 0 L 30 10 L 50 10 L 50 30 L 30 30 L 30 40 Z">
                                 <Path.RenderTransform>
@@ -74,7 +75,7 @@
                             </Path>
                         </StackPanel>
                         <Border.Effect>
-                            <DropShadowEffect   Color="#68EB9C" 
+                            <DropShadowEffect   Color="#CD6CE0" 
                                                 BlurRadius="20" 
                                                 ShadowDepth="10" 
                                                 Direction="315" 

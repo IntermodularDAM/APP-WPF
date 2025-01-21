@@ -10,7 +10,7 @@
        ResizeMode="NoResize"
        Background="Transparent"
        AllowsTransparency="True"
-       WindowStartupLocation="CenterScreen" >
+       WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -44,7 +44,8 @@
                             </VisualBrush>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <TextBlock x:Name="txtNombre" Text="Leobardo Ríos" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0"/>
+                    <TextBlock x:Name="txtNombre" Text="Leobardo" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0"><Span><TextBlock x:Name="txtApellido" Text="Ríos " HorizontalAlignment="Center" FontSize="14" Margin="0,0,0,0"/></Span></TextBlock>
+                    
                     <TextBlock x:Name="txtRol" Text="Administrador" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF43BC73"/>
                     <TextBlock Text="Ciudad" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
                     <TextBlock x:Name="txtCiudad" Text="Alicante" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
@@ -53,7 +54,7 @@
                     <TextBlock Text="DNI" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
                     <TextBlock x:Name="txtDni" Text="Y8262855G" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
                     <TextBlock Text="Fecha nacimiento" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
-                    <TextBlock x:Name="txtDate" Text="13/04/2023" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
+                    <TextBlock x:Name="txtDate" Text="13/04/2023" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,10" Foreground="#FF000000"/>
 
                     <Button x:Name="btnCerrar"  Height="45" Width="160"
                           HorizontalAlignment="Center"   Content="Cerrar"

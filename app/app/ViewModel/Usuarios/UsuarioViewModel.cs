@@ -18,16 +18,31 @@ namespace app.ViewModel.Usuarios
 {
     public class UsuarioViewModel : INotifyPropertyChanged
     {
+        //Rutas Get Usuarios y Perfil
         private const string ApiUrlAllAdministradores = "http://127.0.0.1:3505/Administrador/getAllAdministradores";
         private const string ApiUrlAllEmpleados = "http://127.0.0.1:3505/Empleado/getAllEmpleados";
         private const string ApiUrlAllClientes= "http://127.0.0.1:3505/Cliente/getAllClientes";
+        private const string ApiUrlTodosLosUsuarios = "http://127.0.0.1:3505/Usuario/todosLosUsuarios";
 
+        //Rutas Editar Eliminar Perfiles 
         private const string ApiUrlEliminarAdministrador = "http://127.0.0.1:3505/Administrador/eliminarAdministrador";
         private const string ApiUrlEliminarEmpleado = "http://127.0.0.1:3505/Empleado/eliminarEmpleado";
         private const string ApiUrlEliminarCliente = "http://127.0.0.1:3505/Cliente/eliminarCliente";
 
-        private const string ApiUrlTodosLosUsuarios = "http://127.0.0.1:3505/Usuario/todosLosUsuarios";
+
+        //Rutas Verificación de correo
         private const string ApiUrlEmailDisponible = "http://127.0.0.1:3505/Usuario/emailDisponible";
+
+        //Rutas Editar Usuarios 
+        private const string ApiUrlEditarPerfilAdminitrador = "http://127.0.0.1:3505/Administrador/editarAdministrador";
+        private const string ApiUrlEditarPerfilEmpleado= "http://127.0.0.1:3505/Empleado/editarEmpleado";
+        private const string ApiUrlEditarPerfilCliente= "http://127.0.0.1:3505/Cliente/editarCliente";
+
+        //Rutas Editar Usuarios 
+        private const string ApiUrlBuscarPerfilAdminitrador = "http://127.0.0.1:3505/Administrador/buscarAdministrador";
+        private const string ApiUrlBuscarPerfilEmpleado = "http://127.0.0.1:3505/Empleado/buscarEmpleado";
+        private const string ApiUrlBuscarPerfilCliente = "http://127.0.0.1:3505/Cliente/buscarCliente";
+
 
         private ObservableCollection<UsuarioBase> allPerfiles;
         private ObservableCollection<Usuario> allUsers;
@@ -46,6 +61,7 @@ namespace app.ViewModel.Usuarios
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+   
         public async void CargarTodosLosUsuarios()
         {
             using (var client = new HttpClient()) {
@@ -164,17 +180,18 @@ namespace app.ViewModel.Usuarios
 
                     }
                     else {
-                        throw new Exception($"WPF : Error 500 : Administrador status: {responseAdministradores.StatusCode}, Empleado status: {responseEmpleados.StatusCode}, Cliente status: {responseCliente.StatusCode}");
+                        throw new Exception($"WPF : Error 500 : Administrador status: {responseAdministradores.StatusCode}, Empleado status: {responseEmpleados.StatusCode}, Cliente status: {responseCliente.StatusCode}, Usuarios status: {responseUsuarios.StatusCode}");
                     }
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("WPF : Error 404 : " + e.Message);
+                   MessageBox.Show("WPF : Error 404 : " + e.Message,"Error: ",MessageBoxButton.OK,MessageBoxImage.Error);
                 }
             }
 
         }
 
+        //Sin Ruta
         public async Task<HttpResponseMessage> EliminarPerfil(string id, string role) {
 
             string rutaEliminar = "";
@@ -189,7 +206,7 @@ namespace app.ViewModel.Usuarios
                 try {
 
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UserSession.Instance.Token);
-                    client.DefaultRequestHeaders.Add("x-role-user", UserSession.Instance.Data["rol"].ToString());
+                    client.DefaultRequestHeaders.Add("x-user-role", UserSession.Instance.Data["rol"].ToString());
 
                     var json = JsonConvert.SerializeObject(new { _id = id, rol = role });
                     var content = new StringContent(json,Encoding.UTF8,"application/json");
@@ -249,6 +266,99 @@ namespace app.ViewModel.Usuarios
                     return false;
                 }
             }
+        }
+
+        public async Task<HttpResponseMessage> EditarPerfil(string id,string rol, MultipartFormDataContent usuarioEditar) {
+            string rutaPerfilEditar = "";
+
+            if (rol == "Administrador"){ rutaPerfilEditar = $"{ApiUrlEditarPerfilAdminitrador}/{id}"; }
+            else if (rol == "Empleado") { rutaPerfilEditar = $"{ApiUrlEditarPerfilEmpleado}/{id}"; }
+            else if (rol == "Cliente") { rutaPerfilEditar = $"{ApiUrlEditarPerfilCliente}/{id}"; }
+            else { MessageBox.Show("Error de progrmacion. Llamar al desarrollador", "Error :", MessageBoxButton.OK, MessageBoxImage.Error); }
+
+            using (var client = new HttpClient()) {
+                try {
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UserSession.Instance.Token);
+                    client.DefaultRequestHeaders.Add("x-user-role", UserSession.Instance.Data["rol"].ToString());
+
+                    HttpResponseMessage response = await client.PutAsync(rutaPerfilEditar, usuarioEditar);
+
+                    var respuestaContenido = await response.Content.ReadAsStringAsync();
+                    // Imprimir la respuesta para depuración
+                    Debug.WriteLine($"Código de estado: {response.StatusCode}");
+                    Debug.WriteLine($"Contenido de la respuesta: {respuestaContenido}");
+
+                    if (response.IsSuccessStatusCode) {
+                        dynamic respuestaContenidoJson = JsonConvert.DeserializeObject<dynamic>(respuestaContenido);
+                        Debug.WriteLine($"Usuario Editado. {respuestaContenidoJson.user}");
+                        return response;
+                    } else {
+                        Debug.WriteLine($"Error al Editar.");
+                        return response;
+                    }
+                    
+                } catch (Exception e) { throw new Exception("WPF : ViewModel : "+e.Message); }
+            }
+
+
+        }
+
+        public async void Buscar(string rol,MultipartFormDataContent usuarioBuscar) {
+            string rutaBuscar = rol == "Administrador" ? ApiUrlBuscarPerfilAdminitrador :
+                                rol == "Empleado" ? ApiUrlBuscarPerfilEmpleado : ApiUrlBuscarPerfilCliente;
+
+            using (var client = new HttpClient()) 
+            {
+                try
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", UserSession.Instance.Token);
+                    client.DefaultRequestHeaders.Add("x-user-role", UserSession.Instance.Data["rol"].ToString());
+
+                    HttpResponseMessage respuesta = await client.PostAsync(rutaBuscar, usuarioBuscar);
+
+                    var respuestaContenido = await respuesta.Content.ReadAsStringAsync();
+
+                    Debug.WriteLine($"Status: {respuesta.StatusCode} \n Contenido: {respuestaContenido}");
+
+                    if (respuesta.IsSuccessStatusCode)
+                    {
+                        var usuariosResponse = JsonConvert.DeserializeObject<ApiResponse<List<UsuarioBase>>>(respuestaContenido);
+
+                        AllPerfiles = new ObservableCollection<UsuarioBase>();
+                        
+
+                        foreach (var usuario in usuariosResponse.data)
+                        {
+                            if (!string.IsNullOrEmpty(usuario._id) && usuario._id != null)
+                                AllPerfiles.Add(new Administrador
+                                {
+                                    _id = usuario._id,
+                                    idUsuario = usuario.idUsuario,
+                                    nombre = usuario.nombre,
+                                    apellido = usuario.apellido,
+                                    dni = usuario.dni,
+                                    rol = usuario.rol,
+                                    date = usuario.date,
+                                    ciudad = usuario.ciudad,
+                                    sexo = usuario.sexo,
+                                    registro = usuario.registro,
+                                    rutaFoto = "http://127.0.0.1:3505/" + usuario.rutaFoto,
+                                });
+
+                            OnPropertyChanged("AllPerfiles");
+
+                        }
+                    }
+                    else {
+                        MessageBox.Show("No encontrado");
+                    }
+                }
+                catch (Exception e) { MessageBox.Show($"{e.Message}","Error : ",MessageBoxButton.OK,MessageBoxImage.Error); }
+
+            }
+
+
         }
     }
 }

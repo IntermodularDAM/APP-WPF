@@ -70,6 +70,9 @@
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroPerfilViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroUsuarioViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\UsuarioViewModel.cs" />
+    <Compile Include="View\Home\Inicio.xaml.cs">
+      <DependentUpon>Inicio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Usuarios\CambiarContraseña\CambiarContraseña.xaml.cs">
       <DependentUpon>CambiarContraseña.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Home\Inicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Usuarios\CambiarContraseña\CambiarContraseña.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,6 +225,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\InformacionUsuarios\58ffe72b95350c2b3440659d5f9631ce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Home\Diseño De Muros.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Home\muebles-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Home\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Home\logo_night_days.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\LogIn\logo_night_days.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\btnCrear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\logo_night_days.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -35,3 +35,5 @@ C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\U
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\Notificaciones\Notificacion.baml
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\CambiarContraseña\CambiarContraseña.g.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Usuarios\CambiarContraseña\CambiarContraseña.baml
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Home\Inicio.g.cs
+C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\View\Home\Inicio.baml

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using app.Models.Usuarios;
+using app.View.Home;
 using app.View.Usuarios.MainUsuarios;
 using app.View.Usuarios.RecordarContraseñas;
 using app.View.Usuarios.RegistroUsuarios;
@@ -109,7 +110,7 @@ namespace app.View.Usuarios.Login
                     UserSession.Instance.Token = responseData.data.token;
                     UserSession.Instance.Data = JObject.FromObject(responseData.data.user);
 
-                    MainUsuario user = new MainUsuario();
+                    Inicio user = new Inicio();
                     user.Show();
                     this.Close();                  
                 }
