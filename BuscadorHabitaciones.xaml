@@ -1,0 +1,205 @@
+﻿<Window x:Class="app.View.Habitaciones.BuscadorHabitaciones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:app.View.Habitaciones"
+        mc:Ignorable="d"
+        Title="Buscador" Height="750" Width="1200" FontFamily="Montserrat"
+        WindowStartupLocation="CenterScreen" WindowStyle="none" ResizeMode="NoResize"
+        AllowsTransparency="True" Background="Transparent">
+
+    <Border CornerRadius="20" Background="White" BorderThickness="5">
+        
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
+                <GradientStop Color="Blue" Offset="0.0"></GradientStop>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- Header Section -->
+            <StackPanel Orientation="Horizontal">
+                <DockPanel>
+                    <Image Source="/logo.png" Height="30" VerticalAlignment="Top" Margin="30,15,0,0" />
+                    <TextBlock Text="Hotel Pere María" FontSize="27" Margin="5,15,0,0" />
+                </DockPanel>
+
+                <Border BorderBrush="Black" BorderThickness="0.5" Margin="10,5"/>
+
+                <StackPanel Margin="0,5,0,0">
+                    <Label FontSize="18">Bienvenido Usuario</Label>
+                    <Button x:Name="btnVolver" Content="Cerrar Sesión" Background="Transparent" Foreground="Gray"
+                    HorizontalAlignment="Left" FontSize="18"
+                    BorderBrush="Transparent"
+                    Margin="3,0" Click="Click_btnVolver"/>
+                </StackPanel>
+
+                <Button Content="Añadir habitacion" FontSize="16" Height="42" Width="150"
+                Background="LightBlue" BorderBrush="LightBlue" VerticalAlignment="Top"
+                Margin="200,15" x:Name="btn_AddHabitacion" Click="btn_AddHabitacion_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Content="Volver" FontSize="16" Height="42" Width="150"
+                Background="LightBlue" BorderBrush="LightBlue" VerticalAlignment="Top"
+                Margin="0,15" x:Name="btn_Volver" Click="btn_Volver_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+            </StackPanel>
+
+            <!-- Buscador Section -->
+            <TextBlock Grid.Row="1" Text="Buscador:" Height="55" Width="290"
+           FontSize="48" HorizontalAlignment="Left" VerticalAlignment="Top"
+           Foreground="Blue" FontWeight="Bold" Margin="30,0"/>
+
+            <Grid Grid.Row="1" Height="195" Width="1130" VerticalAlignment="Bottom"
+            HorizontalAlignment="Left" Margin="30,0" Background="#FAFDFF">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+
+                <!-- Número de huéspedes -->
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label FontSize="13">Número de huéspedes</Label>
+                    <ComboBox x:Name="comboBoxHuespedes" Height="30" Width="280">
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                        <ComboBoxItem>3</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Fecha de entrada -->
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label FontSize="13">Fecha de entrada</Label>
+                    <DatePicker x:Name="fecha_in" Height="30" Width="180"/>
+                </StackPanel>
+
+                <!-- Fecha de salida -->
+                <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label FontSize="13">Fecha de salida</Label>
+                    <DatePicker x:Name="fecha_out" Height="30" Width="180"/>
+                </StackPanel>
+
+                <Label Grid.Column="3" Content="Opciones" FontSize="13" Margin="15,0"/>
+                <CheckBox x:Name="txtOp" Content="Cama extra" Grid.Column="3" Margin="20,48,48,20" FontSize="13" VerticalContentAlignment="Center">
+                    <CheckBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </CheckBox.Resources>
+                </CheckBox>
+                <CheckBox x:Name="txtOp2" Content="Cuna" Grid.Column="4" Margin="36,44,92,20" FontSize="13" VerticalContentAlignment="Center">
+                    <CheckBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </CheckBox.Resources>
+                </CheckBox>
+
+                <!-- Precio por noche -->
+                <StackPanel Grid.Row="1"  Grid.ColumnSpan="2"
+                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
+                    <Label FontSize="13">Precio Noche</Label>
+                    <Slider Name="sliderPreu"
+                    Minimum="0"
+                    Maximum="1000"
+                    TickFrequency="10"
+                    IsSnapToTickEnabled="True"
+                    Value="30"
+                    Width="500"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="LightGray"
+                    Foreground="DarkBlue"
+                    IsDirectionReversed="False"
+                    AutoToolTipPlacement="BottomRight"
+                    AutoToolTipPrecision="0" /> 
+
+                    <!-- Etiqueta opcional para mostrar el valor actual -->
+                    <TextBlock Text="{Binding ElementName=sliderPreu, Path=Value}" 
+                    HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" />
+                </StackPanel>
+
+                <Label Grid.Row="1" Grid.Column="2" Content="Opciones" FontSize="13" Margin="15,0"/>
+                <CheckBox x:Name="checkBoxOfertas" Content="Ofertas" Grid.Row="1" Grid.Column="2" Margin="20,48,48,20" FontSize="13" VerticalContentAlignment="Center">
+                    <CheckBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </CheckBox.Resources>
+                </CheckBox>
+
+                <!-- Botones -->
+                <Button Grid.Row="1" Grid.Column="3" Height="44" Width="160"
+                Background="Transparent" BorderBrush="LightBlue" Content="Ofertas"
+                FontSize="18" Click="Button_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Grid.Row="1" Grid.Column="4" Height="44" Width="160"
+                Background="LightBlue" BorderBrush="LightBlue" Content="Buscar"
+                FontSize="18" Click="btn_Buscar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+
+            <!-- Resultados Section -->
+            <TextBlock Grid.Row="2" Text="Resultados:" Foreground="Blue" Height="55" Width="300"
+            FontSize="48" HorizontalAlignment="Left" VerticalAlignment="Top"
+            FontWeight="Bold" Margin="30,0,0,0"/>
+
+            <Grid Grid.Row="2" Height="241" VerticalAlignment="Top" Margin="0,63,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- StackPanel para mostrar los resultados de las habitaciones -->
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="4" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <!-- StackPanel donde se mostrarán los resultados de las habitaciones -->
+                    <StackPanel x:Name="stackPanelResultados" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal"/>
+                </ScrollViewer>
+            </Grid>
+
+        </Grid>
+    </Border>
+    
+</Window>
