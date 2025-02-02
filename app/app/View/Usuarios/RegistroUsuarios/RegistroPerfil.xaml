@@ -22,9 +22,9 @@
         <Border CornerRadius="20" Background="#CC000000" BorderThickness="5">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0 ,1">
-                    <GradientStop Color="#43BC73" Offset="1"></GradientStop>
+                    <GradientStop Color="#CD6CE0" Offset="1"></GradientStop>
                     <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#68EB9C" Offset="0.0"></GradientStop>
+                    <GradientStop Color="#8C52FF" Offset="0.0"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
@@ -39,7 +39,7 @@
                     <!-- Header Save WPF Client-->
                     <StackPanel Orientation="Horizontal">
                         <Ellipse x:Name="miEllipse" Height="55" Width="55" Stroke="White" StrokeThickness="2" Margin="20,0,10,0" />
-                        <Label x:Name="lblTitulo" Content="Añadir perfil de usuario" Width="474" Height="60" Foreground="#43BC73" FontWeight="Bold" FontSize="40 " Margin="15,0,0,5"></Label>
+                        <Label x:Name="lblTitulo" Content="Añadir perfil de usuario" Width="474" Height="60" Foreground="#CD6CE0" FontWeight="Bold" FontSize="40 " Margin="15,0,0,5"></Label>
                         <Button x:Name="btnCerrar" Margin="180,0,0,0" Background="Transparent" BorderBrush="Transparent" Width="40.9595867631593" Height="40" Click="btnCerrar_Click" >
                             <Image Source="/View/Usuarios/RegistroUsuarios/Close.png"></Image>
                         </Button>
@@ -166,7 +166,7 @@
                             <Button x:Name="btnCargarImg" Content="Subir imagen"    BorderThickness="0" Foreground="White" FontSize="16" FontFamily="Montserrat" Cursor="Hand" Margin="0,0,0,0" Click="btnCargarImg_Click"  >
                                 <Button.Style>
                                     <Style TargetType="Button">
-                                        <Setter Property="Background" Value="#43BC73"/>
+                                        <Setter Property="Background" Value="#CD6CE0"/>
                                         <Style.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Background" Value="#68EB9C"/>
@@ -195,7 +195,7 @@
 
 
                     </Grid>
-                    <Button x:Name="btnGuardarPerfil" Grid.Row="2" Content="Enviar" IsEnabled="False" Width="120" Margin="0,14,30,20" Background="#43BC73" BorderBrush="#68EB9C" FontSize="14" Foreground="White" HorizontalAlignment="Right" Click="btnGuardarPerfil_Click">
+                    <Button x:Name="btnGuardarPerfil" Grid.Row="2" Content="Enviar" IsEnabled="False" Width="120" Margin="0,14,30,20" Background="#CD6CE0" BorderBrush="#FFFFFF" FontSize="14" Foreground="White" HorizontalAlignment="Right" Click="btnGuardarPerfil_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"/>

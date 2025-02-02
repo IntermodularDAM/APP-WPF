@@ -22,9 +22,9 @@
         <Border CornerRadius="20" Background="White" BorderThickness="5">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0 ,1">
-                    <GradientStop Color="#43BC73" Offset="1"></GradientStop>
+                    <GradientStop Color="#CD6CE0" Offset="1"></GradientStop>
                     <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#68EB9C" Offset="0.0"></GradientStop>
+                    <GradientStop Color="#8C52FF" Offset="0.0"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
@@ -36,8 +36,10 @@
 
                 <StackPanel Margin="30,20">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/View/Usuarios/Login/Logo.png" />
-                        <TextBlock Text="Hotel Pere María" FontFamily="Montserrat" FontWeight="Bold" FontSize="39"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="/View/Usuarios/LogIn/logo_night_days.png" Width="100" />
+                            <TextBlock Text="Hotel Night Day`s" FontFamily="Montserrat" FontWeight="Bold" FontSize="39" VerticalAlignment="Center"/>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,50,0,20">
                         <Border BorderBrush="Black" Width="80" BorderThickness="2" Margin="0,20,20,20"></Border>
@@ -60,9 +62,13 @@
                     </StackPanel>
                     <Label Content="Regresar al LogIn..." Style="{StaticResource LabelGeneral}" MouseDown="Label_MouseDown" />
                 </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <Image Source="/View/Usuarios/Login/img-cover-login.png"   />
-                </StackPanel>
+      
+                    <Border Grid.Column="1" BorderBrush="Transparent"  BorderThickness="0" CornerRadius="0,20,20,0">
+                        <Border.Background>
+                            <ImageBrush  ImageSource="/View/Usuarios/RecordarContraseñas/lobby.jpg" Stretch="UniformToFill" />
+                        </Border.Background>
+                    </Border>
+       
             </Grid>
         </Border>
     </Grid>

@@ -372,8 +372,7 @@ namespace app.View.Usuarios.EditarUsuarios
             if (!rutaRol && !rutaEmail)
             {
                 //No se realizan cambios sensibles put a perfil
-
-                try
+                   try
                 {
                     HttpResponseMessage respuesta = await _viewModel.EditarPerfil(ID, ROL, formContent);
                     var respuestaContenido = await respuesta.Content.ReadAsStringAsync();
@@ -382,7 +381,7 @@ namespace app.View.Usuarios.EditarUsuarios
                     {
                        
                         MessageBox.Show($"Perfil Editado!", "WPF... ", MessageBoxButton.OK, MessageBoxImage.Information);
-                        _viewModel.CargarTodosLosUsuarios();
+  
                         this.Close();
                     }
                     else

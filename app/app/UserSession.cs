@@ -11,6 +11,8 @@ namespace IntermodularWPF
     {
         private static UserSession instance = null;
         public string Token { get; set; }
+
+        public string AppToken { get; set; }
         public JObject Data { get; set; }
 
         public string CurrentId { get; set; }

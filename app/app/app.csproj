@@ -64,8 +64,12 @@
     <Compile Include="Models\Usuarios\Perfiles\Cliente.cs" />
     <Compile Include="Models\Usuarios\Perfiles\Empleado.cs" />
     <Compile Include="Models\Usuarios\UsuarioBase.cs" />
+    <Compile Include="SettingsData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SettingsData.settings</DependentUpon>
+    </Compile>
     <Compile Include="UserSession.cs" />
-    <Compile Include="ViewModel\Usuarios\LogIn\LogInViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\CodigoVerificacionViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroPerfilViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroUsuarioViewModel.cs" />
@@ -180,13 +184,15 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SettingsData.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsData.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\Usuarios\MainUsuarios\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="View\Usuarios\LogIn\Logo.png" />
   </ItemGroup>
@@ -246,6 +252,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\MainUsuarios\logo_night_days.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\RecordarContraseñas\1639134231478.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\RecordarContraseñas\lobby.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

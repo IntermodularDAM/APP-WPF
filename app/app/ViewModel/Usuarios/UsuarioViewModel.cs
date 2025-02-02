@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using app.Models.Usuarios;
 using app.Models.Usuarios.Perfiles;
+using app.View.Usuarios.Notificaciones;
 using IntermodularWPF;
 using Newtonsoft.Json;
 
@@ -43,6 +46,32 @@ namespace app.ViewModel.Usuarios
         private const string ApiUrlBuscarPerfilEmpleado = "http://127.0.0.1:3505/Empleado/buscarEmpleado";
         private const string ApiUrlBuscarPerfilCliente = "http://127.0.0.1:3505/Cliente/buscarCliente";
 
+        //Autenticación
+        private const string ApiUrlLogIn = "http://127.0.0.1:3505/Usuario/logIn";
+        private const string ApiUrlAccessToken = "http://127.0.0.1:3505/Usuario/accessToken";
+
+
+        private static UsuarioViewModel _instance;
+        public static UsuarioViewModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new UsuarioViewModel();
+                }
+                return _instance;
+            }
+        }
+
+        private UsuarioViewModel()
+        {
+            // Constructor privado para evitar instancias externas
+            allPerfiles = new ObservableCollection<UsuarioBase>();
+            allUsers = new ObservableCollection<Usuario>();
+
+            _ = CargarTodosLosUsuarios();
+        }
 
         private ObservableCollection<UsuarioBase> allPerfiles;
         private ObservableCollection<Usuario> allUsers;
@@ -61,14 +90,14 @@ namespace app.ViewModel.Usuarios
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-   
-        public async void CargarTodosLosUsuarios()
+        //OK EX
+        public async Task<string> CargarTodosLosUsuarios()
         {
             using (var client = new HttpClient()) {
                 try
                 {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", UserSession.Instance.Token);
-                    client.DefaultRequestHeaders.Add("x-user-role", UserSession.Instance.Data["rol"].ToString()); // Enviar el rol en el encabezado
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.token);
+                    client.DefaultRequestHeaders.Add("x-user-role", SettingsData.Default.rol); // Enviar el rol en el encabezado
 
                     HttpResponseMessage responseAdministradores = await client.GetAsync(ApiUrlAllAdministradores);
                     HttpResponseMessage responseEmpleados = await client.GetAsync(ApiUrlAllEmpleados);
@@ -76,15 +105,19 @@ namespace app.ViewModel.Usuarios
 
                     HttpResponseMessage responseUsuarios = await client.GetAsync(ApiUrlTodosLosUsuarios);
 
+                    if (responseUsuarios.StatusCode == HttpStatusCode.NotFound || responseAdministradores.StatusCode == HttpStatusCode.NotFound || responseEmpleados.StatusCode == HttpStatusCode.NotFound || responseCliente.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return SettingsData.Default._404;
+                    }
+
+                    var jsonAdministrador = await responseAdministradores.Content.ReadAsStringAsync();
+                    var jsonEmpleado = await responseEmpleados.Content.ReadAsStringAsync();
+                    var jsonCliente = await responseCliente.Content.ReadAsStringAsync();
+
+                    var jsonUsuario = await responseUsuarios.Content.ReadAsStringAsync();
+
                     if (responseAdministradores.IsSuccessStatusCode && responseCliente.IsSuccessStatusCode && responseEmpleados.IsSuccessStatusCode && responseUsuarios.IsSuccessStatusCode)
                     {
-                        var jsonAdministrador = await responseAdministradores.Content.ReadAsStringAsync();
-                        var jsonEmpleado = await responseEmpleados.Content.ReadAsStringAsync();
-                        var jsonCliente = await responseCliente.Content.ReadAsStringAsync();
-
-                        var jsonUsuario = await responseUsuarios.Content.ReadAsStringAsync();
-
-
                         // Muestra el JSON crudo para depuración
                         //MessageBox.Show($"JSON Administradores: {jsonAdministrador}, \n JSON Empleados : {jsonEmpleado}, JSON Clientes: {jsonCliente}");
 
@@ -95,8 +128,6 @@ namespace app.ViewModel.Usuarios
                         var usuariosResponse = JsonConvert.DeserializeObject<ApiResponse<List<Usuario>>>(jsonUsuario);
 
                         //MessageBox.Show($"Adminitradores : {administradoresResponse.data.Count()}, \n Empleado : {empleadosResponse.data.Count()} \n Cliente : {clientesResponse.data.Count()}");
-
-
 
                         AllPerfiles = new ObservableCollection<UsuarioBase>();
                         AllUsers= new ObservableCollection<Usuario>();
@@ -172,20 +203,41 @@ namespace app.ViewModel.Usuarios
                             });
                         }
 
- 
-
                         OnPropertyChanged("AllPerfiles");
                         OnPropertyChanged("AllUsers");
 
+                        return SettingsData.Default._200;
 
                     }
                     else {
-                        throw new Exception($"WPF : Error 500 : Administrador status: {responseAdministradores.StatusCode}, Empleado status: {responseEmpleados.StatusCode}, Cliente status: {responseCliente.StatusCode}, Usuarios status: {responseUsuarios.StatusCode}");
-                    }
+
+                        dynamic usuarioResponse = JsonConvert.DeserializeObject<dynamic>(jsonUsuario);
+                        dynamic administradorResponse = JsonConvert.DeserializeObject<dynamic>(jsonAdministrador);
+                        dynamic empleadoResponse = JsonConvert.DeserializeObject<dynamic>(jsonEmpleado);
+                        dynamic clienteResponse = JsonConvert.DeserializeObject<dynamic>(jsonCliente);
+
+                        if (usuarioResponse.message == "Invalid Token"|| administradorResponse.message == "Invalid Token" || empleadoResponse.message == "Invalid Token" || clienteResponse.message == "Invalid Token") {
+                            return SettingsData.Default._419;
+                            
+                        } else {
+
+                            Debug.Write($"WPF : Error 500 : " +
+                                $"\nAdministrador status: {responseAdministradores.StatusCode} , Contenido : {jsonAdministrador} " +
+                                $"\nEmpleado status: {responseEmpleados.StatusCode}, Contenido : {jsonEmpleado}" +
+                                $"\nCliente status: {responseCliente.StatusCode}, Contenido : {jsonCliente}" +
+                                $"\nUsuarios status: {responseUsuarios.StatusCode}, Contenido : {jsonUsuario}");
+
+                            return SettingsData.Default._500;
+
+                        }
+                    }     
                 }
                 catch (Exception e)
                 {
-                   MessageBox.Show("WPF : Error 404 : " + e.Message,"Error: ",MessageBoxButton.OK,MessageBoxImage.Error);
+                    Debug.WriteLine("Mensaje: " + e.Message +
+                        "\nCausa Raíz: " + e.InnerException.Message +
+                        "\nDetalle Técnico: " + e.InnerException.InnerException.Message);
+                    return SettingsData.Default._503;
                 }
             }
 
@@ -360,5 +412,74 @@ namespace app.ViewModel.Usuarios
 
 
         }
+
+        public async Task<string> AccessToken(string token)
+        {
+
+            using (var client = new HttpClient())
+            {
+                try
+                {
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                    var response = await client.GetAsync(ApiUrlAccessToken);
+                    if (response == null)
+                        return SettingsData.Default._404;
+
+                    if (response.IsSuccessStatusCode)
+                        return SettingsData.Default._200;
+                    else
+                        Debug.WriteLine(response);
+                    var json = await response.Content.ReadAsStringAsync();
+                    var content = JsonConvert.DeserializeObject<dynamic>(json);
+                    Debug.WriteLine($"Status: {content.status} \nMessage: {content.message}");
+                    return SettingsData.Default._419;
+
+                }
+                catch (Exception)
+                {
+                    return SettingsData.Default._503;
+                }
+
+            }
+
+        }
+
+
+
+
+        public async Task<HttpResponseMessage> LogIn(Usuario UsuarioNuevo)
+        {
+            using (var cliente = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(UsuarioNuevo);
+                Debug.WriteLine(json);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    HttpResponseMessage response = await cliente.PostAsync(ApiUrlLogIn, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Debug.WriteLine("Perfil logeado");
+                        return response;
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"Error: {response.StatusCode}");
+                        return response;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Exception: {ex.Message}");
+                    return null;
+                }
+            }
+        }
+
+       
     }
 }

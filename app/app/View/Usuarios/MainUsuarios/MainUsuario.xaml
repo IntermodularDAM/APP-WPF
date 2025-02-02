@@ -54,7 +54,7 @@
                     <!--Menu superior-->
                     <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" >
                         <DockPanel>
-                            <Image  Height="40" VerticalAlignment="Top" Margin="10,15,0,0" Source="/View/Usuarios/MainUsuarios/logo_night_days.png" />
+                            <Image  Height="40" VerticalAlignment="Top" Margin="10,15,0,0" Source="/View/Usuarios/MainUsuarios/logo_night_days.png" MouseDown="Image_MouseDown"  />
                             <Label Content="Hotel Night Day´s" FontSize="27" Margin="5,10,0,0" FontWeight="Bold" MouseDown="TextBlock_MouseDown" />
                         </DockPanel>
                         <Button x:Name="btnBuscador" Content="Buscador" Style="{StaticResource BarSide}"/>
@@ -64,7 +64,7 @@
                         <StackPanel VerticalAlignment="Center" Margin="40,0">
                             <Label Content="User Name" Foreground="#8C52FF" FontSize="21" MouseDown="Label_MouseDown" />
                         </StackPanel>
-                        <Image  Stretch="None" Margin="0,0,0,0" Source="/View/Usuarios/MainUsuarios/notification.png" />
+                        <Image  Stretch="None" Margin="0,0,0,0" Source="/View/Usuarios/MainUsuarios/notification.png" MouseDown="Image_MouseDown_1"  />
                     </StackPanel>
                     <!--Ficha-->
                     <Label x:Name="txtTituloBuscador"  Grid.Row="1" FontWeight="Bold" FontSize="35" Content="Buscador" Foreground="#CD6CE0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center"></Label>

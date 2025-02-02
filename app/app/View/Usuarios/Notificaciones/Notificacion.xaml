@@ -10,7 +10,7 @@
        ResizeMode="NoResize"
        Background="Transparent"
        AllowsTransparency="True"
-       WindowStartupLocation="CenterScreen" >
+       WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,9 +22,9 @@
         <Border CornerRadius="20" Background="#CC000000" BorderThickness="5">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0 ,1">
-                    <GradientStop Color="#43BC73" Offset="1"></GradientStop>
+                    <GradientStop Color="#CD6CE0" Offset="1"></GradientStop>
                     <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#68EB9C" Offset="0.0"></GradientStop>
+                    <GradientStop Color="#8C52FF" Offset="0.0"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
@@ -32,20 +32,8 @@
                 <Button.Content>
                     <Border CornerRadius="30" BorderThickness="1" Background="White" Width="503" Height="111" >
                         <StackPanel>
-                            <TextBlock Text="Email Enviado"
-           Foreground="#43BC73"
-           FontSize="36"
-           FontFamily="Montserrat"
-           HorizontalAlignment="Center"
-           FontWeight="Heavy"
-           Margin="0,10,0,0"/>
-                            <TextBlock Text="Por favor revise su email"
-           Foreground="#43BC73"
-           FontSize="16"
-           FontFamily="Montserrat"
-           HorizontalAlignment="Center"
-           FontWeight="Normal"
-           Margin="0,10,0,0"/>
+                            <TextBlock x:Name="txtHeader" Text="Email Enviado" Foreground="#CD6CE0" FontSize="36" FontFamily="Montserrat" HorizontalAlignment="Center" FontWeight="Heavy" Margin="0,10,0,0"/>
+                            <TextBlock x:Name="txtContent" TextWrapping="Wrap" Text="Por favor revise su email" Foreground="#CD6CE0" FontSize="16" FontFamily="Montserrat" HorizontalAlignment="Center" FontWeight="Normal" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Border>
                 </Button.Content>

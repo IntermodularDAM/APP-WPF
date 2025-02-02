@@ -19,15 +19,30 @@ namespace app.View.Usuarios.Notificaciones
     /// </summary>
     public partial class Notificacion : Window
     {
-        public Notificacion()
+
+        public string header;
+        public string content;
+
+        public Notificacion(string header, string content)
         {
             InitializeComponent();
+            this.header = header;
+            this.content = content;
+
         }
 
         private void BtnCorreoEnviado_Click(object sender, RoutedEventArgs e)
         {
+
+
             this.Close();
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtHeader.Text = header;
+            txtContent.Text = content;
         }
     }
 }

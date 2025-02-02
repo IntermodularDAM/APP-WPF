@@ -65,7 +65,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border BorderBrush="Transparent" Background="#CD6CE0" BorderThickness="1" CornerRadius="40"  Width="70" Height="70" >
+                    <Border BorderBrush="Transparent" Background="#CD6CE0" Cursor="Hand" BorderThickness="1" CornerRadius="40"  Width="70" Height="70" >
                         <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center" >
                             <Path Fill="White" Data="M 0 20 L 30 0 L 30 10 L 50 10 L 50 30 L 30 30 L 30 40 Z">
                                 <Path.RenderTransform>
@@ -83,11 +83,43 @@
                                               />
                         </Border.Effect>
                     </Border>
+                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="Transparent"/>
+    <ControlTemplate x:Key="BtnsInicio" TargetType="{x:Type ButtonBase}">
+        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Button.IsDefaulted" Value="true">
+                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="White"/>
+                <Setter Property="BorderThickness" TargetName="border" Value="0,0,0,3"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
     <Style x:Key="ButtonReserva" TargetType="Button">
 
 
@@ -109,6 +141,15 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Margin" Value="20,0,0,0"/>
         <Setter Property="FontSize" Value="21"/>
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!--Este estilo está destinado a los controles de tipo TextBlock . (Textos de Error)-->

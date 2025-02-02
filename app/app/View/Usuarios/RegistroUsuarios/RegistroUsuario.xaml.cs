@@ -121,11 +121,14 @@ namespace app.View.Usuarios.RegistroUsuario
 
                     // Guardar el token y los datos del usuario en la sesión de usuario
 
+                    MessageBox.Show($"Email: {responseData.data.email} , ID: {responseData.data.id}");
+
                     if (responseData != null)
                     {
                         CodigoDeVerificacion codigo = new CodigoDeVerificacion(_viewModel)
                         {
                             Email = responseData.data.email,
+                            ID = responseData.data.id,
                             
                         };
                         codigo.Owner = this.Owner;

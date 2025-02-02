@@ -22,9 +22,9 @@
         <Border CornerRadius="20" Background="#CC000000" BorderThickness="5">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0 ,1">
-                    <GradientStop Color="#43BC73" Offset="1"></GradientStop>
+                    <GradientStop Color="#CD6CE0" Offset="1"></GradientStop>
                     <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#68EB9C" Offset="0.0"></GradientStop>
+                    <GradientStop Color="#8C52FF" Offset="0.0"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
@@ -45,7 +45,7 @@
                         </Ellipse.Fill>
                     </Ellipse>
                     <StackPanel Orientation="Vertical" Width="400">
-                        <TextBlock x:Name="txtNombre" TextWrapping="Wrap"  FontSize="25">Cambio de contraseña para <Span><TextBlock x:Name="txtRol"  FontWeight="Medium" Text="leoriosua@alu.edu.gva.es"  FontSize="25"  Foreground="#FF43BC73"/> :</Span>
+                        <TextBlock x:Name="txtNombre" TextWrapping="Wrap"  FontSize="25">Cambio de contraseña para <Span><TextBlock x:Name="txtRol"  FontWeight="Medium" Text="leoriosua@alu.edu.gva.es"  FontSize="25"  Foreground="#CD6CE0"/> :</Span>
      
      
  </TextBlock>
@@ -60,7 +60,7 @@
 
                         <Button x:Name="btCambiar"  Height="45" Width="160"
        HorizontalAlignment="Center"   Content="Cambair"
-       Background="#68EB9C" BorderBrush="#68EB9C" FontSize="14" Click="btnCerrar_Click" >
+       Background="#CD6CE0" BorderBrush="#FFFFFF" Foreground="#FFFFFF" FontSize="14" Click="btnCerrar_Click" >
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="20"/>

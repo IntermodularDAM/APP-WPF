@@ -11,7 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using app.View.Usuarios.Login;
 using app.View.Usuarios.MainUsuarios;
+using app.View.Usuarios.Notificaciones;
+using app.ViewModel.Usuarios;
+using IntermodularWPF;
 
 namespace app.View.Home
 {
@@ -20,9 +24,12 @@ namespace app.View.Home
     /// </summary>
     public partial class Inicio : Window
     {
+        private readonly UsuarioViewModel _viewModel;
         public Inicio()
         {
             InitializeComponent();
+            _viewModel = UsuarioViewModel.Instance;
+            DataContext = _viewModel;
         }
 
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
@@ -40,6 +47,33 @@ namespace app.View.Home
             MainUsuario mainUsuario = new MainUsuario();
             mainUsuario.Show();
             this.Close();
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var respose = await _viewModel.AccessToken(SettingsData.Default.token);
+
+            MessageBox.Show("Respuesta de verificacion: " + respose);
+
+            if (respose == SettingsData.Default._200)
+            {
+                MessageBox.Show("Hay token valido continua la session.");
+                return;
+            }
+            else
+            {
+                SettingsData.Default.token = "";
+                SettingsData.Default.appToken = "";
+                SettingsData.Default.idPerfil = "";
+                SettingsData.Default.Save();
+                MessageBox.Show("Se borro el SettingsData debe de ir a login:  " + "\nToken: " + SettingsData.Default.token + "\nAppToken: " + SettingsData.Default.appToken + "\nID Perfil:" + SettingsData.Default.idPerfil);
+                Notificacion notInicio = new Notificacion("Session limada", "Por favor inicie limada de sessión");
+                notInicio.Owner = this;
+                notInicio.Show();
+                LogIn log = new LogIn();
+                log.Show();
+                this.Close();
+            }
         }
     }
 }

@@ -23,9 +23,9 @@
         <Border CornerRadius="20" Background="#CC000000" BorderThickness="5">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0 ,1">
-                    <GradientStop Color="#43BC73" Offset="1"></GradientStop>
+                    <GradientStop Color="#CD6CE0" Offset="1"></GradientStop>
                     <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#68EB9C" Offset="0.0"></GradientStop>
+                    <GradientStop Color="#8C52FF" Offset="0.0"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
@@ -36,7 +36,7 @@
                         <Image Source="/View/Usuarios/RegistroUsuarios/Close.png"></Image>
                     </Button>
                     <StackPanel Width="400" >
-                        <TextBlock Text="Crear Usuario" Foreground="#43BC73" FontWeight="Bold" FontSize="30" Margin="0,0,0,20"/>
+                        <TextBlock Text="Crear Usuario" Foreground="#CD6CE0" FontWeight="Bold" FontSize="30" Margin="0,0,0,20"/>
                         <TextBlock Text="Email" Style="{StaticResource TextBlockGeneral}" Margin="20,0,0,0"/>
                         <TextBox x:Name="txtEmail" Margin="10" FontSize="16" Height="35" TextChanged="txtNombre_TextChanged">
                             <TextBox.Resources>
@@ -53,7 +53,7 @@
                         <PasswordBox x:Name="txtPasswordConfirmacion" Margin="10" FontSize="16" Height="35" PasswordChanged="txtPasswordConfirmacion_PasswordChanged"></PasswordBox>
                         <TextBlock x:Name="ErrorTextPasswordConfirmacion" Margin="20,0,0,0" Text="* Password no coincide. " Style="{StaticResource ErrorText}"/>
 
-                        <Button x:Name="btnEnviar" Content="Enviar" IsEnabled="False" Height="30" Width="120"  Background="#43BC73" BorderBrush="#68EB9C" FontSize="18" FontWeight="Medium" Foreground="White" HorizontalAlignment="Right" Margin="0,20,0,0" Click="btnEnviar_Click" >
+                        <Button x:Name="btnEnviar" Content="Enviar" IsEnabled="False" Height="30" Width="120"  Background="#CD6CE0" BorderBrush="#FFFFFF" FontSize="18" FontWeight="Medium" Foreground="White" HorizontalAlignment="Right" Margin="0,20,0,0" Click="btnEnviar_Click" >
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="15"/>

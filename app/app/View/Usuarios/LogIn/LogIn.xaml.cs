@@ -16,9 +16,10 @@ using System.Windows.Shapes;
 using app.Models.Usuarios;
 using app.View.Home;
 using app.View.Usuarios.MainUsuarios;
+using app.View.Usuarios.Notificaciones;
 using app.View.Usuarios.RecordarContraseñas;
 using app.View.Usuarios.RegistroUsuarios;
-using app.ViewModel.Usuarios.LogIn;
+using app.ViewModel.Usuarios;
 using IntermodularWPF;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -32,9 +33,13 @@ namespace app.View.Usuarios.Login
     /// </summary>
     public partial class LogIn : Window
     {
+
+        private readonly UsuarioViewModel _viewModel;
         public LogIn()
         {
             InitializeComponent();
+            _viewModel = UsuarioViewModel.Instance;
+            DataContext = _viewModel;
         }
 
         private void TextBoxEmail_TextChanged(object sender, TextChangedEventArgs e)
@@ -91,39 +96,64 @@ namespace app.View.Usuarios.Login
 
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var log = new LogInViewModel();
+            BtnLogin.IsEnabled = false;
+
+            
 
             // Configurar los datos que se enviarán al servidor en el cuerpo de la solicitud
             Usuario data = new Usuario { email = TextBoxEmail.Text, password = PasswordBoxEmail.Password };
 
-            var response = await log.LogIn(data);
-             
-            var result = await response.Content.ReadAsStringAsync();
+            var response = await _viewModel.LogIn(data);
 
-            if (response.IsSuccessStatusCode)
+
+            if (response == null) {        
+                Notificacion not = new Notificacion("Error de conexión.", "Por favor revise  su conexión al servidor.");
+                not.Owner = this;
+                not.ShowDialog();
+                BtnLogin.IsEnabled = true;
+
+            }
+            else if (response.IsSuccessStatusCode)
             {
+                var result = await response.Content.ReadAsStringAsync();
+
                 dynamic responseData = JsonConvert.DeserializeObject<dynamic>(result);
 
                 if (responseData != null)
                 {
                     // Obtener los datos del usuario y mostrarlos en la pantalla principal
+                    
                     UserSession.Instance.Token = responseData.data.token;
+                    UserSession.Instance.AppToken = responseData.data.appToken;
                     UserSession.Instance.Data = JObject.FromObject(responseData.data.user);
+
+                    SettingsData.Default.token = responseData.data.token;
+                    SettingsData.Default.appToken = responseData.data.appToken;
+                    SettingsData.Default.idPerfil = responseData.data.user._id;                    
+                    SettingsData.Default.rol = responseData.data.user.rol;                    
+                    SettingsData.Default.Save();
+                    
 
                     Inicio user = new Inicio();
                     user.Show();
-                    this.Close();                  
+                    this.Close();
                 }
                 else
                 {
-                    var error = JsonConvert.DeserializeObject<Exception>(result);
+                    var resultError = await response.Content.ReadAsStringAsync();
+                    var error = JsonConvert.DeserializeObject<Exception>(resultError);
                     MessageBox.Show(error + " : WPF = ERROR 500");
+                    BtnLogin.IsEnabled = true;
                 }
             }
             else
             {
-                var error = JsonConvert.DeserializeObject<dynamic>(result);
-                MessageBox.Show(error + " : WPF : error 404");
+                var resultError = await response.Content.ReadAsStringAsync();
+                var error = JsonConvert.DeserializeObject<dynamic>(resultError);
+                Notificacion not = new Notificacion( error.message.ToString(), error.status.ToString());
+                not.Owner = this;
+                not.ShowDialog();
+                BtnLogin.IsEnabled = true;
             } 
         }
 
@@ -132,6 +162,38 @@ namespace app.View.Usuarios.Login
             RecordarContraseña recordar = new RecordarContraseña();
             recordar.Show();
             this.Close();
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            MessageBox.Show("Token actual al entrar al login: " + "\nToken: " + SettingsData.Default.token + "\nAppToken: " + SettingsData.Default.appToken + "\nID Perfil:" + SettingsData.Default.idPerfil);
+
+            if (SettingsData.Default.token != "")
+            {
+
+                var respose = await _viewModel.AccessToken(SettingsData.Default.token);
+
+                MessageBox.Show("Respuesta de verificacion: "+respose);
+
+                if (respose == SettingsData.Default._200)
+                {
+                    MessageBox.Show("Hay token valido se ahorra el inicio de session.");
+                    Inicio init = new Inicio();
+                    init.Show();
+                    this.Close();
+                }
+                else
+                {
+                    SettingsData.Default.token = "";
+                    SettingsData.Default.appToken = "";
+                    SettingsData.Default.idPerfil = "";
+                    SettingsData.Default.Save();
+                    MessageBox.Show("Se borro el token debe de ir a login:  "+"\nToken: "+SettingsData.Default.token+"\nAppToken: "+SettingsData.Default.appToken+"\nID Perfil:"+SettingsData.Default.idPerfil);
+
+                }
+
+            }
         }
     }
 }

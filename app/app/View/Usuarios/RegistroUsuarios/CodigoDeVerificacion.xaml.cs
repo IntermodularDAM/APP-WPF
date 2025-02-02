@@ -27,6 +27,7 @@ namespace app.View.Usuarios.RegistroUsuarios
     {
         private readonly UsuarioViewModel _viewModel;
         public string Email { get; set; }
+        public string ID { get; set; }
         public CodigoDeVerificacion(UsuarioViewModel viewMode)
         {
             InitializeComponent();
@@ -85,6 +86,7 @@ namespace app.View.Usuarios.RegistroUsuarios
             Usuario usuario = new Usuario
             {
                 email = Email,
+                _id = ID,
                 verificationCode = txtCodigo.Text
             };
             var response = await verificarUsuario.ValidarUsuario(usuario);
@@ -98,9 +100,8 @@ namespace app.View.Usuarios.RegistroUsuarios
                     
                     RegistroPerfil perfil = new RegistroPerfil(_viewModel){
                         Email = responseData.data.email,
-                        IdUsuario = responseData.data.idUsuario
+                        IdUsuario = responseData.data.id
                     };
-                   
                     perfil.Owner = this.Owner;
                     this.Hide();
                     perfil.ShowDialog();

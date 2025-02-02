@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize"
         AllowsTransparency="True" 
-        Background="Transparent" >
+        Background="Transparent" Loaded="Window_Loaded" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
