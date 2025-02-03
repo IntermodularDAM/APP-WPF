@@ -21,10 +21,10 @@ namespace app.View.Habitaciones
         public double NuevoPrecioOriginal { get; private set; }
         public bool Estado { get; private set; }
         public bool tieneOferta { get; private set; }
-        public string ImagenBase64 { get; private set; } // Propiedad para la imagen
+        public string ImagenBase64 { get; private set; } 
 
         // Constructor actualizado para recibir las opciones como parámetros
-        public EditarHabitacion(string nombre, string tipo, string capacidad, double precio, string descripcion, bool camaExtra, bool cuna, double precioOriginal, bool estado, string imagenBase64 = null)
+        public EditarHabitacion(string nombre, string tipo, int capacidad, double precio, string descripcion, bool camaExtra, bool cuna, double precioOriginal, bool estado, string imagenBase64 = null)
         {
             InitializeComponent();
 
@@ -37,9 +37,13 @@ namespace app.View.Habitaciones
             EstadoCheckBox.IsChecked = estado; // Mostrar el estado actual como texto
 
             // Establecer la capacidad correctamente
+            // Establecer la capacidad correctamente
             CapacidadComboBox.SelectedItem = CapacidadComboBox.Items
                 .Cast<ComboBoxItem>()
-                .FirstOrDefault(item => item.Content.ToString().Equals(capacidad, StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(item =>
+                    int.TryParse(item.Content.ToString(), out int itemCapacidad) && itemCapacidad == capacidad
+                );
+
 
             // Configurar las opciones de cama extra y cuna
             PrimeraOpcion.IsChecked = camaExtra;
@@ -51,6 +55,8 @@ namespace app.View.Habitaciones
                 ImagenBase64 = imagenBase64;
             }
         }
+
+
 
         private void AceptarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -106,6 +112,8 @@ namespace app.View.Habitaciones
             }
         }
 
+
+
         private string ObtenerImagenBase64()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -119,6 +127,8 @@ namespace app.View.Habitaciones
             return string.Empty; // Retorna vacío si no se seleccionó imagen
         }
 
+
+
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
             // Llamamos a la función que selecciona y convierte la imagen
@@ -130,11 +140,15 @@ namespace app.View.Habitaciones
             }
         }
 
+
+
         private void CancelarButton_Click(object sender, RoutedEventArgs e)
         {
             // Cerrar la ventana sin hacer cambios
             DialogResult = false;
             Close();
         }
+
+
     }
 }
