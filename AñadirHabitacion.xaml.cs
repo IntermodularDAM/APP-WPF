@@ -23,6 +23,7 @@ namespace app.View.Habitaciones
             Opcion1.IsChecked = false;
         }
 
+
         private async void btnAgregarHabitacion_Click(object sender, RoutedEventArgs e)
         {
 
@@ -210,6 +211,9 @@ namespace app.View.Habitaciones
             }
         }
 
+
+
+
         private void ValidarNombre(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -223,12 +227,15 @@ namespace app.View.Habitaciones
             }
         }
 
+
+
         private void btnCerrar_Click(object sender, RoutedEventArgs e)
         {
             BuscadorHabitaciones bHabitacion = new BuscadorHabitaciones();
             bHabitacion.Show();
             this.Close();
         }
+
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
@@ -243,10 +250,12 @@ namespace app.View.Habitaciones
             }
         }
 
+
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             // No es estrictamente necesario, pero puedes manejar el desmarcado si es necesario
         }
+
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
