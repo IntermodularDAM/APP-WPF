@@ -1,28 +1,34 @@
-﻿using System;
+using System;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
 
 namespace app.View.Habitaciones
 {
     public partial class EditarHabitacion : Window
     {
         // Propiedades públicas para devolver los valores editados
-        public string NuevaDescripcion { get; private set; }
+        public string NuevoNombre { get; private set; }
         public string NuevoTipo { get; private set; }
         public string NuevaCapacidad { get; private set; }
+        public string NuevaDescripcion { get; private set; }
         public double NuevoPrecio { get; private set; }
         public bool CamaExtra { get; private set; }
         public bool Cuna { get; private set; }
-        public double PrecioOriginal { get; private set; } // Precio original de la habitación
+        public double PrecioOriginal { get; private set; }
         public bool Estado { get; private set; }
+        public string ImagenBase64 { get; private set; } // Propiedad para la imagen
 
         // Constructor actualizado para recibir las opciones como parámetros
-        public EditarHabitacion(string tipo, string capacidad, double precio, string descripcion, bool camaExtra, bool cuna, double precioOriginal, bool estado)
+        public EditarHabitacion(string nombre, string tipo, string capacidad, double precio, string descripcion, bool camaExtra, bool cuna, double precioOriginal, bool estado, string imagenBase64 = null)
         {
             InitializeComponent();
 
             // Rellenar los controles con los valores actuales
+            NomTextBox.Text = nombre;
             TipoTextBox.Text = tipo;
             PrecioTextBox.Text = precio.ToString("F2"); // Aseguramos formato consistente
             txtDescripcion.Text = descripcion;
@@ -37,13 +43,26 @@ namespace app.View.Habitaciones
             // Configurar las opciones de cama extra y cuna
             PrimeraOpcion.IsChecked = camaExtra;
             SegundaOpcion.IsChecked = cuna;
+
+            // Si existe una imagen, establecerla
+            if (!string.IsNullOrEmpty(imagenBase64))
+            {
+                ImagenBase64 = imagenBase64;
+            }
         }
 
         private void AceptarButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(NomTextBox.Text) || !Regex.IsMatch(NomTextBox.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$"))
+                {
+                    MessageBox.Show("Fallo inminente, por favor corrígelo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 // Obtener los valores editados
+                NuevoNombre = NomTextBox.Text;
                 NuevoTipo = TipoTextBox.Text;
                 NuevaDescripcion = txtDescripcion.Text;
                 NuevaCapacidad = (CapacidadComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
@@ -63,6 +82,9 @@ namespace app.View.Habitaciones
                 CamaExtra = PrimeraOpcion.IsChecked == true;
                 Cuna = SegundaOpcion.IsChecked == true;
 
+                // Obtener la imagen seleccionada y convertirla a Base64
+                ImagenBase64 = ObtenerImagenBase64();
+
                 // Cerrar la ventana con éxito
                 DialogResult = true;
                 Close();
@@ -73,6 +95,29 @@ namespace app.View.Habitaciones
             }
         }
 
+        private string ObtenerImagenBase64()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                byte[] imageBytes = File.ReadAllBytes(openFileDialog.FileName);
+                FilePathTextBox.Text = openFileDialog.FileName; // Mostrar la ruta del archivo seleccionado
+                return Convert.ToBase64String(imageBytes);
+            }
+            return string.Empty; // Retorna vacío si no se seleccionó imagen
+        }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Llamamos a la función que selecciona y convierte la imagen
+            string base64Imagen = ObtenerImagenBase64();
+
+            if (!string.IsNullOrEmpty(base64Imagen))
+            {
+                ImagenBase64 = base64Imagen;
+            }
+        }
 
         private void CancelarButton_Click(object sender, RoutedEventArgs e)
         {
