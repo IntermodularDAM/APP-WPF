@@ -1,5 +1,5 @@
-﻿using app.View.Usuarios.Login;
-using IntermodularWPF;
+using app.View.Usuarios.Login;
+using System.Globalization;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -7,13 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace app.View.Habitaciones
 {
@@ -23,19 +23,19 @@ namespace app.View.Habitaciones
     public partial class BuscadorHabitaciones : Window
     {
         private static readonly HttpClient httpClient=new HttpClient();
-
+    
 
         public BuscadorHabitaciones()
         {
             InitializeComponent();
-           httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         }
 
-        // Modelo de Habitaciones en MongoDB
         public class Habitacion
         {
             public string _id { get; set; }
             public int num_planta {  get; set; }
+            public string nombre { get; set; }
             public string tipo { get; set; }
             public string capacidad { get; set; }
             public string descripcion { get; set; }
@@ -44,6 +44,8 @@ namespace app.View.Habitaciones
             public decimal? precio_noche_original { get; set; }
             public bool tieneOferta { get; set; }
             public bool estado { get; set; }
+            public string ImagenBase64 { get; set; }
+
         }
 
         public class Opciones
@@ -66,8 +68,6 @@ namespace app.View.Habitaciones
             public T Data { get; set; }
         }
 
-
-        
         // Método para buscar habitaciones según los criterios
         public async Task<List<Habitacion>> BuscarHabitaciones(int numeroHuespedes, bool camaExtra, bool cuna, DateTime fechaEntrada, DateTime fechaSalida, decimal precioMaximo, bool soloOfertas)
         {
@@ -79,8 +79,7 @@ namespace app.View.Habitaciones
                 var reservasJson = await reservasResponse.Content.ReadAsStringAsync();
 
                 // Deserializar las reservas
-                var reservasResponseObj = JsonConvert.DeserializeObject<ApiResponse<List<Reserva>>>(reservasJson);
-                var reservas = reservasResponseObj?.Data ?? new List<Reserva>();
+                var reservas = JsonConvert.DeserializeObject<List<Reserva>>(reservasJson);
 
                 // Obtener todas las habitaciones
                 var habitacionesResponse = await httpClient.GetAsync("http://127.0.0.1:3505/Habitacion/habitaciones");
@@ -99,29 +98,70 @@ namespace app.View.Habitaciones
 
                 // Filtrar habitaciones según los criterios proporcionados
                 var habitacionesFiltradas = habitaciones
-                    .Where(h => int.Parse(h.capacidad) >= numeroHuespedes) // Filtra por capacidad
+                    .Where(h => int.Parse(h.capacidad) == numeroHuespedes) // Filtra por capacidad
                     .Where(h => h.opciones.CamaExtra == camaExtra) // Filtra por opción de cama extra
                     .Where(h => h.opciones.Cuna == cuna) // Filtra por opción de cuna
                     .Where(h => h.precio_noche <= precioMaximo) // Filtra por precio
-                    .Where(h => h.tieneOferta== soloOfertas) // Filtra por ofertas si 'soloOfertas' es true
+                    .Where(h => h.tieneOferta == soloOfertas) // Filtra por ofertas si 'soloOfertas' es true
                     .ToList();
 
-                // Filtrar habitaciones ocupadas según las reservas
+                // 🔍 Comprobar si hay reservas
+                MessageBox.Show($"📌 Total reservas obtenidas: {reservas.Count}", "Depuración", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 var habitacionesDisponibles = habitacionesFiltradas
                     .Where(h => !reservas.Any(r =>
                     {
-                        // Intentar convertir las fechas de string a DateTime
-                        if (DateTime.TryParse(r.fecha_check_in, out var fechaCheckIn) &&
-                            DateTime.TryParse(r.fecha_check_out, out var fechaCheckOut))
+                        try
                         {
-                            // Comparar las fechas con las proporcionadas por el usuario
-                            return r.id_hab == h._id &&
-                                   fechaCheckIn < fechaSalida && // Fecha de entrada de la reserva es antes de la salida del usuario
-                                   fechaCheckOut > fechaEntrada; // Fecha de salida de la reserva es después de la entrada del usuario
+                            // 💡 Mostrar cada reserva procesada
+                            MessageBox.Show($"🔍 Procesando reserva {r._id} para habitación {r.id_hab}", "Depuración", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            // Verificar que la reserva corresponde a esta habitación
+                            if (r.id_hab.Trim().ToLower() != h._id.Trim().ToLower())
+                            {
+                                MessageBox.Show($"❌ La reserva {r._id} no coincide con la habitación {h._id}. Se ignora.",
+                                    "Filtrado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                return false;
+                            }
+
+                            // Convertir fechas
+                            if (!DateTime.TryParseExact(r.fecha_check_in, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCheckIn) ||
+                                !DateTime.TryParseExact(r.fecha_check_out, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCheckOut))
+                            {
+                                MessageBox.Show($"⚠️ Error al convertir fechas para la reserva {r._id}: {r.fecha_check_in} - {r.fecha_check_out}",
+                                    "Error de Fecha", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                return false;
+                            }
+
+                            // Agregar un día a la fecha de salida
+                            fechaCheckOut = fechaCheckOut.AddDays(1);
+
+                            // Verificar si hay solapamiento
+                            bool solapan = fechaCheckIn < fechaSalida && fechaCheckOut > fechaEntrada;
+
+                            // Mostrar comparación de fechas
+                            MessageBox.Show($"🔎 Habitación: {h._id} - Reserva: {r._id}\n"
+                                + $"Check-In Reserva: {fechaCheckIn:yyyy-MM-dd}\n"
+                                + $"Check-Out Reserva: {fechaCheckOut:yyyy-MM-dd}\n"
+                                + $"Rango usuario: {fechaEntrada:yyyy-MM-dd} ➝ {fechaSalida:yyyy-MM-dd}\n"
+                                + $"¿Se solapan? {solapan}",
+                                "Depuración Fechas", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            return solapan;
                         }
-                        return false; // Si no se pueden convertir las fechas, asumir que no hay conflicto
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"❌ Error al procesar reserva {r._id}: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return false;
+                        }
                     }))
                     .ToList();
+
+                // Mostrar cuántas habitaciones quedan disponibles
+                MessageBox.Show($"✅ Habitaciones disponibles tras filtro: {habitacionesDisponibles.Count}", "Resultado", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+
 
                 // Retornar habitaciones disponibles
                 return habitacionesDisponibles;
@@ -189,6 +229,7 @@ namespace app.View.Habitaciones
         }
 
 
+        /*
 
         // Método para mostrar los resultados encontrados
         private void MostrarResultados(List<Habitacion> habitaciones)
@@ -215,7 +256,7 @@ namespace app.View.Habitaciones
                 var stackPanelHabitacion = new StackPanel { VerticalAlignment = VerticalAlignment.Bottom, Margin = new Thickness(10) };
 
                 var imagen = new Image { Width = 220, Height = 220, Source = new BitmapImage(new Uri("/Image/habitacion.png", UriKind.Relative)) };
-                var nombre = new Label { HorizontalAlignment = HorizontalAlignment.Center, FontSize = 20, Margin = new Thickness(0, 10, 0, 5), Content = habitacion.tipo };
+                var nombre = new Label { HorizontalAlignment = HorizontalAlignment.Center, FontSize = 20, Margin = new Thickness(0, 10, 0, 5), Content = habitacion.nombre };
                 
                 var precio = new StackPanel { HorizontalAlignment = HorizontalAlignment.Center };
                 if (habitacion.tieneOferta&& habitacion.precio_noche_original.HasValue)
@@ -277,6 +318,118 @@ namespace app.View.Habitaciones
                 stackPanelResultados.Children.Add(stackPanelHabitacion);
             }
         }
+        */
+
+        private void MostrarResultados(List<Habitacion> habitaciones)
+        {
+            stackPanelResultados.Children.Clear();
+
+            if (habitaciones.Count == 0)
+            {
+                var noResultados = new Label
+                {
+                    Content = "No se encontraron habitaciones disponibles.",
+                    FontSize = 25,
+                    Foreground = Brushes.Red,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Margin = new Thickness(0, 450, 0, 0)
+                };
+                stackPanelResultados.Children.Add(noResultados);
+                return;
+            }
+
+            foreach (var habitacion in habitaciones)
+            {
+                var stackPanelHabitacion = new StackPanel { VerticalAlignment = VerticalAlignment.Bottom, Margin = new Thickness(10) };
+
+                // Cargar la imagen de la habitación desde Base64 (si existe)
+                Image imagen = new Image { Width = 220, Height = 220 };
+
+                if (!string.IsNullOrEmpty(habitacion.ImagenBase64))
+                {
+                    imagen.Source = ConvertBase64ToImage(habitacion.ImagenBase64);
+                }
+                else
+                {
+                    imagen.Source = new BitmapImage(new Uri("/Image/habitacion.png", UriKind.Relative)); // Imagen predeterminada
+                }
+
+                var nombre = new Label { HorizontalAlignment = HorizontalAlignment.Center, FontSize = 20, Margin = new Thickness(0, 10, 0, 5), Content = habitacion.nombre };
+
+                var precio = new StackPanel { HorizontalAlignment = HorizontalAlignment.Center };
+                if (habitacion.tieneOferta && habitacion.precio_noche_original.HasValue)
+                {
+                    var precioTachado = new TextBlock
+                    {
+                        Text = $"{habitacion.precio_noche_original}€",
+                        TextDecorations = TextDecorations.Strikethrough,
+                        Foreground = Brushes.Gray,
+                        Margin = new Thickness(0, 0, 10, 0)
+                    };
+                    precio.Children.Add(precioTachado);
+                }
+                var precioActual = new Label { FontSize = 16, Foreground = Brushes.DarkGreen, Content = $"{habitacion.precio_noche}€ / noche" };
+                precio.Children.Add(precioActual);
+
+                // Estado de la habitación
+                var estadoLabel = new Label
+                {
+                    Content = habitacion.estado ? "Estado: Activa" : "Estado: Baja",
+                    FontSize = 14,
+                    Foreground = habitacion.estado ? Brushes.Green : Brushes.Red,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(0, 5, 0, 5)
+                };
+
+                // Botón para editar
+                var botonEditar = new Button
+                {
+                    Content = "Editar",
+                    Height = 30,
+                    Width = 120,
+                    Margin = new Thickness(5),
+                    Background = new SolidColorBrush(Color.FromRgb(150, 200, 250)),
+                    BorderBrush = Brushes.DarkBlue
+                };
+                botonEditar.Click += (sender, e) => EditarHabitacion(habitacion);
+
+                // Botón para eliminar
+                var botonEliminar = new Button
+                {
+                    Content = "Eliminar",
+                    Height = 30,
+                    Width = 120,
+                    Margin = new Thickness(5),
+                    Background = Brushes.Red,
+                    Foreground = Brushes.White
+                };
+                botonEliminar.Click += (sender, e) => EliminarHabitacion(habitacion);
+
+                // Añadir controles a la UI
+                stackPanelHabitacion.Children.Add(imagen);
+                stackPanelHabitacion.Children.Add(nombre);
+                stackPanelHabitacion.Children.Add(precio);
+                stackPanelHabitacion.Children.Add(estadoLabel);
+                stackPanelHabitacion.Children.Add(botonEditar);
+                stackPanelHabitacion.Children.Add(botonEliminar);
+
+                stackPanelResultados.Children.Add(stackPanelHabitacion);
+            }
+        }
+
+        private BitmapImage ConvertBase64ToImage(string base64String)
+        {
+            // Convertir Base64 a imagen
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            MemoryStream stream = new MemoryStream(imageBytes);
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = stream;
+            bitmapImage.EndInit();
+            return bitmapImage;
+        }
+
 
         /*// Método para editar una habitación
         private async void EditarHabitacion(Habitacion habitacion)
@@ -358,6 +511,7 @@ namespace app.View.Habitaciones
 
             // Crear y mostrar la ventana de edición
             var editarWindow = new EditarHabitacion(
+                habitacion.nombre,
                 habitacion.tipo,
                 habitacion.capacidad,
                 precioHabitacion,
@@ -365,12 +519,14 @@ namespace app.View.Habitaciones
                 habitacion.opciones.CamaExtra, // Asumimos que opciones es un string y contiene la palabra "CamaExtra" si es verdadero
                 habitacion.opciones.Cuna,      // Igualmente, para "Cuna"
                 precioOriginal,
-                estado
+                estado,
+                habitacion.ImagenBase64
             );
 
             if (editarWindow.ShowDialog() == true)
             {
                 // Si el usuario aceptó los cambios
+                var nuevoNombre = editarWindow.NuevoNombre;
                 var nuevoTipo = editarWindow.NuevoTipo;
                 var nuevaCapacidad = editarWindow.NuevaCapacidad;
                 var nuevaDescripcion = editarWindow.NuevaDescripcion;
@@ -381,12 +537,15 @@ namespace app.View.Habitaciones
                     Cuna = editarWindow.Cuna
                 };
                 bool nuevoEstado = editarWindow.Estado;
+                var nuevaImagen = editarWindow.ImagenBase64;
 
                 // Crear objeto con los datos actualizados
+                habitacion.nombre = nuevoNombre;
                 habitacion.tipo = nuevoTipo;
                 habitacion.capacidad = nuevaCapacidad;
                 habitacion.descripcion = nuevaDescripcion;
                 habitacion.opciones = nuevaOpcion;
+                habitacion.ImagenBase64 = nuevaImagen;
 
                 if (string.IsNullOrEmpty(habitacion._id))
                 {
@@ -448,17 +607,31 @@ namespace app.View.Habitaciones
 
         private async void EliminarHabitacion(Habitacion habitacion)
         {
+            var reservasResponse = await httpClient.GetAsync("http://127.0.0.1:3505/Reserva/getAll");
+            reservasResponse.EnsureSuccessStatusCode();
+            var reservasJson = await reservasResponse.Content.ReadAsStringAsync();
+
+            // Deserializar las reservas
+            var reservas = JsonConvert.DeserializeObject<List<Reserva>>(reservasJson);
+
             if (habitacion == null)
             {
+
                 MessageBox.Show("No se ha seleccionado ninguna habitación para eliminar.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
+
+            }else if ((habitacion.estado == true) || (reservas.Any(r => r.id_hab == habitacion._id)))
+            {
+
+                MessageBox.Show("No puedes eliminar la habitación del sistema", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+
             }
 
             try
             {
                 // Confirmar la eliminación
-                var confirmacion = MessageBox.Show($"¿Estás seguro de que deseas eliminar la habitación con ID: {habitacion._id}?",
-                                                   "Eliminar Habitación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var confirmacion = MessageBox.Show($"¿Estás seguro de que deseas eliminar la habitación con ID: {habitacion._id}?","Eliminar Habitación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (confirmacion != MessageBoxResult.Yes) return;
 
                 // Enviar la solicitud DELETE a la API para eliminar la habitación
