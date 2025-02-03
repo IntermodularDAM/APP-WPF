@@ -333,7 +333,7 @@ namespace app.View.Habitaciones
                     Foreground = Brushes.Red,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Top,
-                    Margin = new Thickness(0, 450, 0, 0)
+                    Margin = new Thickness(0, 100, 0, 0)
                 };
                 stackPanelResultados.Children.Add(noResultados);
                 return;
@@ -344,7 +344,7 @@ namespace app.View.Habitaciones
                 var stackPanelHabitacion = new StackPanel { VerticalAlignment = VerticalAlignment.Bottom, Margin = new Thickness(10) };
 
                 // Cargar la imagen de la habitación desde Base64 (si existe)
-                Image imagen = new Image { Width = 220, Height = 220 };
+                Image imagen = new Image { Width = 100, Height = 100 };
 
                 if (!string.IsNullOrEmpty(habitacion.ImagenBase64))
                 {
@@ -531,6 +531,7 @@ namespace app.View.Habitaciones
                 var nuevaCapacidad = editarWindow.NuevaCapacidad;
                 var nuevaDescripcion = editarWindow.NuevaDescripcion;
                 var nuevoPrecio = editarWindow.NuevoPrecio;
+                var nuevoPrecioOriginal = editarWindow.NuevoPrecioOriginal;
                 var nuevaOpcion = new Opciones
                 {
                     CamaExtra = editarWindow.CamaExtra,
@@ -539,13 +540,7 @@ namespace app.View.Habitaciones
                 bool nuevoEstado = editarWindow.Estado;
                 var nuevaImagen = editarWindow.ImagenBase64;
 
-                // Crear objeto con los datos actualizados
-                habitacion.nombre = nuevoNombre;
-                habitacion.tipo = nuevoTipo;
-                habitacion.capacidad = nuevaCapacidad;
-                habitacion.descripcion = nuevaDescripcion;
-                habitacion.opciones = nuevaOpcion;
-                habitacion.ImagenBase64 = nuevaImagen;
+                bool tieneOferta = editarWindow.tieneOferta;
 
                 if (string.IsNullOrEmpty(habitacion._id))
                 {
@@ -557,6 +552,15 @@ namespace app.View.Habitaciones
                     MessageBox.Show($"El _id de la habitación es: {habitacion._id}", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
+                // Crear objeto con los datos actualizados
+                habitacion.nombre = nuevoNombre;
+                habitacion.tipo = nuevoTipo;
+                habitacion.capacidad = nuevaCapacidad;
+                habitacion.descripcion = nuevaDescripcion;
+                habitacion.opciones = nuevaOpcion;
+                habitacion.ImagenBase64 = nuevaImagen;
+                habitacion.tieneOferta = tieneOferta;
+
                 // Actualizar precio y estado en MongoDB
                 var connectionString = "mongodb+srv://admin:clue@receptaculum.y9i4n.mongodb.net/HotelIES"; // Cambia la URL si es necesario
                 var client = new MongoClient(connectionString);
@@ -566,6 +570,8 @@ namespace app.View.Habitaciones
                 var filtro = Builders<BsonDocument>.Filter.Eq("_id", habitacion._id);
                 var actualizacionMongo = Builders<BsonDocument>.Update
                     .Set("precio_noche", nuevoPrecio)
+                    .Set("precio_noche_original", nuevoPrecioOriginal)
+                    //.Set("tieneOferta", tieneOferta)
                     .Set("estado", nuevoEstado);
 
                 try
