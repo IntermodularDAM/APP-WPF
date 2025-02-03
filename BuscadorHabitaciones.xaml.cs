@@ -1,5 +1,4 @@
 using app.View.Usuarios.Login;
-using System.Globalization;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -8,12 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
+using app.Models.Habitaciones;
+using app.Models.Reservas;
+using app.ViewModel.Habitaciones;
 
 namespace app.View.Habitaciones
 {
@@ -31,149 +32,6 @@ namespace app.View.Habitaciones
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         }
 
-        public class Habitacion
-        {
-            public string _id { get; set; }
-            public int num_planta {  get; set; }
-            public string nombre { get; set; }
-            public string tipo { get; set; }
-            public string capacidad { get; set; }
-            public string descripcion { get; set; }
-            public Opciones opciones { get; set; }    
-            public decimal precio_noche { get; set; }
-            public decimal? precio_noche_original { get; set; }
-            public bool tieneOferta { get; set; }
-            public bool estado { get; set; }
-            public string ImagenBase64 { get; set; }
-
-        }
-
-        public class Opciones
-        {
-            public bool CamaExtra { get; set; }
-            public bool Cuna { get; set; }
-        }
-
-        public class Reserva
-        {
-            public string _id { get; set; }
-            public string id_hab { get; set; }
-            public string fecha_check_in { get; set; }
-            public string fecha_check_out { get; set; }
-        }
-
-        public class ApiResponse<T>
-        {
-            public string Status { get; set; }
-            public T Data { get; set; }
-        }
-
-        // Método para buscar habitaciones según los criterios
-        public async Task<List<Habitacion>> BuscarHabitaciones(int numeroHuespedes, bool camaExtra, bool cuna, DateTime fechaEntrada, DateTime fechaSalida, decimal precioMaximo, bool soloOfertas)
-        {
-            try
-            {
-                // Solicitud GET para obtener todas las reservas
-                var reservasResponse = await httpClient.GetAsync("http://127.0.0.1:3505/Reserva/getAll");
-                reservasResponse.EnsureSuccessStatusCode();
-                var reservasJson = await reservasResponse.Content.ReadAsStringAsync();
-
-                // Deserializar las reservas
-                var reservas = JsonConvert.DeserializeObject<List<Reserva>>(reservasJson);
-
-                // Obtener todas las habitaciones
-                var habitacionesResponse = await httpClient.GetAsync("http://127.0.0.1:3505/Habitacion/habitaciones");
-                habitacionesResponse.EnsureSuccessStatusCode();
-                var habitacionesJson = await habitacionesResponse.Content.ReadAsStringAsync();
-
-                // Deserializar las habitaciones directamente como una lista
-                var habitaciones = JsonConvert.DeserializeObject<List<Habitacion>>(habitacionesJson);
-
-                // Validar que las habitaciones y reservas se cargaron correctamente
-                if (habitaciones == null || reservas == null)
-                {
-                    MessageBox.Show("Error al cargar habitaciones o reservas desde la API.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return new List<Habitacion>(); // Retornar una lista vacía en caso de error
-                }
-
-                // Filtrar habitaciones según los criterios proporcionados
-                var habitacionesFiltradas = habitaciones
-                    .Where(h => int.Parse(h.capacidad) == numeroHuespedes) // Filtra por capacidad
-                    .Where(h => h.opciones.CamaExtra == camaExtra) // Filtra por opción de cama extra
-                    .Where(h => h.opciones.Cuna == cuna) // Filtra por opción de cuna
-                    .Where(h => h.precio_noche <= precioMaximo) // Filtra por precio
-                    .Where(h => h.tieneOferta == soloOfertas) // Filtra por ofertas si 'soloOfertas' es true
-                    .ToList();
-
-                // 🔍 Comprobar si hay reservas
-                MessageBox.Show($"📌 Total reservas obtenidas: {reservas.Count}", "Depuración", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                var habitacionesDisponibles = habitacionesFiltradas
-                    .Where(h => !reservas.Any(r =>
-                    {
-                        try
-                        {
-                            // 💡 Mostrar cada reserva procesada
-                            MessageBox.Show($"🔍 Procesando reserva {r._id} para habitación {r.id_hab}", "Depuración", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                            // Verificar que la reserva corresponde a esta habitación
-                            if (r.id_hab.Trim().ToLower() != h._id.Trim().ToLower())
-                            {
-                                MessageBox.Show($"❌ La reserva {r._id} no coincide con la habitación {h._id}. Se ignora.",
-                                    "Filtrado", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                return false;
-                            }
-
-                            // Convertir fechas
-                            if (!DateTime.TryParseExact(r.fecha_check_in, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCheckIn) ||
-                                !DateTime.TryParseExact(r.fecha_check_out, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCheckOut))
-                            {
-                                MessageBox.Show($"⚠️ Error al convertir fechas para la reserva {r._id}: {r.fecha_check_in} - {r.fecha_check_out}",
-                                    "Error de Fecha", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                return false;
-                            }
-
-                            // Agregar un día a la fecha de salida
-                            fechaCheckOut = fechaCheckOut.AddDays(1);
-
-                            // Verificar si hay solapamiento
-                            bool solapan = fechaCheckIn < fechaSalida && fechaCheckOut > fechaEntrada;
-
-                            // Mostrar comparación de fechas
-                            MessageBox.Show($"🔎 Habitación: {h._id} - Reserva: {r._id}\n"
-                                + $"Check-In Reserva: {fechaCheckIn:yyyy-MM-dd}\n"
-                                + $"Check-Out Reserva: {fechaCheckOut:yyyy-MM-dd}\n"
-                                + $"Rango usuario: {fechaEntrada:yyyy-MM-dd} ➝ {fechaSalida:yyyy-MM-dd}\n"
-                                + $"¿Se solapan? {solapan}",
-                                "Depuración Fechas", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                            return solapan;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"❌ Error al procesar reserva {r._id}: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return false;
-                        }
-                    }))
-                    .ToList();
-
-                // Mostrar cuántas habitaciones quedan disponibles
-                MessageBox.Show($"✅ Habitaciones disponibles tras filtro: {habitacionesDisponibles.Count}", "Resultado", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-
-
-                // Retornar habitaciones disponibles
-                return habitacionesDisponibles;
-            }
-            catch (Exception ex)
-            {
-                // Manejar excepciones y mostrar mensajes de error
-                MessageBox.Show($"Error al buscar habitaciones: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return new List<Habitacion>(); // Retornar una lista vacía en caso de error
-            }
-        }
-
 
         // Evento del botón "Volver"
         private void Click_btnVolver(object sender, RoutedEventArgs e)
@@ -184,6 +42,8 @@ namespace app.View.Habitaciones
         }
 
 
+
+
         // Evento del botón "Añadir habitacion"
         private void btn_AddHabitacion_Click(object sender, RoutedEventArgs e)
         {
@@ -191,6 +51,7 @@ namespace app.View.Habitaciones
             employeeWindow.Show();
             Close();
         }
+
 
 
         // Evento del botón "Buscar"
@@ -220,9 +81,11 @@ namespace app.View.Habitaciones
             bool camaExtra = txtOp.IsChecked == true;
             bool cuna = txtOp2.IsChecked == true;
 
+            var viewModel = new HabitacionViewModel();
+
 
             // Buscar habitaciones usando la API
-            var habitacionesEncontradas = await BuscarHabitaciones(numeroHuespedes, camaExtra, cuna, fechaEntrada, fechaSalida, precioMaximo, false);
+            var habitacionesEncontradas = await viewModel.BuscarHabitaciones(numeroHuespedes, camaExtra, cuna, fechaEntrada, fechaSalida, precioMaximo, false);
 
             // Mostrar resultados
             MostrarResultados(habitacionesEncontradas);
@@ -319,6 +182,9 @@ namespace app.View.Habitaciones
             }
         }
         */
+
+
+
 
         private void MostrarResultados(List<Habitacion> habitaciones)
         {
@@ -418,6 +284,8 @@ namespace app.View.Habitaciones
             }
         }
 
+
+
         private BitmapImage ConvertBase64ToImage(string base64String)
         {
             // Convertir Base64 a imagen
@@ -502,6 +370,10 @@ namespace app.View.Habitaciones
               }
           }*/
 
+
+
+
+
         // Método para editar una habitación
         private async void EditarHabitacion(Habitacion habitacion)
         {
@@ -528,7 +400,7 @@ namespace app.View.Habitaciones
                 // Si el usuario aceptó los cambios
                 var nuevoNombre = editarWindow.NuevoNombre;
                 var nuevoTipo = editarWindow.NuevoTipo;
-                var nuevaCapacidad = editarWindow.NuevaCapacidad;
+                var nuevaCapacidad = int.Parse(editarWindow.NuevaCapacidad);
                 var nuevaDescripcion = editarWindow.NuevaDescripcion;
                 var nuevoPrecio = editarWindow.NuevoPrecio;
                 var nuevoPrecioOriginal = editarWindow.NuevoPrecioOriginal;
@@ -611,6 +483,10 @@ namespace app.View.Habitaciones
         }
 
 
+
+
+
+
         private async void EliminarHabitacion(Habitacion habitacion)
         {
             var reservasResponse = await httpClient.GetAsync("http://127.0.0.1:3505/Reserva/getAll");
@@ -663,6 +539,10 @@ namespace app.View.Habitaciones
         }
 
 
+
+
+
+
         // Evento del botón "Ofertas"
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -687,13 +567,17 @@ namespace app.View.Habitaciones
             bool camaExtra = txtOp.IsChecked == true;
             bool cuna = txtOp2.IsChecked == true;
 
+            var viewModel = new HabitacionViewModel();
 
             // Buscar habitaciones solo con ofertas
-            var habitacionesEncontradas = await BuscarHabitaciones(numeroHuespedes, camaExtra, cuna, fechaEntrada, fechaSalida, precioMaximo, true);
+            var habitacionesEncontradas = await viewModel.BuscarHabitaciones(numeroHuespedes, camaExtra, cuna, fechaEntrada, fechaSalida, precioMaximo, true);
 
             // Mostrar resultados
             MostrarResultados(habitacionesEncontradas);
         }
+
+
+
 
         private void btn_Volver_Click(object sender, RoutedEventArgs e)
         {
