@@ -18,8 +18,9 @@ namespace app.View.Habitaciones
         public double NuevoPrecio { get; private set; }
         public bool CamaExtra { get; private set; }
         public bool Cuna { get; private set; }
-        public double PrecioOriginal { get; private set; }
+        public double NuevoPrecioOriginal { get; private set; }
         public bool Estado { get; private set; }
+        public bool tieneOferta { get; private set; }
         public string ImagenBase64 { get; private set; } // Propiedad para la imagen
 
         // Constructor actualizado para recibir las opciones como parámetros
@@ -32,7 +33,7 @@ namespace app.View.Habitaciones
             TipoTextBox.Text = tipo;
             PrecioTextBox.Text = precio.ToString("F2"); // Aseguramos formato consistente
             txtDescripcion.Text = descripcion;
-            PrecioOriginal = precioOriginal; // Guardamos el precio original
+            PrecioOriginalTextBox.Text = precioOriginal.ToString("F2"); // Guardamos el precio original
             EstadoCheckBox.IsChecked = estado; // Mostrar el estado actual como texto
 
             // Establecer la capacidad correctamente
@@ -68,12 +69,22 @@ namespace app.View.Habitaciones
                 NuevaCapacidad = (CapacidadComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
 
                 // Validar y convertir el precio
-                if (!double.TryParse(PrecioTextBox.Text, out double nuevoPrecio))
+                if (!double.TryParse(PrecioTextBox.Text, out double nuevoPrecio) || !double.TryParse(PrecioOriginalTextBox.Text, out double nuevoPrecioOriginal))
                 {
                     MessageBox.Show("El precio ingresado no es válido. Por favor, ingresa un número.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
                 NuevoPrecio = nuevoPrecio;
+                NuevoPrecioOriginal = nuevoPrecioOriginal;  
+
+                if(nuevoPrecio >= nuevoPrecioOriginal)
+                {
+                    tieneOferta = false;
+                }
+                else
+                {
+                    tieneOferta = true;
+                }
 
                 // Validar y convertir el estado de forma más robusta
                 Estado = EstadoCheckBox.IsChecked ?? false;
