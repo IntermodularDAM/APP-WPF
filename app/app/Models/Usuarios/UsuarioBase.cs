@@ -20,5 +20,6 @@ namespace app.Models.Usuarios
         public string sexo { get; set; }
         public string registro { get; set; }
         public string rutaFoto { get; set; }
+        public string baja { get; set; }
     }
 }

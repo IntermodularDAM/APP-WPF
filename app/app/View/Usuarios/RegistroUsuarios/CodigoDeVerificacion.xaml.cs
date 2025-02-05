@@ -28,10 +28,14 @@ namespace app.View.Usuarios.RegistroUsuarios
         private readonly UsuarioViewModel _viewModel;
         public string Email { get; set; }
         public string ID { get; set; }
-        public CodigoDeVerificacion(UsuarioViewModel viewMode)
+        public string EmailApp { get; set; }
+
+        public string Privileges { get; set; } 
+        public CodigoDeVerificacion()
         {
             InitializeComponent();
-            _viewModel = viewMode;
+            _viewModel = UsuarioViewModel.Instance;
+            DataContext = _viewModel;
             Loaded += Window_Loaded;
         }
 
@@ -85,11 +89,12 @@ namespace app.View.Usuarios.RegistroUsuarios
 
             Usuario usuario = new Usuario
             {
-                email = Email,
+                emailApp = EmailApp,
                 _id = ID,
                 verificationCode = txtCodigo.Text
+
             };
-            var response = await verificarUsuario.ValidarUsuario(usuario);
+            var response = await _viewModel.ValidarUsuario(usuario);
             var result = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
@@ -98,10 +103,13 @@ namespace app.View.Usuarios.RegistroUsuarios
 
                 if (responseData != null) {
                     
-                    RegistroPerfil perfil = new RegistroPerfil(_viewModel){
-                        Email = responseData.data.email,
-                        IdUsuario = responseData.data.id
+                    RegistroPerfil perfil = new RegistroPerfil(){
+                        EmailApp = responseData.data.emailApp,
+                        IdUsuario = responseData.data.idUsuario,
+                        Privileges = responseData.data.privileges,
+                        TemporalToken = responseData.data.temporalToken,             
                     };
+
                     perfil.Owner = this.Owner;
                     this.Hide();
                     perfil.ShowDialog();
@@ -125,46 +133,53 @@ namespace app.View.Usuarios.RegistroUsuarios
 
         private async void btnCerrar_Click(object sender, RoutedEventArgs e)
         {
-            var confirmacion = MessageBox.Show(
+
+            if (Privileges == null)
+            {
+                var confirmacion = MessageBox.Show(
                 "Estas seguro que quieres cerrar ?",
                 "Se va a eliminar el usuario ya registrado...",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
 
-            if (confirmacion == MessageBoxResult.Yes)
-            {
-                var viewModelCodigoVerificacion = new CodigoVerificacionViewModel();
-          
-                var response = await viewModelCodigoVerificacion.EliminarUsuario(Email);
-
-                var result = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
+                if (confirmacion == MessageBoxResult.Yes)
                 {
-                    var status = JsonConvert.DeserializeObject(result);
-                    MessageBox.Show(
-                    $"usuario Eliminado. {status}",
-                    "Status : 200",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information
-                    );
-                    this.Close();
-                }
-                else {
-                    var error = JsonConvert.DeserializeObject(result);
-                    MessageBox.Show(
-                        $"Error al eliminar el usuario. {error}",
-                        "Error : 500",
+                    var viewModelCodigoVerificacion = new CodigoVerificacionViewModel();
+
+                    var response = await viewModelCodigoVerificacion.EliminarUsuario(EmailApp);
+
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var status = JsonConvert.DeserializeObject(result);
+                        MessageBox.Show(
+                        $"usuario Eliminado. {status}",
+                        "Status : 200",
                         MessageBoxButton.OK,
-                        MessageBoxImage.Error
+                        MessageBoxImage.Information
                         );
-         
+                        this.Close();
+                    }
+                    else
+                    {
+                        var error = JsonConvert.DeserializeObject(result);
+                        MessageBox.Show(
+                            $"Error al eliminar el usuario. {error}",
+                            "Error : 500",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error
+                            );
+
+                    }
+
                 }
 
             }
-            
-
-            
+            else {
+                this.DialogResult = false;
+                this.Close();
+            }
         }
     }
 }

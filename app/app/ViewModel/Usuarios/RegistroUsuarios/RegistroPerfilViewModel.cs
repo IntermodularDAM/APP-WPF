@@ -42,8 +42,8 @@ namespace app.ViewModel.Usuarios.RegistroUsuarios
 
                 try
                 {
-                    cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", UserSession.Instance.Token);
-                    cliente.DefaultRequestHeaders.Add("x-user-role", UserSession.Instance.Data["rol"].ToString()); // Enviar el rol en el encabezado
+                    cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.token);
+                    cliente.DefaultRequestHeaders.Add("x-user-role", SettingsData.Default.rol); // Enviar el rol en el encabezado
 
                     HttpResponseMessage response = await cliente.PostAsync(registroRuta, PerfilNuevo);
 

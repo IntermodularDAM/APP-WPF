@@ -20,6 +20,7 @@ using app.View.Usuarios.EditarUsuarios;
 using app.View.Usuarios.InformacionUsuarios;
 using app.View.Usuarios.Login;
 using app.View.Usuarios.Notificaciones;
+using app.View.Usuarios.Pre_Registros;
 using app.View.Usuarios.RegistroUsuarios;
 using app.ViewModel.Usuarios;
 using Newtonsoft.Json;
@@ -40,109 +41,69 @@ namespace app.View.Usuarios.MainUsuarios
             InitializeComponent();
             
             _viewModel = UsuarioViewModel.Instance;
-            this.DataContext =  _viewModel;
+            this.DataContext = _viewModel;
+
+            //Menu perfil
+            txtUsuarioRol.Text = SettingsData.Default.rol;
+            txtUsuarioSession.Text = SettingsData.Default.nombre;
         }
 
+
+        //Pediente a eliminar 
         private void btnRegistrarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            Usuarios.RegistroUsuario.RegistroUsuario registro = new Usuarios.RegistroUsuario.RegistroUsuario(_viewModel);
+            RegistroUsuario registro = new RegistroUsuario();
             registro.Owner = this;
             registro.ShowDialog();
-
             
         }
 
-        //Ex OK
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        //OK
+        private void btnPreRegistro_Click(object sender, RoutedEventArgs e)
         {
-            var ex = await _viewModel.CargarTodosLosUsuarios();
-            if (ex == SettingsData.Default._200)
-                return;
-            else if (ex != SettingsData.Default._419)
-            {
-                Notificacion notEx = new Notificacion("Error", ex);
-                notEx.Owner = this;
-                notEx.ShowDialog();
-                LogIn logEx = new LogIn();
-                logEx.Show();
-                this.Close();
-            }
-            else
-            {
-                Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
-                not.Owner = this;
-                not.ShowDialog();
-                LogIn log = new LogIn();
-                log.Show();
-                this.Close();
-            }
-            this.Close();
-            
+            Pre_Registro pre = new Pre_Registro();
+            pre.Owner = this;
+            pre.ShowDialog();
         }
 
-        //Ex OK
-        private async void ToggleButtonCambiarLista_Checked(object sender, RoutedEventArgs e)
+        //OK
+        private void btnRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            RegistroUsuario registro = new RegistroUsuario();
+            registro.Owner = this;
+            registro.ShowDialog();
+        }
+
+        //Session OK
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            CargaUsuariosSession();
+        }
+
+        //Session OK
+        private void ToggleButtonCambiarLista_Checked(object sender, RoutedEventArgs e)
         {
             DataGridPerfilUsuarios.Visibility = Visibility.Collapsed;
             ListViewPerfilUsuarios.Visibility = Visibility.Visible;
             btnToggleButtonCambiarLista.Content = "ListView";
             imgToggleButton.Source = new BitmapImage(new Uri("/View/Usuarios/MainUsuarios/imgListView.png", UriKind.RelativeOrAbsolute)); ;
 
-            var ex = await _viewModel.CargarTodosLosUsuarios();
-            if (ex == SettingsData.Default._200)
-                return;
-            else if (ex != SettingsData.Default._419)
-            {
-                Notificacion notEx = new Notificacion("Error", ex);
-                notEx.Owner = this;
-                notEx.ShowDialog();
-                LogIn logEx = new LogIn();
-                logEx.Show();
-                this.Close();
-            }
-            else
-            {
-                Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
-                not.Owner = this;
-                not.ShowDialog();
-                LogIn log = new LogIn();
-                log.Show();
-                this.Close();
-            }
+            CargaUsuariosSession();
         }
 
-        //Ex OK
-        private async void ToggleButtonCambiarLista_Unchecked(object sender, RoutedEventArgs e)
+        //Session OK
+        private void ToggleButtonCambiarLista_Unchecked(object sender, RoutedEventArgs e)
         {
             ListViewPerfilUsuarios.Visibility = Visibility.Collapsed;
             DataGridPerfilUsuarios.Visibility = Visibility.Visible;
             btnToggleButtonCambiarLista.Content = "DataGrid";
             imgToggleButton.Source = new BitmapImage(new Uri("/View/Usuarios/MainUsuarios/imgDataGrid.png", UriKind.RelativeOrAbsolute)); ;
 
-            var ex = await _viewModel.CargarTodosLosUsuarios();
-            if (ex == SettingsData.Default._200)
-                return;
-            else if (ex != SettingsData.Default._419)
-            {
-                Notificacion notEx = new Notificacion("Error", ex);
-                notEx.Owner = this;
-                notEx.ShowDialog();
-                LogIn logEx = new LogIn();
-                logEx.Show();
-                this.Close();
-            }
-            else
-            {
-                Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
-                not.Owner = this;
-                not.ShowDialog();
-                LogIn log = new LogIn();
-                log.Show();
-                this.Close();
-            }
+            CargaUsuariosSession();
         }
 
-        private async void btnEditar_Click(object sender, RoutedEventArgs e)
+        //Session P
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
             UsuarioBase usuarioSeleccionado = null;
             if (DataGridPerfilUsuarios.SelectedItem != null) { usuarioSeleccionado = (UsuarioBase)DataGridPerfilUsuarios.SelectedItem; }
@@ -154,24 +115,10 @@ namespace app.View.Usuarios.MainUsuarios
             edit.Owner = this;
             edit.ShowDialog();
 
-            var ex = await _viewModel.CargarTodosLosUsuarios();
-            if (ex != "Invalid Token")
-                MessageBox.Show(ex);
-            else if (ex == "Carga exitosa")
-                return;
-            else
-            {
-                Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
-                not.ShowDialog();
-                LogIn log = new LogIn();
-                log.Show();
-                this.Close();
-            }
-
-
-
+            CargaUsuariosSession();
         }
 
+        //P
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
             UsuarioBase usuarioSeleccionado = null;
@@ -185,6 +132,8 @@ namespace app.View.Usuarios.MainUsuarios
             info.ShowDialog();
 
         }
+
+        //P
         private async void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
             UsuarioBase usuarioSeleccionado = null;
@@ -215,6 +164,7 @@ namespace app.View.Usuarios.MainUsuarios
             }
         }
 
+        //Cambiar Contraseña P
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
             CambiarContraseña.CambiarContraseña noti = new CambiarContraseña.CambiarContraseña();
@@ -223,15 +173,16 @@ namespace app.View.Usuarios.MainUsuarios
    
         }
 
+
+        //OK
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //Usuarios.CambiarContraseña.CambiarContraseña cambiar = new Usuarios.CambiarContraseña.CambiarContraseña();
-            //cambiar.Show();
             Inicio inicio = new Inicio();
             inicio.Show();
             this.Close();
         }
 
+        //OJO
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             _multipartFormDataContent = new MultipartFormDataContent(); 
@@ -270,6 +221,7 @@ namespace app.View.Usuarios.MainUsuarios
             ResetFields();
 
         }
+        
         // Método para restablecer los campos
         private void ResetFields()
         {
@@ -280,16 +232,25 @@ namespace app.View.Usuarios.MainUsuarios
             txtRol.SelectedIndex = -1; // Restablecer el ComboBox
         }
 
+        //Session OK
         private async void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
             var ex = await _viewModel.CargarTodosLosUsuarios();
-            if (ex != "Invalid Token")
-                MessageBox.Show(ex);
-            else if (ex == "Carga exitosa")
+            if (ex == SettingsData.Default._200)
                 return;
+            else if (ex != SettingsData.Default._419)
+            {
+                Notificacion notEx = new Notificacion("Error", ex);
+                notEx.Owner = this;
+                notEx.ShowDialog();
+                LogIn logEx = new LogIn();
+                logEx.Show();
+                this.Close();
+            }
             else
             {
                 Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
+                not.Owner = this;
                 not.ShowDialog();
                 LogIn log = new LogIn();
                 log.Show();
@@ -297,6 +258,7 @@ namespace app.View.Usuarios.MainUsuarios
             }
         }
 
+        //OK
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
            Inicio ini = new Inicio();
@@ -304,6 +266,8 @@ namespace app.View.Usuarios.MainUsuarios
             this.Close();
         }
 
+
+        //Pensar si se puede hacer algo
         private void Image_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
             //Notificacion NOTI
@@ -311,5 +275,60 @@ namespace app.View.Usuarios.MainUsuarios
             //NOTI.Owner = this;
             //NOTI.ShowDialog();
         }
+
+        private async void CargaUsuariosSession() {
+
+
+            var ex = await _viewModel.CargarTodosLosUsuarios();
+            if (ex == SettingsData.Default._200)
+                return;
+            else if (ex != SettingsData.Default._419)
+            {
+                Notificacion notEx = new Notificacion("Error", ex);
+                notEx.Owner = this;
+                notEx.ShowDialog();
+                LogIn logEx = new LogIn();
+                logEx.Show();
+                this.Close();
+            }
+            else
+            {
+                Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
+                not.Owner = this;
+                not.ShowDialog();
+                LogIn log = new LogIn();
+                log.Show();
+                this.Close();
+            }
+        }
+
+
+
+        private void MenuCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsData.Default.token = "";
+            SettingsData.Default.appToken = "";
+            SettingsData.Default.idPerfil = "";
+            SettingsData.Default.Save();
+
+            LogIn log = new LogIn();
+            log.Show();
+            this.Close();
+        }
+
+        private void MenuCambiarContraseña_Click(object sender, RoutedEventArgs e)
+        {
+            CambiarContraseña.CambiarContraseña cam = new CambiarContraseña.CambiarContraseña();
+            cam.Owner = this;
+            cam.ShowDialog();
+
+        }
+
+        private void MenuApagar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+ 
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using app.Models.Usuarios;
@@ -122,21 +123,54 @@ namespace app.View.Usuarios.Login
                 if (responseData != null)
                 {
                     // Obtener los datos del usuario y mostrarlos en la pantalla principal
-                    
-                    UserSession.Instance.Token = responseData.data.token;
-                    UserSession.Instance.AppToken = responseData.data.appToken;
-                    UserSession.Instance.Data = JObject.FromObject(responseData.data.user);
 
-                    SettingsData.Default.token = responseData.data.token;
-                    SettingsData.Default.appToken = responseData.data.appToken;
-                    SettingsData.Default.idPerfil = responseData.data.user._id;                    
-                    SettingsData.Default.rol = responseData.data.user.rol;                    
-                    SettingsData.Default.Save();
-                    
+                   
+                    if (responseData.data.privileges == "Administrador" || responseData.data.privileges == "Empleado") {
 
-                    Inicio user = new Inicio();
-                    user.Show();
-                    this.Close();
+                        CodigoDeVerificacion code = new CodigoDeVerificacion
+                        {
+                            Email = responseData.data.email,
+                            EmailApp = responseData.data.emailApp,
+                            ID = responseData.data.id,
+                            Privileges = responseData.data.privileges
+                        };
+                        code.Owner = this;
+                        bool? resultCode = code.ShowDialog();
+
+                        MessageBox.Show("Result Code: "+resultCode.Value.ToString());
+
+                        if (resultCode == true) {
+                            Inicio h = new Inicio();
+                            h.Show();
+                            this.Close();
+                        } else if (resultCode ==false) {
+                            MessageBox.Show("Se cancelo la verificación");
+                        }
+  
+ 
+                    }
+                    else if (responseData.data.user != null)
+                    {
+                        UserSession.Instance.Token = responseData.data.token;
+                        UserSession.Instance.AppToken = responseData.data.appToken;
+                        UserSession.Instance.Data = JObject.FromObject(responseData.data.user);
+
+                        SettingsData.Default.token = responseData.data.token;
+                        SettingsData.Default.appToken = responseData.data.appToken;
+                        SettingsData.Default.idPerfil = responseData.data.user._id;                    
+                        SettingsData.Default.rol = responseData.data.user.rol;                    
+                        SettingsData.Default.nombre = responseData.data.user.nombre;                    
+                        SettingsData.Default.Save();
+
+
+
+                        Inicio user = new Inicio();
+                        user.Show();
+                        this.Close();
+                    }
+
+                    BtnLogin.IsEnabled = true;
+                    
                 }
                 else
                 {

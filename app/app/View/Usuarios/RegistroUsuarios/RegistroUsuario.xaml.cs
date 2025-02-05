@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -20,7 +21,7 @@ using app.ViewModel.Usuarios.RegistroUsuarios;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace app.View.Usuarios.RegistroUsuario
+namespace app.View.Usuarios.RegistroUsuarios
 {
     /// <summary>
     /// Lógica de interacción para RegistroUsuario.xaml
@@ -28,10 +29,11 @@ namespace app.View.Usuarios.RegistroUsuario
     public partial class RegistroUsuario : Window
     {
         private readonly UsuarioViewModel _viewModel;
-        public RegistroUsuario(UsuarioViewModel viewMode)
+        public RegistroUsuario()
         {
             InitializeComponent();
-            _viewModel = viewMode;
+            _viewModel = UsuarioViewModel.Instance;
+            DataContext = _viewModel;
         }
 
         private void txtNombre_TextChanged(object sender, TextChangedEventArgs e)
@@ -95,7 +97,7 @@ namespace app.View.Usuarios.RegistroUsuario
         private async void btnEnviar_Click(object sender, RoutedEventArgs e)
         {
             btnEnviar.IsEnabled = false;
-            var registroUsuarioViewModel = new RegistroUsuarioViewModel();
+            
 
             // Obtengo los valores ingresados en los campos de texto para email y contraseña
             string email = txtEmail.Text;
@@ -109,8 +111,12 @@ namespace app.View.Usuarios.RegistroUsuario
                     password = password
                 };
 
-                var response = await registroUsuarioViewModel.RegistrarUsuario(registrarUsuario);
+                var response = await _viewModel.RegistrarUsuario(registrarUsuario);
                  var result = await response.Content.ReadAsStringAsync();
+
+                MessageBox.Show($"Menssage del registro  \nStatus: {response.StatusCode} \nContenido: {result}" );
+                Debug.WriteLine($"Menssage del registro  \nStatus: {response.StatusCode} \nContenido: {result}" );
+
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -121,15 +127,15 @@ namespace app.View.Usuarios.RegistroUsuario
 
                     // Guardar el token y los datos del usuario en la sesión de usuario
 
-                    MessageBox.Show($"Email: {responseData.data.email} , ID: {responseData.data.id}");
+                    MessageBox.Show($"Datos que se envian a Codigo verificacion \nEmail: {responseData.data.email} , ID: {responseData.data.id}, EmailApp: {responseData.data.emailApp}");
 
                     if (responseData != null)
                     {
-                        CodigoDeVerificacion codigo = new CodigoDeVerificacion(_viewModel)
+                        CodigoDeVerificacion codigo = new CodigoDeVerificacion()
                         {
                             Email = responseData.data.email,
                             ID = responseData.data.id,
-                            
+                            EmailApp = responseData.data.emailApp,
                         };
                         codigo.Owner = this.Owner;
                         // Cerrar la pantalla de inicio de sesión

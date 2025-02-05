@@ -20,7 +20,7 @@ namespace app.ViewModel.Usuarios.RegistroUsuarios
             using (var client = new HttpClient()) 
             {
                 try {
-                    var json = JsonConvert.SerializeObject(new {email = emailEliminar });
+                    var json = JsonConvert.SerializeObject(new {emailApp = emailEliminar });
                     var content = new StringContent(json,Encoding.UTF8,"application/json");
 
                     var request = new HttpRequestMessage

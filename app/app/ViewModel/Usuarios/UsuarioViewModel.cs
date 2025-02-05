@@ -50,6 +50,35 @@ namespace app.ViewModel.Usuarios
         private const string ApiUrlLogIn = "http://127.0.0.1:3505/Usuario/logIn";
         private const string ApiUrlAccessToken = "http://127.0.0.1:3505/Usuario/accessToken";
 
+        //Recuperar Contraseña
+        private const string ApiUrlRecuperarPassword = "http://127.0.0.1:3505/Usuario/recuperarPassword";
+
+
+        //Registro Usuarios/Perfiles
+        private const string ApiUrlRegistroUsuario = "http://127.0.0.1:3505/Usuario/registroUsuario";
+        private const string ApiUrlVerificarUsuario = "http://127.0.0.1:3505/Usuario/verificarUsuario";
+
+        //Cambiar Contraseña
+        private const string ApiUrlCambiarPassword = "http://127.0.0.1:3505/Usuario/cambiarPassword";
+
+        //Datos Pre-Registros ValidationRule
+        private string _emailPreregistro = "";
+        private string _emailPreregistroConfirmacion = "";
+        private string _emailPreregistroConfirmacion2 = "";
+        private string _rolSeleccionado = "";
+        public string EmailPreRegistro { get => _emailPreregistro; set { _emailPreregistro = value; OnPropertyChanged("EmailPreRegistro"); } }
+        public string EmailPreregistroConfirmacion { get => _emailPreregistroConfirmacion; set { _emailPreregistroConfirmacion = value; OnPropertyChanged("EmailPreregistroConfirmacion"); } }
+        public string EmailPreregistroConfirmacion2 { get => _emailPreregistroConfirmacion2; set { _emailPreregistroConfirmacion2 = value; OnPropertyChanged("EmailPreregistroConfirmacion2"); } }
+        public string RolSeleccionado { get => _rolSeleccionado; set  { _rolSeleccionado = value; OnPropertyChanged("RolSeleccionado"); } }
+
+        //Datos CambioPassword ValidationRule
+        private string _password = "";
+        private string _passwordConfirm = "";
+        private string _passwordConfirm2 = "";
+        public string Password { get => _password;  set { _password = value; OnPropertyChanged("Password"); } }
+        public string PasswordConfirm { get => _passwordConfirm;  set { _passwordConfirm = value; OnPropertyChanged("PasswordConfirm"); } }
+        public string PasswordConfirm2 { get => _passwordConfirm2;  set { _passwordConfirm2 = value; OnPropertyChanged("PasswordConfirm2"); } }
+
 
         private static UsuarioViewModel _instance;
         public static UsuarioViewModel Instance
@@ -140,6 +169,7 @@ namespace app.ViewModel.Usuarios
                                     _id = user._id,
                                     password = user.password,
                                     email = user.email,
+                                    emailApp = user.emailApp,
 
                                 });
 
@@ -301,10 +331,7 @@ namespace app.ViewModel.Usuarios
 
                     if (responseEmail.IsSuccessStatusCode)
                     {
-                       
-                      
                             return true;
-                        
                     }
                     else
                     {
@@ -446,9 +473,6 @@ namespace app.ViewModel.Usuarios
 
         }
 
-
-
-
         public async Task<HttpResponseMessage> LogIn(Usuario UsuarioNuevo)
         {
             using (var cliente = new HttpClient())
@@ -463,7 +487,11 @@ namespace app.ViewModel.Usuarios
 
                     if (response.IsSuccessStatusCode)
                     {
-                        Debug.WriteLine("Perfil logeado");
+                        var contenido = await response.Content.ReadAsStringAsync();
+                        var result =  JsonConvert.DeserializeObject<dynamic>(contenido);
+                        Debug.WriteLine("Perfil logeado o 1/2");
+                        Debug.WriteLine("Contenido: "+contenido);
+
                         return response;
                     }
                     else
@@ -480,6 +508,120 @@ namespace app.ViewModel.Usuarios
             }
         }
 
-       
+        public async Task<HttpResponseMessage> RecuperarPassword(string _email) {
+
+            using (var cliente = new HttpClient()) {
+                try {
+
+                    var json = JsonConvert.SerializeObject(new {email = _email });
+                    var content = new StringContent(json, Encoding.UTF8, "application/json"); 
+
+                    var response = await cliente.PostAsync(ApiUrlRecuperarPassword, content);
+
+                    var contentError = await response.Content.ReadAsStringAsync();
+
+
+                    Debug.WriteLine("Status: \n" + response.StatusCode);
+                    Debug.WriteLine("Contenido: \n" + contentError);
+
+                    return response;
+                }
+                catch (Exception) {
+                    return null;
+                }
+            }
+        
+        }
+
+        public async Task<HttpResponseMessage> CambiarPassword(StringContent content) {
+
+            using (var client = new HttpClient()) {
+
+                try {
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",SettingsData.Default.token);
+                    client.DefaultRequestHeaders.Add("x-user-role",SettingsData.Default.rol);
+
+                    HttpResponseMessage response = await client.PostAsync(ApiUrlCambiarPassword, content);
+
+                    var contentError = await response.Content.ReadAsStringAsync();
+
+                    Debug.WriteLine("Status: \n" + response.StatusCode);
+                    Debug.WriteLine("Contenido: \n" + contentError);
+
+                    return response; 
+
+                } catch (Exception) {
+                    return null;
+                }
+                
+
+
+            }
+        }
+
+        //Registro Usuarios/Perfiles
+        public async Task<HttpResponseMessage> RegistrarUsuario(Usuario UsuarioNuevo)
+        {
+            using (var cliente = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(UsuarioNuevo);
+                Debug.WriteLine(json);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    HttpResponseMessage response = await cliente.PostAsync(ApiUrlRegistroUsuario, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Debug.WriteLine("Usuario creado correctamente : En ViewModel");
+                        return response;
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"Error : {response.StatusCode} : En ViewModel");
+                        return response;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Exception: {ex.Message} : En ViewModel");
+                    return null;
+                }
+            }
+        }
+
+        public async Task<HttpResponseMessage> ValidarUsuario(Usuario VerificarUsuario)
+        {
+            using (var cliente = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(VerificarUsuario);
+                Debug.WriteLine(json);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    HttpResponseMessage response = await cliente.PostAsync(ApiUrlVerificarUsuario, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Debug.WriteLine("WPF : Usuario verificado correctamente");
+                        return response;
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"WPF : Error : {response.StatusCode}");
+                        return response;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Exception: {ex.Message}");
+                    return null;
+                }
+            }
+        }
+
     }
 }

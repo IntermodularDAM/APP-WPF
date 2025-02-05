@@ -144,5 +144,17 @@ namespace app {
                 this["rol"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nombre {
+            get {
+                return ((string)(this["nombre"]));
+            }
+            set {
+                this["nombre"] = value;
+            }
+        }
     }
 }

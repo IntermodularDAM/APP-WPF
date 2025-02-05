@@ -41,21 +41,23 @@
                             <TextBlock Text="Hotel Night Day`s" FontFamily="Montserrat" FontWeight="Bold" FontSize="39" VerticalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,50,0,20">
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,20">
                         <Border BorderBrush="Black" Width="80" BorderThickness="2" Margin="0,20,20,20"></Border>
                         <TextBlock Text="Recordar Contraseña" VerticalAlignment="Center" FontSize="25" Foreground="{StaticResource ColorPrimario}" Style="{StaticResource TextBlockGeneral}" />
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="Email" Margin="0,10" Style="{StaticResource TextBlockGeneral}"/>
-                        <TextBox Name="TextBoxEmail" Style="{StaticResource TextBoxGeneral}"/>
+                        <TextBox Name="txtEmail" Style="{StaticResource TextBoxGeneral}" TextChanged="TextBoxEmail_TextChanged"/>
                         <TextBlock x:Name="ErrorTextEmail" Text="* Email no válido" Style="{StaticResource ErrorText}" />
                         <TextBlock Text="Confirmar Email" Margin="0,10" Style="{StaticResource TextBlockGeneral}"/>
-                        <TextBox Name="TextBoxEmailConfirmar" Style="{StaticResource TextBoxGeneral}" />
+                        <TextBox Name="txtEmailConfirmar" Style="{StaticResource TextBoxGeneral}" TextChanged="TextBoxEmailConfirmar_TextChanged" />
                         <TextBlock x:Name="ErrorTextEmailConfirmar" Text="* Email no válido" Style="{StaticResource ErrorText}" />
+                        <TextBlock x:Name="ErrorTextEquals" Text="* Email no coincide" Style="{StaticResource ErrorText}" />
+
 
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left">
-                        <Button Name="BtnEnviar" IsEnabled="False" Style="{StaticResource ButtonLogin}" Click="BtnEnviar_Click" >
+                        <Button Name="btnEnviar" IsEnabled="False" Style="{StaticResource ButtonLogin}" Click="BtnEnviar_Click" Cursor="Hand" >
                             <!--<Image Height="100" Source="/View/Usuarios/Login/btn-login.png"   />-->
 
                         </Button>

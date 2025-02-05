@@ -80,6 +80,7 @@
     <Compile Include="View\Usuarios\CambiarContraseña\CambiarContraseña.xaml.cs">
       <DependentUpon>CambiarContraseña.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Usuarios\CambiarContraseña\ValidacionPassword.cs" />
     <Compile Include="View\Usuarios\EditarUsuarios\EditarUsuario.xaml.cs">
       <DependentUpon>EditarUsuario.xaml</DependentUpon>
     </Compile>
@@ -95,6 +96,11 @@
     <Compile Include="View\Usuarios\Notificaciones\Notificacion.xaml.cs">
       <DependentUpon>Notificacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Usuarios\Pre_Registros\ComboBoxSelectionValidationRule.cs" />
+    <Compile Include="View\Usuarios\Pre_Registros\Pre_Registro.xaml.cs">
+      <DependentUpon>Pre_Registro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuarios\Pre_Registros\ValidacionPreRegistro.cs" />
     <Compile Include="View\Usuarios\RecordarContraseñas\RecordarContraseña.xaml.cs">
       <DependentUpon>RecordarContraseña.xaml</DependentUpon>
     </Compile>
@@ -140,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Usuarios\Notificaciones\Notificacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usuarios\Pre_Registros\Pre_Registro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,7 +202,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\logout_icon_184325.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\LogIn\Logo.png" />
   </ItemGroup>
@@ -258,6 +270,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\RecordarContraseñas\lobby.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\padlock_security_password_icon_193552.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\MainUsuarios\shutdown_102677.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\Pre_Registros\logo_night_days.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\Pre_Registros\btnCrear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Usuarios\CambiarContraseña\btnCrear.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -54,15 +54,43 @@
                     <!--Menu superior-->
                     <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" >
                         <DockPanel>
-                            <Image  Height="40" VerticalAlignment="Top" Margin="10,15,0,0" Source="/View/Usuarios/MainUsuarios/logo_night_days.png" MouseDown="Image_MouseDown"  />
-                            <Label Content="Hotel Night Day´s" FontSize="27" Margin="5,10,0,0" FontWeight="Bold" MouseDown="TextBlock_MouseDown" />
+                            <Image  Height="40" VerticalAlignment="Top" Margin="10,15,0,0" Source="/View/Usuarios/MainUsuarios/logo_night_days.png" Cursor="Hand" MouseDown="Image_MouseDown"  />
+                            <Label Content="Hotel Night Day´s" FontSize="27" Margin="5,10,0,0" FontWeight="Bold" MouseDown="TextBlock_MouseDown" Cursor="Hand" />
                         </DockPanel>
                         <Button x:Name="btnBuscador" Content="Buscador" Style="{StaticResource BarSide}"/>
                         <Button x:Name="btnUsuarios" Content="Usuarios" Style="{StaticResource BarSide}"/>
                         <Button x:Name="btnReservas" Content="Reservas" Style="{StaticResource BarSide}"/>
                         <Button x:Name="btnHabitaciones" Content="Habitaciones"  Style="{StaticResource BarSide}"/>
                         <StackPanel VerticalAlignment="Center" Margin="40,0">
-                            <Label Content="User Name" Foreground="#8C52FF" FontSize="21" MouseDown="Label_MouseDown" />
+                            <!--<Label Content="User Name" Foreground="#8C52FF" FontSize="21" MouseDown="Label_MouseDown" />-->
+                            <Menu FontSize="20" Background="Transparent" Foreground="#8C52FF">
+                                <MenuItem    Style="{StaticResource ItemMenu}">
+                                    <MenuItem.Header >
+                                        <StackPanel  Orientation="Horizontal">
+                                            <StackPanel Orientation="Vertical" >
+                                                <TextBlock Name="txtUsuarioSession" HorizontalAlignment="Center"  Text="Username" Margin="0,0,5,0" Cursor="Hand"/>
+                                                <TextBlock Name="txtUsuarioRol" HorizontalAlignment="Center" FontSize="10" Text="Administrador" Cursor="Hand" Margin="0,0,5,0" />
+                                            </StackPanel>
+                                            <TextBlock Text="▼" FontSize="12" Foreground="#CD6CE0" Margin="10,14,0,0" Cursor="Hand"/>
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                    <MenuItem Name="MenuCambiarContraseña" FontSize="15" Foreground="#FFFFFF" Header="Cambiar Contraseña" Click="MenuCambiarContraseña_Click">
+                                        <MenuItem.Icon>
+                                            <TextBlock Text="🗝️" FontSize="12" Foreground="#FFFFFF"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem FontSize="15" x:Name="MenuCerrarSesion" Foreground="#FFFFFF" Header="Cerrar Sesión  " Click="MenuCerrarSesion_Click" >
+                                        <MenuItem.Icon>
+                                            <TextBlock Text="⏏️" FontSize="10" Foreground="#FFFFFF"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem FontSize="15" x:Name="MenuApagar" Foreground="#FFFFFF" Header="Apagar" Click="MenuApagar_Click"  >
+                                        <MenuItem.Icon>
+                                            <TextBlock Text="⚡" FontSize="13" Foreground="#FFFFFF"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </MenuItem>
+                            </Menu>
                         </StackPanel>
                         <Image  Stretch="None" Margin="0,0,0,0" Source="/View/Usuarios/MainUsuarios/notification.png" MouseDown="Image_MouseDown_1"  />
                     </StackPanel>
@@ -178,7 +206,7 @@
                         </StackPanel>
                     </Canvas>
                     <!--Listas-->
-                    <DataGrid x:Name="DataGridPerfilUsuarios" HeadersVisibility="None" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="350" VerticalAlignment="Top" HorizontalAlignment="Center" AutoGenerateColumns="False" GridLinesVisibility="None" Background="White" BorderBrush="Transparent" BorderThickness="0"  CanUserAddRows="False" 
+                    <DataGrid x:Name="DataGridPerfilUsuarios" HeadersVisibility="None" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="370" VerticalAlignment="Top" HorizontalAlignment="Center" AutoGenerateColumns="False" GridLinesVisibility="None" Background="White" BorderBrush="Transparent" BorderThickness="0"  CanUserAddRows="False" 
                           ItemsSource="{Binding AllPerfiles}" >
                         <DataGrid.RowStyle>
                             <Style TargetType="DataGridRow">
@@ -428,10 +456,38 @@
                     </ListView>
 
 
-                    <!--Boton Enviar-->
-                    <Button x:Name="btnRegistrarUsuario" Grid.Column="1"     Cursor="Hand" Grid.Row="1" Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Background="Transparent" BorderBrush="Transparent" Click="btnRegistrarUsuario_Click"  >
-                        <Image Source="/View/Usuarios/MainUsuarios/btnCrear.png" />
-                    </Button>
+
+                    <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+
+                        <Button x:Name="btnRegistro" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Height="45" Width="140" Margin="0,20,20,10" Background="#CD6CE0" BorderBrush="White" Foreground="White" FontSize="14" Click="btnRegistro_Click" >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Registro" VerticalAlignment="Center" Margin="30,0,10,0"/>
+                                <Image Source="/View/Usuarios/MainUsuarios/btnCrear.png" />
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="btnPreRegistro" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Height="45" Width="140" Margin="0,20,10,10" Background="#CD6CE0" BorderBrush="White" Foreground="White" FontSize="14" Click="btnPreRegistro_Click" >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Pre-Registro" VerticalAlignment="Center" Margin="5,0,10,0"/>
+                                <Image Source="/View/Usuarios/MainUsuarios/btnCrear.png" />
+                            </StackPanel>
+                        </Button>
+                        <!--Boton Enviar-->
+                        <!--<Button x:Name="btnRegistrarUsuario"    Cursor="Hand"  Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Background="Transparent" BorderBrush="Transparent" Click="btnRegistrarUsuario_Click"  >
+                            <Image Source="/View/Usuarios/MainUsuarios/btnCrear.png" />
+                        </Button>-->
+                    </StackPanel>
+
+         
                 </Grid>
             </Border>
         </Border>
