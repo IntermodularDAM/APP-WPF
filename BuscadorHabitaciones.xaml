@@ -184,9 +184,8 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- StackPanel para mostrar los resultados de las habitaciones -->
-                <ScrollViewer Height="344" Grid.Row="1" Grid.ColumnSpan="4" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                    <!-- StackPanel donde se mostrarán los resultados de las habitaciones -->
-                    <StackPanel x:Name="stackPanelResultados" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal"/>
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="4" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <WrapPanel x:Name="stackPanelResultados" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal" />
                 </ScrollViewer>
             </Grid>
 
