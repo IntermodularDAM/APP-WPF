@@ -92,103 +92,17 @@ namespace app.View.Habitaciones
         }
 
 
-        /*
-
-        // Método para mostrar los resultados encontrados
         private void MostrarResultados(List<Habitacion> habitaciones)
         {
-            stackPanelResultados.Children.Clear();
-
-            if (habitaciones.Count == 0)
+            // Cambiamos StackPanel por WrapPanel
+            var wrapPanelResultados = new WrapPanel
             {
-                var noResultados = new Label
-                {
-                    Content = "No se encontraron habitaciones disponibles.",
-                    FontSize = 25,
-                    Foreground = Brushes.Red,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    Margin = new Thickness(0, 450, 0, 0)
-                };
-                stackPanelResultados.Children.Add(noResultados);
-                return;
-            }
+                Orientation = Orientation.Horizontal, // Los elementos fluyen horizontalmente
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
 
-            foreach (var habitacion in habitaciones)
-            {
-                var stackPanelHabitacion = new StackPanel { VerticalAlignment = VerticalAlignment.Bottom, Margin = new Thickness(10) };
-
-                var imagen = new Image { Width = 220, Height = 220, Source = new BitmapImage(new Uri("/Image/habitacion.png", UriKind.Relative)) };
-                var nombre = new Label { HorizontalAlignment = HorizontalAlignment.Center, FontSize = 20, Margin = new Thickness(0, 10, 0, 5), Content = habitacion.nombre };
-                
-                var precio = new StackPanel { HorizontalAlignment = HorizontalAlignment.Center };
-                if (habitacion.tieneOferta&& habitacion.precio_noche_original.HasValue)
-                {
-                    var precioTachado = new TextBlock
-                    {
-                        Text = $"{habitacion.precio_noche_original}€",
-                        TextDecorations = TextDecorations.Strikethrough,
-                        Foreground = Brushes.Gray,
-                        Margin = new Thickness(0, 0, 10, 0)
-                    };
-                    precio.Children.Add(precioTachado);
-                }
-                var precioActual = new Label { FontSize = 16, Foreground = Brushes.DarkGreen, Content = $"{habitacion.precio_noche}€ / noche" };
-                precio.Children.Add(precioActual);
-
-                // Estado de la habitación
-                var estadoLabel = new Label
-                {
-                    Content = habitacion.estado ? "Estado: Activa" : "Estado: Baja",
-                    FontSize = 14,
-                    Foreground = habitacion.estado ? Brushes.Green : Brushes.Red,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    Margin = new Thickness(0, 5, 0, 5)
-                };
-
-                // Botón para editar
-                var botonEditar = new Button
-                {
-                    Content = "Editar",
-                    Height = 30,
-                    Width = 120,
-                    Margin = new Thickness(5),
-                    Background = new SolidColorBrush(Color.FromRgb(150, 200, 250)),
-                    BorderBrush = Brushes.DarkBlue
-                };
-                botonEditar.Click += (sender, e) => EditarHabitacion(habitacion);
-
-                // Botón para eliminar
-                var botonEliminar = new Button
-                {
-                    Content = "Eliminar",
-                    Height = 30,
-                    Width = 120,
-                    Margin = new Thickness(5),
-                    Background = Brushes.Red,
-                    Foreground = Brushes.White
-                };
-                botonEliminar.Click += (sender, e) => EliminarHabitacion(habitacion);
-
-                // Añadir controles a la UI
-                stackPanelHabitacion.Children.Add(imagen);
-                stackPanelHabitacion.Children.Add(nombre);
-                stackPanelHabitacion.Children.Add(precio);
-                stackPanelHabitacion.Children.Add(estadoLabel);
-                stackPanelHabitacion.Children.Add(botonEditar);
-                stackPanelHabitacion.Children.Add(botonEliminar);
-
-                stackPanelResultados.Children.Add(stackPanelHabitacion);
-            }
-        }
-        */
-
-
-
-
-        private void MostrarResultados(List<Habitacion> habitaciones)
-        {
             stackPanelResultados.Children.Clear();
+            stackPanelResultados.Children.Add(wrapPanelResultados);
 
             if (habitaciones.Count == 0)
             {
@@ -201,16 +115,31 @@ namespace app.View.Habitaciones
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(0, 100, 0, 0)
                 };
-                stackPanelResultados.Children.Add(noResultados);
+                wrapPanelResultados.Children.Add(noResultados);
                 return;
             }
 
             foreach (var habitacion in habitaciones)
             {
-                var stackPanelHabitacion = new StackPanel { VerticalAlignment = VerticalAlignment.Bottom, Margin = new Thickness(10) };
+                // Usamos un Border para permitir Padding
+                var borderHabitacion = new Border
+                {
+                    Width = 200, // Definimos un ancho para que se ajusten mejor en el WrapPanel
+                    Margin = new Thickness(10),
+                    Background = Brushes.LightGray,
+                    Padding = new Thickness(10), // Aquí sí es válido el Padding
+                    CornerRadius = new CornerRadius(8), // Opcional: esquinas redondeadas
+                    BorderBrush = Brushes.Gray,
+                    BorderThickness = new Thickness(1)
+                };
+
+                var stackPanelHabitacion = new StackPanel
+                {
+                    VerticalAlignment = VerticalAlignment.Bottom
+                };
 
                 // Cargar la imagen de la habitación desde Base64 (si existe)
-                Image imagen = new Image { Width = 100, Height = 100 };
+                Image imagen = new Image { Width = 150, Height = 150 };  // Aumenté un poco el tamaño para mejor visualización
 
                 if (!string.IsNullOrEmpty(habitacion.ImagenBase64))
                 {
@@ -221,9 +150,16 @@ namespace app.View.Habitaciones
                     imagen.Source = new BitmapImage(new Uri("/Image/habitacion.png", UriKind.Relative)); // Imagen predeterminada
                 }
 
-                var nombre = new Label { HorizontalAlignment = HorizontalAlignment.Center, FontSize = 20, Margin = new Thickness(0, 10, 0, 5), Content = habitacion.nombre };
+                var nombre = new Label
+                {
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    FontSize = 20,
+                    Margin = new Thickness(0, 10, 0, 5),
+                    Content = habitacion.nombre
+                };
 
                 var precio = new StackPanel { HorizontalAlignment = HorizontalAlignment.Center };
+
                 if (habitacion.tieneOferta && habitacion.precio_noche_original.HasValue)
                 {
                     var precioTachado = new TextBlock
@@ -235,7 +171,13 @@ namespace app.View.Habitaciones
                     };
                     precio.Children.Add(precioTachado);
                 }
-                var precioActual = new Label { FontSize = 16, Foreground = Brushes.DarkGreen, Content = $"{habitacion.precio_noche}€ / noche" };
+
+                var precioActual = new Label
+                {
+                    FontSize = 16,
+                    Foreground = Brushes.DarkGreen,
+                    Content = $"{habitacion.precio_noche}€ / noche"
+                };
                 precio.Children.Add(precioActual);
 
                 // Estado de la habitación
@@ -272,7 +214,7 @@ namespace app.View.Habitaciones
                 };
                 botonEliminar.Click += (sender, e) => EliminarHabitacion(habitacion);
 
-                // Añadir controles a la UI
+                // Añadir controles al StackPanel
                 stackPanelHabitacion.Children.Add(imagen);
                 stackPanelHabitacion.Children.Add(nombre);
                 stackPanelHabitacion.Children.Add(precio);
@@ -280,9 +222,14 @@ namespace app.View.Habitaciones
                 stackPanelHabitacion.Children.Add(botonEditar);
                 stackPanelHabitacion.Children.Add(botonEliminar);
 
-                stackPanelResultados.Children.Add(stackPanelHabitacion);
+                // Añadir el StackPanel al Border
+                borderHabitacion.Child = stackPanelHabitacion;
+
+                // Añadir el Border al WrapPanel
+                wrapPanelResultados.Children.Add(borderHabitacion);
             }
         }
+
 
 
 
@@ -297,80 +244,6 @@ namespace app.View.Habitaciones
             bitmapImage.EndInit();
             return bitmapImage;
         }
-
-
-        /*// Método para editar una habitación
-        private async void EditarHabitacion(Habitacion habitacion)
-          {
-              double precioHabitacion = (double)habitacion.precio_noche;
-              double precioOriginal = (double)habitacion.precio_noche_original; // Asumiendo que tienes un campo para el precio original
-              bool estado = habitacion.estado;
-
-              // Crear y mostrar la ventana de edición
-              var editarWindow = new EditarHabitacion(
-                  habitacion.tipo,
-                  habitacion.capacidad,
-                  precioHabitacion,
-                  habitacion.descripcion,
-                  habitacion.opciones.CamaExtra, // Asumimos que opciones es un string y contiene la palabra "CamaExtra" si es verdadero
-                  habitacion.opciones.Cuna,      // Igualmente, para "Cuna"
-                  precioOriginal,
-                  estado
-              );
-
-              if (editarWindow.ShowDialog() == true)
-              {
-                  // Si el usuario aceptó los cambios
-                  var nuevoTipo = editarWindow.NuevoTipo;
-                  var nuevaCapacidad = editarWindow.NuevaCapacidad;
-                  var nuevaDescripcion = editarWindow.NuevaDescripcion;
-                  var nuevoPrecio = editarWindow.NuevoPrecio;
-                  var nuevaOpcion = new Opciones
-                  {
-                      CamaExtra = editarWindow.CamaExtra,
-                      Cuna = editarWindow.Cuna
-                  };
-                  bool nuevoEstado = editarWindow.Estado;
-
-                  // Crear objeto con los datos actualizados
-                  habitacion.tipo = nuevoTipo;
-                  habitacion.capacidad = nuevaCapacidad;
-                  habitacion.descripcion = nuevaDescripcion;
-                  precioHabitacion = nuevoPrecio;
-                  habitacion.opciones = nuevaOpcion;
-                  estado = nuevoEstado;
-
-                  if (string.IsNullOrEmpty(habitacion._id))
-                  {
-                      MessageBox.Show("El _id de la habitación no es válido o está vacío.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                      return; // Salir del método si el _id no es válido
-                  }
-                  else
-                  {
-                      MessageBox.Show($"El _id de la habitación es: {habitacion._id}", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-                  }
-
-
-                  // Realizar la actualización en la API
-                  var jsonContent = new StringContent(JsonConvert.SerializeObject(habitacion), Encoding.UTF8, "application/json");
-                  var response = await httpClient.PutAsync($"http://127.0.0.1:3505/Habitacion/Actualizar/{habitacion._id}", jsonContent);
-
-
-                  if (response.IsSuccessStatusCode)
-                  {
-                      MessageBox.Show("Habitación actualizada correctamente.");
-                      // Aquí puedes recargar la lista de habitaciones si es necesario
-                       btn_Buscar_Click(null, null);
-                  }
-                  else
-                  {
-                      var errorContent = await response.Content.ReadAsStringAsync();
-                      MessageBox.Show($"Error al actualizar la habitación: {errorContent}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                  }
-              }
-          }*/
-
-
 
 
 
@@ -484,9 +357,6 @@ namespace app.View.Habitaciones
 
 
 
-
-
-
         private async void EliminarHabitacion(Habitacion habitacion)
         {
             var reservasResponse = await httpClient.GetAsync("http://127.0.0.1:3505/Reserva/getAll");
@@ -540,9 +410,6 @@ namespace app.View.Habitaciones
 
 
 
-
-
-
         // Evento del botón "Ofertas"
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -575,8 +442,6 @@ namespace app.View.Habitaciones
             // Mostrar resultados
             MostrarResultados(habitacionesEncontradas);
         }
-
-
 
 
         private void btn_Volver_Click(object sender, RoutedEventArgs e)
