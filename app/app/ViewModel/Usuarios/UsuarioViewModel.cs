@@ -448,7 +448,7 @@ namespace app.ViewModel.Usuarios
             {
                 try
                 {//Se envia el token
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.appToken);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.token);
                      var response = await client.GetAsync(ApiUrlAccessToken);
                     response.EnsureSuccessStatusCode();
                     if (response == null) {

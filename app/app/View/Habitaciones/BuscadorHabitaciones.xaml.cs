@@ -1,5 +1,6 @@
 ﻿using app.Models.Habitaciones;
 using app.Models.Reservas;
+using app.View.Home;
 using app.View.Usuarios.Login;
 using app.View.Usuarios.MainUsuarios;
 using app.ViewModel.Habitaciones;
@@ -453,7 +454,7 @@ namespace app.View.Habitaciones
 
         private void btn_Volver_Click(object sender, RoutedEventArgs e)
         {
-            MainUsuario user = new MainUsuario();
+            Inicio user = new Inicio();
             user.Show();
             this.Close();
         }

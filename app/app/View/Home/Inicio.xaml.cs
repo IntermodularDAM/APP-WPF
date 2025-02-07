@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using app.View.Habitaciones;
+using app.View.Reservas;
 using app.View.Usuarios.Login;
 using app.View.Usuarios.MainUsuarios;
 using app.View.Usuarios.Notificaciones;
@@ -74,6 +76,20 @@ namespace app.View.Home
                 log.Show();
                 this.Close();
             }
+        }
+
+        private void btnReservas_Click(object sender, RoutedEventArgs e)
+        {
+            MainReservas mainReservas = new MainReservas(); 
+            mainReservas.Show();
+            this.Close();   
+        }
+
+        private void btnHabitaciones_Click(object sender, RoutedEventArgs e)
+        {
+            BuscadorHabitaciones main  = new BuscadorHabitaciones();
+            main.Show();
+            this.Close();   
         }
     }
 }
