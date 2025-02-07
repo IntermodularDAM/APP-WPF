@@ -99,8 +99,6 @@ namespace app.View.Usuarios.Login
         {
             BtnLogin.IsEnabled = false;
 
-            
-
             // Configurar los datos que se enviarán al servidor en el cuerpo de la solicitud
             Usuario data = new Usuario { email = TextBoxEmail.Text, password = PasswordBoxEmail.Password };
 
@@ -112,7 +110,6 @@ namespace app.View.Usuarios.Login
                 not.Owner = this;
                 not.ShowDialog();
                 BtnLogin.IsEnabled = true;
-
             }
             else if (response.IsSuccessStatusCode)
             {
@@ -206,11 +203,11 @@ namespace app.View.Usuarios.Login
             if (SettingsData.Default.token != "")
             {
 
-                var respose = await _viewModel.AccessToken(SettingsData.Default.token);
+                var respose = await _viewModel.AccessToken();
 
-                MessageBox.Show("Respuesta de verificacion: "+respose);
+                //MessageBox.Show("Respuesta de verificacion: "+respose);
 
-                if (respose == SettingsData.Default._200)
+                if (respose == true)
                 {
                     MessageBox.Show("Hay token valido se ahorra el inicio de session.");
                     Inicio init = new Inicio();
@@ -219,15 +216,12 @@ namespace app.View.Usuarios.Login
                 }
                 else
                 {
-                    SettingsData.Default.token = "";
-                    SettingsData.Default.appToken = "";
-                    SettingsData.Default.idPerfil = "";
-                    SettingsData.Default.Save();
+
                     MessageBox.Show("Se borro el token debe de ir a login:  "+"\nToken: "+SettingsData.Default.token+"\nAppToken: "+SettingsData.Default.appToken+"\nID Perfil:"+SettingsData.Default.idPerfil);
 
                 }
 
             }
         }
-    }
+        }
 }

@@ -51,25 +51,25 @@ namespace app.View.Home
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var respose = await _viewModel.AccessToken(SettingsData.Default.token);
+            var respose = await _viewModel.AccessToken();
 
             MessageBox.Show("Respuesta de verificacion: " + respose);
 
-            if (respose == SettingsData.Default._200)
+            if (respose == true)
             {
                 MessageBox.Show("Hay token valido continua la session.");
                 return;
             }
             else
             {
-                SettingsData.Default.token = "";
-                SettingsData.Default.appToken = "";
-                SettingsData.Default.idPerfil = "";
-                SettingsData.Default.Save();
+                //SettingsData.Default.token = "";
+                //SettingsData.Default.appToken = "";
+                //SettingsData.Default.idPerfil = "";
+                //SettingsData.Default.Save();
                 MessageBox.Show("Se borro el SettingsData debe de ir a login:  " + "\nToken: " + SettingsData.Default.token + "\nAppToken: " + SettingsData.Default.appToken + "\nID Perfil:" + SettingsData.Default.idPerfil);
-                Notificacion notInicio = new Notificacion("Session limada", "Por favor inicie limada de sessión");
-                notInicio.Owner = this;
-                notInicio.Show();
+                //Notificacion notInicio = new Notificacion("Session limada", "Por favor inicie limada de sessión");
+                //notInicio.Owner = this;
+                //notInicio.ShowDialog();
                 LogIn log = new LogIn();
                 log.Show();
                 this.Close();

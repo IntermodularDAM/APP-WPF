@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using app.Models.Usuarios;
@@ -440,38 +441,55 @@ namespace app.ViewModel.Usuarios
 
         }
 
-        public async Task<string> AccessToken(string token)
+        //OK EX
+        public async Task<bool> AccessToken()
         {
-
             using (var client = new HttpClient())
             {
                 try
-                {
-
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-                    var response = await client.GetAsync(ApiUrlAccessToken);
-                    if (response == null)
-                        return SettingsData.Default._404;
-
+                {//Se envia el token
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.appToken);
+                     var response = await client.GetAsync(ApiUrlAccessToken);
+                    response.EnsureSuccessStatusCode();
+                    if (response == null) {
+                        //Caso(s): El servidor esta apagado
+                        dynamic nullContet = new { ReasonPhrase = "Error de conexión.",Content = "Por favor revise su conexión al servidor." };
+                        ShowNotification(nullContet);
+                        return false;
+                    }
+                    var jsonContent = await response.Content.ReadAsStringAsync();
+                    //Caso(s): Respuesta Efectiva 
                     if (response.IsSuccessStatusCode)
-                        return SettingsData.Default._200;
-                    else
-                        Debug.WriteLine(response);
-                    var json = await response.Content.ReadAsStringAsync();
-                    var content = JsonConvert.DeserializeObject<dynamic>(json);
-                    Debug.WriteLine($"Status: {content.status} \nMessage: {content.message}");
-                    return SettingsData.Default._419;
-
+                        
+                        return true;
+                    else {
+                        //Caso(s): Verifico el contenido de la respuesta porque puede ser JSON/HTML
+                        string contentType = response.Content.Headers.ContentType?.MediaType ?? "unknown";
+                        if (contentType == "application/json") { //Si es JSON
+                            var errorContet = JsonConvert.DeserializeObject<dynamic>(jsonContent);
+                            ShowNotification(errorContet);
+                            ClearSettings(); //Borro SettingData dado que es provable que aqui contenga un token expirado.
+                            return false;
+                        }else { //SI es HTML
+                            string contenidoExtraido = ExtractPreContent(jsonContent);
+                            dynamic errorHtml = new{ ReasonPhrase = response.ReasonPhrase, Content = contenidoExtraido};
+                            ShowNotification(errorHtml);
+                            return false;
+                        }
+                    }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return SettingsData.Default._503;
+                    //Caso(s): Manejar otros errores
+                    Debug.WriteLine("Error desconocido: " + e);
+                    dynamic exceptionContet = new { ReasonPhrase = "Exception.", Content = e.Message.ToString() };
+                    ShowNotification(exceptionContet);
+                    return false;
                 }
-
             }
-
         }
+
+
 
         public async Task<HttpResponseMessage> LogIn(Usuario UsuarioNuevo)
         {
@@ -496,6 +514,7 @@ namespace app.ViewModel.Usuarios
                     }
                     else
                     {
+                        MessageBox.Show("Success / no");
                         Debug.WriteLine($"Error: {response.StatusCode}");
                         return response;
                     }
@@ -623,5 +642,47 @@ namespace app.ViewModel.Usuarios
             }
         }
 
+
+        //Notificacion base
+        private void ShowNotification(dynamic content)
+        {
+            //Decidi recibir los datos asi dado asi es como un respose regresa algunas respuestas automaticas, de manera que todos mis end points son iguales para swe homogeneo
+            Notificacion not = new Notificacion(content.ReasonPhrase.ToString(), content.Content.ToString());
+            //Se busca la venta actual para poder bloquear la ventana que lo ejecuta.
+            not.Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
+            not.ShowDialog();
+        }
+
+        //En caso nesecario se borran los datos almacenos.
+        private void ClearSettings()
+        {
+            SettingsData.Default.token = "";
+            SettingsData.Default.appToken = "";
+            SettingsData.Default.idPerfil = "";
+            SettingsData.Default.Save();
+        }
+
+        //Funcion que gestiona una solicitud HTML del servidor devolviendo el pre
+        string ExtractPreContent(string html)
+        {
+            var match = Regex.Match(html, @"<pre>(.*?)<\/pre>", RegexOptions.Singleline);
+            return match.Success ? match.Groups[1].Value : "No se encontró contenido en <pre>";
+        }
+
     }
 }
+
+
+//NOTAS
+
+//Inicializar un HTTPResponseMessage
+//HttpResponseMessage response = new HttpResponseMessage
+//{
+//    StatusCode = HttpStatusCode.OK,
+//    Content = new StringContent("{\"header\": \"Titulo\", \"content\": \"Contenido de la respuesta\"}", Encoding.UTF8, "application/json"),
+//    Headers = {
+//        { "Header-Name", "Header-Value" }
+//    }
+//};
+
+//string jsonContent = "";
