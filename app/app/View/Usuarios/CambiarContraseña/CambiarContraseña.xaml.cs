@@ -86,7 +86,7 @@ namespace app.View.Usuarios.CambiarContraseña
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            _viewModel.Password = "";
+            //_viewModel.Password = "";
             _viewModel.PasswordConfirm = "";
             _viewModel.PasswordConfirm2 = "";
             this.Close();
@@ -120,7 +120,7 @@ namespace app.View.Usuarios.CambiarContraseña
                 not.Owner = this;
                 not.ShowDialog();
 
-                _viewModel.Password = "";
+                //_viewModel.Password = "";
                 _viewModel.PasswordConfirm = "";
                 _viewModel.PasswordConfirm2 = "";
                 this.Close();

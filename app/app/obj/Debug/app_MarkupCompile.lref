@@ -12,7 +12,8 @@ FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Reservas\M
 FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\CambiarContraseña\CambiarContraseña.xaml;;
 FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\EditarUsuarios\EditarUsuario.xaml;;
 FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\InformacionUsuarios\InformacionUsuario.xaml;;
-FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\LogIn\LogIn.xaml;;
+FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\InicioDeSesion\CustomControls\BindablePasswordBox.xaml;;
+FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\InicioDeSesion\LogIn.xaml;;
 FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\MainUsuarios\MainUsuario.xaml;;
 FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\Notificaciones\Notificacion.xaml;;
 FC:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\View\Usuarios\Pre_Registros\Pre_Registro.xaml;;

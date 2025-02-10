@@ -14,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using app.View.Usuarios.Login;
+using app.View.Usuarios.InicioDeSesion;
 using app.View.Usuarios.Notificaciones;
 using app.ViewModel.Usuarios;
 using Newtonsoft.Json;
@@ -53,7 +53,7 @@ namespace app.View.Usuarios.RecordarContraseñas
                 Notificacion not200 = new Notificacion(result.header.ToString(),result.message.ToString());
                 not200.Owner = this;
                 not200.ShowDialog();
-                LogIn log = new LogIn();
+                InicioDeSesion.LogIn log = new InicioDeSesion.LogIn();
                 log.Show();
                 this.Close();
             }
@@ -69,7 +69,7 @@ namespace app.View.Usuarios.RecordarContraseñas
 
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            LogIn log = new LogIn();
+            InicioDeSesion.LogIn log = new InicioDeSesion.LogIn();
             log.Show();
             this.Close();
         }

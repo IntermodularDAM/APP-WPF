@@ -151,10 +151,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ApiRouteUsuario\ApiRouteUsuarios.cs" />
     <Compile Include="Models\Habitaciones\Habitaciones.cs" />
+    <Compile Include="Models\IUsuariosRepository\IUsuarioRepository.cs" />
     <Compile Include="Models\Reservas\ApiResponse.cs" />
     <Compile Include="Models\Reservas\ReserbaBase.cs" />
     <Compile Include="Models\Usuarios\ApiResponse.cs" />
+    <Compile Include="Models\Usuarios\PerfilBase.cs" />
     <Compile Include="Models\Usuarios\Perfiles\Administrador.cs" />
     <Compile Include="Models\Usuarios\Perfiles\Cliente.cs" />
     <Compile Include="Models\Usuarios\Perfiles\Empleado.cs" />
@@ -166,11 +169,15 @@
     </Compile>
     <Compile Include="UserSession.cs" />
     <Compile Include="ViewModel\Habitaciones\HabitacionesViewModel.cs" />
+    <Compile Include="ViewModel\Repositories\RepositoryBase.cs" />
+    <Compile Include="ViewModel\Repositories\RepositoryUsuarios\RepositoryUsuario.cs" />
     <Compile Include="ViewModel\Reservas\ReservasViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\CodigoVerificacionViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroPerfilViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\RegistroUsuarios\RegistroUsuarioViewModel.cs" />
     <Compile Include="ViewModel\Usuarios\UsuarioViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ViewModelCommand.cs" />
     <Compile Include="View\Habitaciones\AñadirHabitacion.xaml.cs">
       <DependentUpon>AñadirHabitacion.xaml</DependentUpon>
     </Compile>
@@ -208,7 +215,10 @@
     <Compile Include="View\Usuarios\InformacionUsuarios\InformacionUsuario.xaml.cs">
       <DependentUpon>InformacionUsuario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usuarios\LogIn\LogIn.xaml.cs">
+    <Compile Include="View\Usuarios\InicioDeSesion\CustomControls\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuarios\InicioDeSesion\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usuarios\MainUsuarios\MainUsuario.xaml.cs">
@@ -290,7 +300,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usuarios\LogIn\LogIn.xaml">
+    <Page Include="View\Usuarios\InicioDeSesion\CustomControls\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usuarios\InicioDeSesion\LogIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -359,13 +373,13 @@
     <Resource Include="View\Usuarios\MainUsuarios\logout_icon_184325.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Usuarios\LogIn\Logo.png" />
+    <Resource Include="View\Usuarios\InicioDeSesion\Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Usuarios\LogIn\btn-login.png" />
+    <Resource Include="View\Usuarios\InicioDeSesion\btn-login.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Usuarios\LogIn\img-cover-login.png" />
+    <Resource Include="View\Usuarios\InicioDeSesion\img-cover-login.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\MainUsuarios\Logo.png" />
@@ -410,7 +424,7 @@
     <Resource Include="View\Home\logo_night_days.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Usuarios\LogIn\logo_night_days.png" />
+    <Resource Include="View\Usuarios\InicioDeSesion\logo_night_days.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Usuarios\MainUsuarios\btnCrear.png" />

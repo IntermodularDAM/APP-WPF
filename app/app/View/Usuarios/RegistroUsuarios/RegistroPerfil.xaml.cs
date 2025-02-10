@@ -16,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using app.View.Home;
-using app.View.Usuarios.Login;
+using app.View.Usuarios.InicioDeSesion;
 using app.View.Usuarios.Notificaciones;
 using app.ViewModel.Usuarios;
 using app.ViewModel.Usuarios.RegistroUsuarios;
@@ -406,7 +406,7 @@ namespace app.View.Usuarios.RegistroUsuarios
                 Notificacion notEx = new Notificacion("Error", ex);
                 notEx.Owner = this;
                 notEx.ShowDialog();
-                LogIn logEx = new LogIn();
+                InicioDeSesion.LogIn logEx = new InicioDeSesion.LogIn();
                 logEx.Show();
                 this.Close();
             }
@@ -415,7 +415,7 @@ namespace app.View.Usuarios.RegistroUsuarios
                 Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
                 not.Owner = this;
                 not.ShowDialog();
-                LogIn log = new LogIn();
+                InicioDeSesion.LogIn log = new InicioDeSesion.LogIn();
                 log.Show();
                 this.Close();
             }

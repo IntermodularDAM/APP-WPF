@@ -1,28 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using app.Models.Usuarios;
 using app.View.Home;
-using app.View.Usuarios.CambiarContraseña;
 using app.View.Usuarios.EditarUsuarios;
 using app.View.Usuarios.InformacionUsuarios;
-using app.View.Usuarios.Login;
 using app.View.Usuarios.Notificaciones;
 using app.View.Usuarios.Pre_Registros;
 using app.View.Usuarios.RegistroUsuarios;
 using app.ViewModel.Usuarios;
+using app.View.Usuarios.InicioDeSesion;
 using Newtonsoft.Json;
 
 namespace app.View.Usuarios.MainUsuarios
@@ -243,7 +234,8 @@ namespace app.View.Usuarios.MainUsuarios
                 Notificacion notEx = new Notificacion("Error", ex);
                 notEx.Owner = this;
                 notEx.ShowDialog();
-                LogIn logEx = new LogIn();
+
+                InicioDeSesion.LogIn logEx = new InicioDeSesion.LogIn();
                 logEx.Show();
                 this.Close();
             }
@@ -252,7 +244,7 @@ namespace app.View.Usuarios.MainUsuarios
                 Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
                 not.Owner = this;
                 not.ShowDialog();
-                LogIn log = new LogIn();
+                InicioDeSesion.LogIn log = new InicioDeSesion.LogIn();
                 log.Show();
                 this.Close();
             }
@@ -287,7 +279,7 @@ namespace app.View.Usuarios.MainUsuarios
                 Notificacion notEx = new Notificacion("Error", ex);
                 notEx.Owner = this;
                 notEx.ShowDialog();
-                LogIn logEx = new LogIn();
+                InicioDeSesion.LogIn logEx = new InicioDeSesion.LogIn();
                 logEx.Show();
                 this.Close();
             }
@@ -296,7 +288,7 @@ namespace app.View.Usuarios.MainUsuarios
                 Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
                 not.Owner = this;
                 not.ShowDialog();
-                LogIn log = new LogIn();
+                InicioDeSesion.LogIn log = new InicioDeSesion.LogIn();
                 log.Show();
                 this.Close();
             }
@@ -306,13 +298,26 @@ namespace app.View.Usuarios.MainUsuarios
 
         private void MenuCerrarSesion_Click(object sender, RoutedEventArgs e)
         {
+            _viewModel.IsViewVisible = true;
             SettingsData.Default.token = "";
             SettingsData.Default.appToken = "";
             SettingsData.Default.idPerfil = "";
             SettingsData.Default.Save();
 
-            LogIn log = new LogIn();
-            log.Show();
+            // Verifica si LogIn ya existe y está oculto
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is InicioDeSesion.LogIn logInView)
+                {
+                    logInView.Show();
+                    this.Close();
+                    return;
+                }
+            }
+
+            // Si no encuentra LogIn, crea una nueva instancia (en caso de que se haya cerrado completamente)
+            var newLogIn = new InicioDeSesion.LogIn();
+            newLogIn.Show();
             this.Close();
         }
 

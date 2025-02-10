@@ -13,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using app.Models.Usuarios;
 using app.View.Home;
 using app.View.Usuarios.MainUsuarios;
@@ -27,7 +26,7 @@ using Newtonsoft.Json.Linq;
 
 
 
-namespace app.View.Usuarios.Login
+namespace app.View.Usuarios.InicioDeSesion
 {
     /// <summary>
     /// Lógica de interacción para LogIn.xaml
@@ -45,29 +44,30 @@ namespace app.View.Usuarios.Login
 
         private void TextBoxEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ValidateLogin();
+            //ValidateLogin();
         }
         private void PasswordBoxEmail_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            ValidateLogin();
+            //ValidateLogin();
+
         }
 
         private void ValidateLogin()
         {
             // Obtengo los valores ingresados en los campos de texto para email y contraseña
             string email = TextBoxEmail.Text;
-            string password = PasswordBoxEmail.Password;
+            //string password = PasswordBoxEmail.Password;
 
             // Valido el email y la contraseña utilizando los métodos correspondientes
             bool isEmailValid = IsValidEmail(email);
-            bool isPasswordValid = IsValidPassword(password);
+            //bool isPasswordValid = IsValidPassword(password);
 
             // Muestro u oculto el mensaje de error para el campos dependiendo de su validez
             ErrorTextEmail.Visibility = isEmailValid ? Visibility.Collapsed : Visibility.Visible;
-            ErrorTextPassword.Visibility = isPasswordValid ? Visibility.Collapsed : Visibility.Visible;
+            //ErrorTextPassword.Visibility = isPasswordValid ? Visibility.Collapsed : Visibility.Visible;
 
             // Habilito el botón de inicio de sesión solo si ambos campos son válidos
-            BtnLogin.IsEnabled = isEmailValid && isPasswordValid;
+            //BtnLogin.IsEnabled = isEmailValid && isPasswordValid;
         }
 
         public bool IsValidEmail(string email)
@@ -100,7 +100,7 @@ namespace app.View.Usuarios.Login
             BtnLogin.IsEnabled = false;
 
             // Configurar los datos que se enviarán al servidor en el cuerpo de la solicitud
-            Usuario data = new Usuario { email = TextBoxEmail.Text, password = PasswordBoxEmail.Password };
+            Usuario data = new Usuario { email = TextBoxEmail.Text, /*password = PasswordBoxEmail.Password */};
 
             var response = await _viewModel.LogIn(data);
 
@@ -120,7 +120,6 @@ namespace app.View.Usuarios.Login
                 if (responseData != null)
                 {
                     // Obtener los datos del usuario y mostrarlos en la pantalla principal
-
                    
                     if (responseData.data.privileges == "Administrador" || responseData.data.privileges == "Empleado") {
 

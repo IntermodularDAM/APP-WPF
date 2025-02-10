@@ -42,7 +42,7 @@ namespace app.View.Reservas
             _viewModelH = new HabitacionesViewModel();
             this.DataContext = _viewModelH;
 
-            _viewModelH.CargarTodasHabitaciones();
+            _ = _viewModelH.CargarTodasHabitaciones();
             _viewModelR.CargarTodasLasReservas();
         }
 
@@ -68,7 +68,7 @@ namespace app.View.Reservas
             }
         }
 
-        private async void btnBuscar_Click(object sender, RoutedEventArgs e)
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -213,7 +213,7 @@ namespace app.View.Reservas
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _viewModelR.CargarTodasLasReservas();
-            _viewModelH.CargarTodasHabitaciones();
+            _ = _viewModelH.CargarTodasHabitaciones();
         }
     }
 }

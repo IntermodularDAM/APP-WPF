@@ -1,0 +1,119 @@
+﻿<Window x:Class="app.View.Usuarios.InicioDeSesion.LogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:usuarios="clr-namespace:app.ViewModel.Usuarios"
+        xmlns:customControls="clr-namespace:app.View.Usuarios.LogIn.CustomControls"
+        d:DataContext="{d:DesignInstance Type=usuarios:UsuarioViewModel}"
+        mc:Ignorable="d"
+        Title="LogIn" Height="600" Width="1000"
+        WindowStyle="none"
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize"
+        AllowsTransparency="True" 
+        Background="Transparent" Loaded="Window_Loaded" >
+
+    <!--
+    Notas:
+            Se añade :   xmlns:usuarios="clr-namespace:app.ViewModel.Usuarios" d:DataContext="{d:DesignInstance Type=usuarios:UsuarioViewModel}"
+                Para instaciar a la vista el ViewModel y poder enlazar los campos Email y contraseña y poder validarlos en una arquitectura viewModel
+    -->
+
+
+ 
+
+    <Window.Resources>
+
+        <!--Si se quiere instanciar mas de un recurso de ventana se tiene que poner un nombre (key) y todo se tiene que declara primero sino no se podran intanciar, es decir si dejamos esto al final del archivo petara -->
+        
+        <!-- Añado el diccionario de recursos que contiene todos los styles-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Dictionary1.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Convertidor booleado, establecido para hacer binding en la propiedad IsViewVisible-->
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+
+        </ResourceDictionary>
+        
+    </Window.Resources>
+
+
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay"  Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
+
+
+    <Grid>
+        <Border CornerRadius="20" Background="White" BorderThickness="5">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0 ,1">
+                    <GradientStop Color="#CD6CE0" Offset="1"></GradientStop>
+                    <GradientStop Color="#FFFFFF" Offset="0.75"></GradientStop>
+                    <GradientStop Color="#8C52FF" Offset="0.0"></GradientStop>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="30,20">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/View/Usuarios/InicioDeSesion/logo_night_days.png" Width="100" />
+                        <TextBlock Text="Hotel Night Day`s" FontFamily="Montserrat" FontWeight="Bold" FontSize="39" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,22,0,20">
+                        <Border BorderBrush="Black" Width="80" BorderThickness="2" Margin="0,20,20,20"></Border>
+                        <TextBlock Text="Acceso" VerticalAlignment="Center" Foreground="{StaticResource ColorPrimario}" Style="{StaticResource TextBlockGeneral}" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Email" Margin="0,10" Style="{StaticResource TextBlockGeneral}"/>
+                        <TextBox Name="TextBoxEmail" 
+                                 Style="{StaticResource TextBoxGeneral}" 
+                                 TextChanged="TextBoxEmail_TextChanged"
+                                 Text="{Binding LogInMail, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            
+                        </TextBox>
+                        <TextBlock x:Name="ErrorTextEmail" Text="* Email no válido" Style="{StaticResource ErrorText}" />
+                        <TextBlock Text="Password" Margin="0,10" Style="{StaticResource TextBlockGeneral}"/>
+                        <!--
+                            Para generar este componente se instancia una varible con el espacio de nombres donde se creo el componente 
+                                Varible del cmponente : xmlns:customControls="clr-namespace:app.View.Usuarios.LogIn.CustomControls"
+                                Varible del viewModel que contiene password :  d:DataContext="{d:DesignInstance Type=usuarios:UsuarioViewModel}"
+                                    BindablePasswordBox es el componente que se modifico para poder hacer binding en el campo contraseña, ya que por motivos de seguridad no se puede hacer en un Password box, por lo que se recurrio a generar un propiedad de dependencia
+                        -->
+                        <customControls:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            
+                        </customControls:BindablePasswordBox>
+                        <!--<TextBlock x:Name="ErrorTextPassword" Text="* Password no válidan. Es necesario 1 máyuscula, 1 minuscula y 1 número" Style="{StaticResource ErrorText}"/>-->
+                        <TextBlock x:Name="ErrorMessage" Text="{Binding LogInError}" Style="{StaticResource ErrorText}"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left">
+                        <Button Name="BtnLogin" 
+                                Command="{Binding LogInCommand}"
+                  
+                                Style="{StaticResource ButtonLogin}" 
+                                Cursor="Hand"
+                                >
+                            <!--<Image Height="100" Source="/View/Usuarios/Login/btn-login.png"   />-->
+                            
+                        </Button>
+                    </StackPanel>
+                    <Label Content="¿Recordar contraseña?" Style="{StaticResource LabelGeneral}" MouseDown="Label_MouseDown"/>
+                </StackPanel>
+
+                    <Border Grid.Column="1" CornerRadius="0,20,20,0" ClipToBounds="True">
+                        <Border.Background>
+                        <ImageBrush ImageSource="/View/Usuarios/InicioDeSesion/img-cover-login.png" Stretch="UniformToFill" />
+                        </Border.Background>
+                    </Border>
+              
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

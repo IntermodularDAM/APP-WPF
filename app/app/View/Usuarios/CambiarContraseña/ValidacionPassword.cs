@@ -31,7 +31,7 @@ namespace app.View.Usuarios.CambiarContraseña
                 return new ValidationResult(false, "Se requiere 1 minúscula, 1 mayúscula y un número");
 
             if (EsConfirmacion) {
-                if (_viewModel.Password != _viewModel.PasswordConfirm2)
+                if (_viewModel.Passwordd != _viewModel.PasswordConfirm2)
                     return new ValidationResult(false, "Las contraseñas no coinciden.");
             }
 

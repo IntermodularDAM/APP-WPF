@@ -17,10 +17,17 @@ using app.Models.Usuarios.Perfiles;
 using app.View.Usuarios.Notificaciones;
 using IntermodularWPF;
 using Newtonsoft.Json;
+using app.Models.ApiRouteUsuario;
+using System.Windows.Input;
+using System.Security;
+using app.Models.IUsuariosRepository;
+using app.ViewModel.Repositories.RepositoryUsuarios;
+using System.Threading;
+using System.Security.Principal;
 
 namespace app.ViewModel.Usuarios
 {
-    public class UsuarioViewModel : INotifyPropertyChanged
+    public class UsuarioViewModel : ViewModelBase
     {
         //Rutas Get Usuarios y Perfil
         private const string ApiUrlAllAdministradores = "http://127.0.0.1:3505/Administrador/getAllAdministradores";
@@ -49,7 +56,6 @@ namespace app.ViewModel.Usuarios
 
         //Autenticación
         private const string ApiUrlLogIn = "http://127.0.0.1:3505/Usuario/logIn";
-        private const string ApiUrlAccessToken = "http://127.0.0.1:3505/Usuario/accessToken";
 
         //Recuperar Contraseña
         private const string ApiUrlRecuperarPassword = "http://127.0.0.1:3505/Usuario/recuperarPassword";
@@ -62,6 +68,26 @@ namespace app.ViewModel.Usuarios
         //Cambiar Contraseña
         private const string ApiUrlCambiarPassword = "http://127.0.0.1:3505/Usuario/cambiarPassword";
 
+        //Variables-Binding LogIn para el inicio de sesion y propiedades de tipo comando que validaran el login
+        private string _logInMail = "";
+        private SecureString _password;
+        private string _logInError = "";
+        private bool _isViewVisible = true;
+        private IUsuarioRepository  _usuarioRepository;
+                
+                //Estos comando se inician en el constructor del UsuarioViewModel                
+
+        public ICommand LogInCommand { get; } //No se implenta set dado que solo la clase command deberia inicilizarla
+        public ICommand RecoverCommand { get; }
+        public ICommand ShowPasswordCommand { get; }
+        public ICommand RememberPasswordCommand { get; }
+        public string LogInMail { get => _logInMail; set { _logInMail = value; OnPropertyChanged("LogInMail"); } }
+        public SecureString Password { get => _password; set { _password = value; OnPropertyChanged("Password"); } }
+        public string LogInError { get => _logInError; set { _logInError = value; OnPropertyChanged("LogInError"); } }
+        public bool IsViewVisible { get => _isViewVisible; set { _isViewVisible = value; OnPropertyChanged("IsViewVisible"); } }
+
+
+
         //Datos Pre-Registros ValidationRule
         private string _emailPreregistro = "";
         private string _emailPreregistroConfirmacion = "";
@@ -73,10 +99,10 @@ namespace app.ViewModel.Usuarios
         public string RolSeleccionado { get => _rolSeleccionado; set  { _rolSeleccionado = value; OnPropertyChanged("RolSeleccionado"); } }
 
         //Datos CambioPassword ValidationRule
-        private string _password = "";
+        private string _passwordd = "";
         private string _passwordConfirm = "";
         private string _passwordConfirm2 = "";
-        public string Password { get => _password;  set { _password = value; OnPropertyChanged("Password"); } }
+        public string Passwordd { get => _passwordd;  set { _passwordd = value; OnPropertyChanged("Passwordd"); } }
         public string PasswordConfirm { get => _passwordConfirm;  set { _passwordConfirm = value; OnPropertyChanged("PasswordConfirm"); } }
         public string PasswordConfirm2 { get => _passwordConfirm2;  set { _passwordConfirm2 = value; OnPropertyChanged("PasswordConfirm2"); } }
 
@@ -96,11 +122,63 @@ namespace app.ViewModel.Usuarios
 
         private UsuarioViewModel()
         {
+            _usuarioRepository = new RepositoryUsuario();
+
+            //Se inicializa los comando mediante la clase generica que cree en el directorio raiz de viewModel
+            LogInCommand = new ViewModelCommand(ExecuteLogInCommand, CanExecuteLogInCommand);
+
             // Constructor privado para evitar instancias externas
             allPerfiles = new ObservableCollection<UsuarioBase>();
             allUsers = new ObservableCollection<Usuario>();
 
             _ = CargarTodosLosUsuarios();
+        }
+
+        private bool CanExecuteLogInCommand(object obj)
+        {
+            bool validData;
+            string patternEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            string patternPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$";
+
+            
+            if (string.IsNullOrEmpty(LogInMail) || LogInMail.Length < 3 || !Regex.IsMatch(LogInMail, patternEmail) ||
+                Password == null || Password.Length < 3  ||!Regex.IsMatch(new NetworkCredential(string.Empty,Password).Password, patternPassword)) 
+                return false;
+            else
+                validData = true;
+            return validData;    
+        }
+
+        private async void ExecuteLogInCommand(object obj)
+        {
+
+           dynamic isValidUsuario = await _usuarioRepository.AuthenticateUser(new NetworkCredential(LogInMail, Password));
+            if (isValidUsuario != null)
+            {
+
+                if (isValidUsuario.data.privileges == "Administrador" || isValidUsuario.data.privileges == "Empleado")
+                {
+                    MessageBox.Show("Registro tardio.");
+                }
+                else if(isValidUsuario.data.user != null)
+                {
+                    SettingsData.Default.token = isValidUsuario.data.token;
+                    SettingsData.Default.appToken = isValidUsuario.data.appToken;
+                    SettingsData.Default.idPerfil = isValidUsuario.data.user._id;
+                    SettingsData.Default.rol = isValidUsuario.data.user.rol;
+                    SettingsData.Default.nombre = isValidUsuario.data.user.nombre;
+                    SettingsData.Default.Save();
+                    //Esta propiedad permite establecer la identidad del usuario que ejecuta el subproceso actual 
+                    Thread.CurrentPrincipal = new GenericPrincipal(
+                        new GenericIdentity(isValidUsuario.data.user._id.ToString()),
+                         new string[] { isValidUsuario.data.user.rol.ToString(), isValidUsuario.data.user.rol.ToString() });
+                    IsViewVisible = false;
+                   
+                }
+            }
+            else {
+                LogInError = "*Error ";
+            }
         }
 
         private ObservableCollection<UsuarioBase> allPerfiles;
@@ -109,16 +187,6 @@ namespace app.ViewModel.Usuarios
         public ObservableCollection<Usuario> AllUsers{ get => allUsers; set { allUsers = value; OnPropertyChanged("AllUsers"); } }
 
 
-
-
-        // Evento definido por INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Método para disparar el evento PropertyChanged
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         //OK EX
         public async Task<string> CargarTodosLosUsuarios()
@@ -441,7 +509,7 @@ namespace app.ViewModel.Usuarios
 
         }
 
-        //OK EX
+        //MODULADO
         public async Task<bool> AccessToken()
         {
             using (var client = new HttpClient())
@@ -449,8 +517,9 @@ namespace app.ViewModel.Usuarios
                 try
                 {//Se envia el token
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.token);
-                     var response = await client.GetAsync(ApiUrlAccessToken);
-                    response.EnsureSuccessStatusCode();
+ 
+                    var response = await client.GetAsync(ApiRouteUsuarios.Usuario.AccessToken);
+
                     if (response == null) {
                         //Caso(s): El servidor esta apagado
                         dynamic nullContet = new { ReasonPhrase = "Error de conexión.",Content = "Por favor revise su conexión al servidor." };
@@ -460,9 +529,9 @@ namespace app.ViewModel.Usuarios
                     var jsonContent = await response.Content.ReadAsStringAsync();
                     //Caso(s): Respuesta Efectiva 
                     if (response.IsSuccessStatusCode)
-                        
                         return true;
                     else {
+                        MessageBox.Show("Entro no success ?");
                         //Caso(s): Verifico el contenido de la respuesta porque puede ser JSON/HTML
                         string contentType = response.Content.Headers.ContentType?.MediaType ?? "unknown";
                         if (contentType == "application/json") { //Si es JSON
@@ -471,6 +540,7 @@ namespace app.ViewModel.Usuarios
                             ClearSettings(); //Borro SettingData dado que es provable que aqui contenga un token expirado.
                             return false;
                         }else { //SI es HTML
+
                             string contenidoExtraido = ExtractPreContent(jsonContent);
                             dynamic errorHtml = new{ ReasonPhrase = response.ReasonPhrase, Content = contenidoExtraido};
                             ShowNotification(errorHtml);
@@ -482,13 +552,12 @@ namespace app.ViewModel.Usuarios
                 {
                     //Caso(s): Manejar otros errores
                     Debug.WriteLine("Error desconocido: " + e);
-                    dynamic exceptionContet = new { ReasonPhrase = "Exception.", Content = e.Message.ToString() };
+                    dynamic exceptionContet = new { ReasonPhrase = "Exception Access Token.", Content = e.Message.ToString() };
                     ShowNotification(exceptionContet);
                     return false;
                 }
             }
         }
-
 
 
         public async Task<HttpResponseMessage> LogIn(Usuario UsuarioNuevo)
@@ -668,6 +737,7 @@ namespace app.ViewModel.Usuarios
             var match = Regex.Match(html, @"<pre>(.*?)<\/pre>", RegexOptions.Singleline);
             return match.Success ? match.Groups[1].Value : "No se encontró contenido en <pre>";
         }
+
 
     }
 }

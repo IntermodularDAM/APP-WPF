@@ -134,7 +134,7 @@ namespace app.ViewModel.Habitaciones
         }
 
         // Método async Task en lugar de async void
-        public async Task CargarTodasHabitaciones()
+        public async  Task CargarTodasHabitaciones()
         {
             try
             {

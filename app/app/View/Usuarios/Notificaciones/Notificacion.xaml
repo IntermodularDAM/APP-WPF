@@ -33,7 +33,7 @@
                     <Border CornerRadius="30" BorderThickness="1" Background="White" Width="503" Height="111" >
                         <StackPanel>
                             <TextBlock x:Name="txtHeader" Text="Email Enviado" Foreground="#CD6CE0" FontSize="36" FontFamily="Montserrat" HorizontalAlignment="Center" FontWeight="Heavy" Margin="0,10,0,0"/>
-                            <TextBlock x:Name="txtContent" TextWrapping="Wrap" Text="Por favor revise su email" Foreground="#CD6CE0" FontSize="16" FontFamily="Montserrat" HorizontalAlignment="Center" FontWeight="Normal" Margin="0,10,0,0"/>
+                            <TextBlock x:Name="txtContent" TextWrapping="Wrap"  Text="Por favor revise su email"  Foreground="#CD6CE0" FontSize="16" FontFamily="Montserrat" HorizontalAlignment="Center" FontWeight="Normal" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Border>
                 </Button.Content>
