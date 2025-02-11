@@ -49,7 +49,6 @@ C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Reservas\MainReservas.g.cs
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\CambiarContraseña\CambiarContraseña.g.cs
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\EditarUsuarios\EditarUsuario.g.cs
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InformacionUsuarios\InformacionUsuario.g.cs
-C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\LogIn\LogIn.g.cs
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\MainUsuarios\MainUsuario.g.cs
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\Notificaciones\Notificacion.g.cs
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\Pre_Registros\Pre_Registro.g.cs
@@ -73,7 +72,6 @@ C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Reservas\MainReservas.baml
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\CambiarContraseña\CambiarContraseña.baml
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\EditarUsuarios\EditarUsuario.baml
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InformacionUsuarios\InformacionUsuario.baml
-C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\LogIn\LogIn.baml
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\MainUsuarios\MainUsuario.baml
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\Notificaciones\Notificacion.baml
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\Pre_Registros\Pre_Registro.baml
@@ -180,3 +178,7 @@ C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.csproj.Up2Date
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.exe
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.pdb
+C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InicioDeSesion\CustomControls\BindablePasswordBox.g.cs
+C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InicioDeSesion\LogIn.g.cs
+C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InicioDeSesion\CustomControls\BindablePasswordBox.baml
+C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InicioDeSesion\LogIn.baml
