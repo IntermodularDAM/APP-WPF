@@ -51,7 +51,7 @@ namespace app.View.Reservas
             // Cargar los datos desde la API o base de datos y asignarlos a AllHabitaciones
             using (HttpClient client = new HttpClient())
             {
-                var response = client.GetStringAsync("http://localhost:3505/Habitacion/getAll").Result;
+                var response = client.GetStringAsync("http://localhost:3505/Habitacion/habitaciones").Result;
                 var habitaciones = JsonConvert.DeserializeObject<List<Habitacion>>(response);
                 AllHabitaciones = new ObservableCollection<Habitacion>(habitaciones);
             }

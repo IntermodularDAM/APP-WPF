@@ -99,13 +99,13 @@
                 <!-- Fecha de entrada -->
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label FontSize="13">Fecha de entrada</Label>
-                    <DatePicker x:Name="fecha_in" Height="30" Width="180"/>
+                    <DatePicker x:Name="fecha_in" SelectedDate="{Binding FechaEntrada, Mode=TwoWay}" Height="30" Width="180"/>
                 </StackPanel>
 
                 <!-- Fecha de salida -->
                 <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label FontSize="13">Fecha de salida</Label>
-                    <DatePicker x:Name="fecha_out" Height="30" Width="180"/>
+                    <DatePicker x:Name="fecha_out" SelectedDate="{Binding FechaSalida, Mode=TwoWay}" Height="30" Width="180"/>
                 </StackPanel>
 
                 <Label Grid.Column="3" Content="Opciones" FontSize="13" Margin="15,0"/>

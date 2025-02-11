@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:app.View.Reservas"
         mc:Ignorable="d"
-                Title="BuscadorReservas" Height="600" Width="1000"
+        Title="BuscadorReservas" Height="600" Width="1000"
         WindowStyle="none"
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize"

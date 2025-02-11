@@ -439,6 +439,14 @@
   <ItemGroup>
     <Resource Include="View\Usuarios\CambiarContraseña\btnCrear.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="View\Reservas\Logo-Night-Days.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Reservas\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Reservas\search.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

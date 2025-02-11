@@ -181,7 +181,7 @@ namespace app.View.Usuarios.Login
             {
                 var resultError = await response.Content.ReadAsStringAsync();
                 var error = JsonConvert.DeserializeObject<dynamic>(resultError);
-                Notificacion not = new Notificacion( error.message.ToString(), error.status.ToString());
+                Notificacion not = new Notificacion( error.ReasonPhrase.ToString(), error.Content.ToString());
                 not.Owner = this;
                 not.ShowDialog();
                 BtnLogin.IsEnabled = true;
