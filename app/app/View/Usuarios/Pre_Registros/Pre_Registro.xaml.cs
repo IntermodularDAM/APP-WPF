@@ -80,50 +80,64 @@ namespace app.View.Usuarios.Pre_Registros
 
         private async void btPre_Registro_Click(object sender, RoutedEventArgs e)
         {
-            btPre_Registro.IsEnabled = false;
-            string rolSeleccionado = txtRol.SelectedValue as string;
-
-            Usuario preUsers = new Usuario
+            if (SettingsData.Default.rol == "Administrador")
             {
-                email = txtEmail.Text,
-                privileges = rolSeleccionado == "Administrador",
+                btPre_Registro.IsEnabled = false;
+                string rolSeleccionado = txtRol.SelectedValue as string;
 
-            };
+                Usuario preUsers = new Usuario
+                {
+                    email = txtEmail.Text,
+                    privileges = rolSeleccionado == "Administrador",
 
-            MessageBox.Show(preUsers.email+" "+preUsers.privileges);
+                };
 
-            try {
-                var response = await _viewModel.RegistrarUsuario(preUsers);
-                var content = await response.Content.ReadAsStringAsync();
+                MessageBox.Show(preUsers.email + " " + preUsers.privileges);
 
-                Debug.WriteLine($"Status: {response.StatusCode}\n Content: {content}");
+                try
+                {
+                    var response = await _viewModel.RegistrarUsuario(preUsers);
+                    var content = await response.Content.ReadAsStringAsync();
 
-                if (response.IsSuccessStatusCode) {
+                    Debug.WriteLine($"Status: {response.StatusCode}\n Content: {content}");
 
-                    // Convertir la respuesta JSON a un objeto dynamic
-                    dynamic responseData = JsonConvert.DeserializeObject<dynamic>(content);
-                    // Guardar el token y los datos del usuario en la sesión de usuario
-                    MessageBox.Show($"Datos que se envian a Codigo verificacion \nEmail: {responseData.data.email} , ID: {responseData.data.id}, EmailApp: {responseData.data.emailApp}  privileges: {responseData.data.privigeles}");
-                    this.Close();
+                    if (response.IsSuccessStatusCode)
+                    {
 
-                } else {
-                    // La solicitud no fue exitosa, manejar el error
-                    var error = JsonConvert.DeserializeObject<dynamic>(content);
-                    MessageBox.Show(error + " : WPF  = ERROR 4047");
+                        // Convertir la respuesta JSON a un objeto dynamic
+                        dynamic responseData = JsonConvert.DeserializeObject<dynamic>(content);
+                        // Guardar el token y los datos del usuario en la sesión de usuario
+                        MessageBox.Show($"Datos que se envian a Codigo verificacion \nEmail: {responseData.data.email} , ID: {responseData.data.id}, EmailApp: {responseData.data.emailApp}  privileges: {responseData.data.privigeles}");
+                        this.Close();
+
+                    }
+                    else
+                    {
+                        // La solicitud no fue exitosa, manejar el error
+                        var error = JsonConvert.DeserializeObject<dynamic>(content);
+                        MessageBox.Show(error + " : WPF  = ERROR 4047");
+                        btPre_Registro.IsEnabled = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"WPF : Ocurrió un error al cargar los datos : {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     btPre_Registro.IsEnabled = true;
                 }
-            } catch (Exception ex) {
-
-                MessageBox.Show($"WPF : Ocurrió un error al cargar los datos : {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                btPre_Registro.IsEnabled = true;
+                finally
+                {
+                    _viewModel.EmailPreregistroConfirmacion2 = String.Empty;
+                    _viewModel.EmailPreregistroConfirmacion = String.Empty;
+                    _viewModel.EmailPreRegistro = String.Empty;
+                    _viewModel.RolSeleccionado = null;
+                    btPre_Registro.IsEnabled = true;
+                }
             }
-            finally {
-                _viewModel.EmailPreregistroConfirmacion2 = String.Empty;
-                _viewModel.EmailPreregistroConfirmacion = String.Empty;
-                _viewModel.EmailPreRegistro = String.Empty;
-                _viewModel.RolSeleccionado = null;
-                btPre_Registro.IsEnabled = true;
+            else {
+                MessageBox.Show("No tienes la autorización requerido.","Error de permisos",MessageBoxButton.OK,MessageBoxImage.Error);
             }
+            
 
             
         }

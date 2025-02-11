@@ -63,7 +63,7 @@ namespace app.View.Usuarios.InicioDeSesion
             //bool isPasswordValid = IsValidPassword(password);
 
             // Muestro u oculto el mensaje de error para el campos dependiendo de su validez
-            ErrorTextEmail.Visibility = isEmailValid ? Visibility.Collapsed : Visibility.Visible;
+            //ErrorTextEmail.Visibility = isEmailValid ? Visibility.Collapsed : Visibility.Visible;
             //ErrorTextPassword.Visibility = isPasswordValid ? Visibility.Collapsed : Visibility.Visible;
 
             // Habilito el botón de inicio de sesión solo si ambos campos son válidos

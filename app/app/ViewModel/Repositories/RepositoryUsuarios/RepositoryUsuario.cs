@@ -23,8 +23,8 @@ namespace app.ViewModel.Repositories.RepositoryUsuarios
         public async Task<dynamic> AuthenticateUser(NetworkCredential credential)
         {
             
-            Usuario usuario = new Usuario { email = credential.UserName, password = credential.Password };
-            var json = JsonConvert.SerializeObject(usuario);
+             
+            var json = JsonConvert.SerializeObject(new { email = credential.UserName, password = credential.Password, appType = "wpf" });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             try {
@@ -39,7 +39,7 @@ namespace app.ViewModel.Repositories.RepositoryUsuarios
                 }
 
                 var jsonContent = await response.Content.ReadAsStringAsync();
-
+    
                 if (response.IsSuccessStatusCode)
                 {
                     dynamic responseData = JsonConvert.DeserializeObject<dynamic>(jsonContent); 

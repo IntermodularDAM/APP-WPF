@@ -221,6 +221,8 @@
     <Compile Include="View\Usuarios\InicioDeSesion\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Usuarios\InicioDeSesion\ValidacionEmail.cs" />
+    <Compile Include="View\Usuarios\InicioDeSesion\ValidacionPassword.cs" />
     <Compile Include="View\Usuarios\MainUsuarios\MainUsuario.xaml.cs">
       <DependentUpon>MainUsuario.xaml</DependentUpon>
     </Compile>

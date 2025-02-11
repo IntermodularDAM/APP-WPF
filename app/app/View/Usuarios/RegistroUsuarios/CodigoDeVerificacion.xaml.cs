@@ -109,10 +109,13 @@ namespace app.View.Usuarios.RegistroUsuarios
                         Privileges = responseData.data.privileges,
                         TemporalToken = responseData.data.temporalToken,             
                     };
+                    this.DialogResult = true;
 
                     perfil.Owner = this.Owner;
                     this.Hide();
+                   
                     perfil.ShowDialog();
+                    
                     this.Close();
 
 

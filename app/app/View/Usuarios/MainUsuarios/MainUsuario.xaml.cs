@@ -298,27 +298,29 @@ namespace app.View.Usuarios.MainUsuarios
 
         private void MenuCerrarSesion_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.IsViewVisible = true;
+            //_viewModel.IsViewVisible = true;
             SettingsData.Default.token = "";
             SettingsData.Default.appToken = "";
             SettingsData.Default.idPerfil = "";
             SettingsData.Default.Save();
 
-            // Verifica si LogIn ya existe y está oculto
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window is InicioDeSesion.LogIn logInView)
-                {
-                    logInView.Show();
-                    this.Close();
-                    return;
-                }
-            }
+            //// Verifica si LogIn ya existe y está oculto
+            //foreach (Window window in Application.Current.Windows)
+            //{
+            //    if (window is InicioDeSesion.LogIn logInView)
+            //    {
+            //        logInView.Show();
+            //        this.Close();
+            //        return;
+            //    }
+            //}
 
             // Si no encuentra LogIn, crea una nueva instancia (en caso de que se haya cerrado completamente)
             var newLogIn = new InicioDeSesion.LogIn();
             newLogIn.Show();
             this.Close();
+            
+            
         }
 
         private void MenuCambiarContraseña_Click(object sender, RoutedEventArgs e)

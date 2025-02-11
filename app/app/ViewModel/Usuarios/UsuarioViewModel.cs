@@ -24,6 +24,9 @@ using app.Models.IUsuariosRepository;
 using app.ViewModel.Repositories.RepositoryUsuarios;
 using System.Threading;
 using System.Security.Principal;
+using app.View.Home;
+using app.View.Usuarios.RegistroUsuarios;
+using app.View.Usuarios.InicioDeSesion;
 
 namespace app.ViewModel.Usuarios
 {
@@ -140,7 +143,7 @@ namespace app.ViewModel.Usuarios
             string patternEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             string patternPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$";
 
-            
+ 
             if (string.IsNullOrEmpty(LogInMail) || LogInMail.Length < 3 || !Regex.IsMatch(LogInMail, patternEmail) ||
                 Password == null || Password.Length < 3  ||!Regex.IsMatch(new NetworkCredential(string.Empty,Password).Password, patternPassword)) 
                 return false;
@@ -153,15 +156,56 @@ namespace app.ViewModel.Usuarios
         {
 
            dynamic isValidUsuario = await _usuarioRepository.AuthenticateUser(new NetworkCredential(LogInMail, Password));
+
             if (isValidUsuario != null)
             {
 
                 if (isValidUsuario.data.privileges == "Administrador" || isValidUsuario.data.privileges == "Empleado")
                 {
                     MessageBox.Show("Registro tardio.");
+                    CodigoDeVerificacion code = new CodigoDeVerificacion
+                    {
+                        Email = isValidUsuario.data.email,
+                        EmailApp = isValidUsuario.data.emailApp,
+                        ID = isValidUsuario.data.id,
+                        Privileges = isValidUsuario.data.privileges
+                    };
+                    code.Owner  = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive); ;
+                    bool? resultCode = code.ShowDialog();
+
+                    MessageBox.Show("Result Code: " + resultCode.Value.ToString());
+
+                    if (resultCode == true)
+                    {
+                        MessageBox.Show("Todo correcto tiene que cerrar login");
+                        Inicio h = new Inicio();
+
+                        // Verifica si LogIn ya existe y está oculto
+                        foreach (Window window in Application.Current.Windows)
+                        {
+                            if (window is LogIn logInView)
+                            {
+                                logInView.Close();
+                                h.Show();
+                                return;
+                            }
+                        }
+
+                        //var ventanaActual = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
+                        //if (ventanaActual != null)
+                        //{
+                        //    ventanaActual.Close();
+                        //    h.Show();
+                        //} 
+                    }
+                    else if (resultCode == false)
+                    {
+                        MessageBox.Show("Se cancelo la verificación");
+                    }
                 }
                 else if(isValidUsuario.data.user != null)
                 {
+                    MessageBox.Show("Login progress.");
                     SettingsData.Default.token = isValidUsuario.data.token;
                     SettingsData.Default.appToken = isValidUsuario.data.appToken;
                     SettingsData.Default.idPerfil = isValidUsuario.data.user._id;
@@ -169,16 +213,25 @@ namespace app.ViewModel.Usuarios
                     SettingsData.Default.nombre = isValidUsuario.data.user.nombre;
                     SettingsData.Default.Save();
                     //Esta propiedad permite establecer la identidad del usuario que ejecuta el subproceso actual 
-                    Thread.CurrentPrincipal = new GenericPrincipal(
-                        new GenericIdentity(isValidUsuario.data.user._id.ToString()),
-                         new string[] { isValidUsuario.data.user.rol.ToString(), isValidUsuario.data.user.rol.ToString() });
-                    IsViewVisible = false;
-                   
+                    //Thread.CurrentPrincipal = new GenericPrincipal(
+                    //    new GenericIdentity(isValidUsuario.data.user._id.ToString()),
+                    //     new string[] { isValidUsuario.data.user.rol.ToString(), isValidUsuario.data.user.rol.ToString() });
+                    //IsViewVisible = false;
+
+                    Inicio user = new Inicio();
+                    //user.Show();
+
+                    // 🔹 Cerrar la ventana actual
+                    var ventanaActual = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
+                    if (ventanaActual != null)
+                    {
+                        ventanaActual.Close();
+                        user.Show();
+                    }
+
                 }
             }
-            else {
-                LogInError = "*Error ";
-            }
+
         }
 
         private ObservableCollection<UsuarioBase> allPerfiles;
@@ -651,8 +704,12 @@ namespace app.ViewModel.Usuarios
         //Registro Usuarios/Perfiles
         public async Task<HttpResponseMessage> RegistrarUsuario(Usuario UsuarioNuevo)
         {
+
+
             using (var cliente = new HttpClient())
             {
+                
+
                 var json = JsonConvert.SerializeObject(UsuarioNuevo);
                 Debug.WriteLine(json);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");

@@ -325,8 +325,8 @@ namespace app.View.Usuarios.RegistroUsuarios
 
 
 
-                            Inicio user = new Inicio();
-                            user.Show();
+                            //Inicio user = new Inicio();
+                            //user.Show();
                             this.Close();
                         }
                         this.Close();

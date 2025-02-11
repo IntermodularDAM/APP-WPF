@@ -77,7 +77,7 @@
                             <TextBlock Text="Nueva Password" Style="{StaticResource TextBlockGeneral}" Margin="20,0,0,0" />
                             <TextBox x:Name="txtPassword" Margin="10,10,10,15" FontSize="16" Height="35" TextChanged="txtPassword_TextChanged" >
                                 <TextBox.Text>
-                                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                    <Binding Path="Passwordd" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                         <Binding.ValidationRules>
                                             <local:ValidacionPassword EsConfirmacion="False"/>
                                         </Binding.ValidationRules>
