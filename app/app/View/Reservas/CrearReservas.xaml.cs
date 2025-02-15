@@ -59,7 +59,7 @@ namespace app.View.Reservas
                     fecha_check_in = dpFechaEntrada.SelectedDate?.ToString("yyyy-MM-dd"),
                     fecha_check_out = dpFechaSalida.SelectedDate?.ToString("yyyy-MM-dd"),
                     id_usu = "U-009",
-                    estado_reserva = "Confirmada"
+                    estado_reserva = "Pendiente"
                 };
 
                 // Enviar a la API
