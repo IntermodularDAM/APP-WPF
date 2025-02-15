@@ -154,7 +154,8 @@ namespace app.View.Habitaciones
                 }
                 else
                 {
-                    imagen.Source = new BitmapImage(new Uri("/Image/habitacion.png", UriKind.Relative)); // Imagen predeterminada
+                    imagen.Source = new BitmapImage(new Uri("pack://application:,,,/Image/habitacion.png", UriKind.Absolute));
+                    // Imagen predeterminada
                 }
 
                 var nombre = new Label
