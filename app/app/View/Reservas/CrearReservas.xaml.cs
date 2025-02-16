@@ -58,8 +58,8 @@ namespace app.View.Reservas
                     id_hab = _habitacion._id,
                     fecha_check_in = dpFechaEntrada.SelectedDate?.ToString("yyyy-MM-dd"),
                     fecha_check_out = dpFechaSalida.SelectedDate?.ToString("yyyy-MM-dd"),
-                    id_usu = "U-009",
-                    estado_reserva = "Confirmada"
+                    id_usu = SettingsData.Default.idPerfil,
+                    estado_reserva = "Pendiente"
                 };
 
                 // Enviar a la API
