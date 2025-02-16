@@ -333,7 +333,6 @@ namespace app.View.Habitaciones
                     if (resultadoMongo.ModifiedCount > 0)
                     {
                         MessageBox.Show("Precio y estado actualizados correctamente en MongoDB.");
-                        btn_Buscar_Click(null, null);
                     }
                     else
                     {
