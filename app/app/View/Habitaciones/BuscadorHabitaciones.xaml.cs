@@ -364,47 +364,44 @@ namespace app.View.Habitaciones
         }
 
 
-
         private async void EliminarHabitacion(Habitacion habitacion)
         {
             var reservasResponse = await httpClient.GetAsync("http://127.0.0.1:3505/Reserva/getAll");
             reservasResponse.EnsureSuccessStatusCode();
             var reservasJson = await reservasResponse.Content.ReadAsStringAsync();
-
-            // Deserializar las reservas
-            var reservas = JsonConvert.DeserializeObject<List<ReservaBase>>(reservasJson);
-
+        
+            // Deserializar la respuesta usando ApiResponse<List<ReservaBase>>
+            var reservasResponseData = JsonConvert.DeserializeObject<ApiResponse<List<ReservaBase>>>(reservasJson);
+        
+            // Ahora accedemos a la lista de reservas
+            var reservas = reservasResponseData.reservas;
+        
             if (habitacion == null)
             {
-
                 MessageBox.Show("No se ha seleccionado ninguna habitación para eliminar.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-
             }
             else if ((habitacion.estado == true) || (reservas.Any(r => r.id_hab == habitacion._id)))
             {
-
                 MessageBox.Show("No puedes eliminar la habitación del sistema", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-
             }
-
+        
             try
             {
                 // Confirmar la eliminación
                 var confirmacion = MessageBox.Show($"¿Estás seguro de que deseas eliminar la habitación con ID: {habitacion._id}?", "Eliminar Habitación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (confirmacion != MessageBoxResult.Yes) return;
-
+        
                 // Enviar la solicitud DELETE a la API para eliminar la habitación
                 var response = await httpClient.DeleteAsync($"http://127.0.0.1:3505/Habitacion/Eliminar/{habitacion._id}");
-
+        
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show($"Habitación con ID: {habitacion._id} eliminada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-
+        
                     // Actualizar la lista de habitaciones
                     btn_Buscar_Click(null, null); // Asegúrate de que este método recargue la lista correctamente
-                                                  // Asegúrate de que este método también tenga un propósito claro
                 }
                 else
                 {
@@ -416,7 +413,6 @@ namespace app.View.Habitaciones
                 MessageBox.Show($"Error al eliminar la habitación: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
 
 
         // Evento del botón "Ofertas"
