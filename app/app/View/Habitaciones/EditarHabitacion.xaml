@@ -100,7 +100,6 @@
                     <ComboBoxItem>3</ComboBoxItem>
                     <ComboBoxItem>4</ComboBoxItem>
                     <ComboBoxItem>5</ComboBoxItem>
-                    <ComboBoxItem>8</ComboBoxItem>
                 </ComboBox>
 
                 <Label Content="Opciones" Grid.Row="2" FontSize="14" Margin="15,0"></Label>
