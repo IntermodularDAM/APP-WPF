@@ -50,6 +50,12 @@ namespace app.ViewModel.Reservas
                         var jsonReservas = await responseReservas.Content.ReadAsStringAsync();
                         var reservasResponse = JsonConvert.DeserializeObject<ApiResponse<List<ReservaBase>>>(jsonReservas);
 
+                        if (reservasResponse.reservas == null || reservasResponse.reservas.Count == 0)
+                        {
+                            MessageBox.Show("No se encontraron reservas.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                            return;
+                        }
+
                         AllReservas = new ObservableCollection<ReservaBase>();
 
                         foreach (var reserva in reservasResponse.reservas)
@@ -68,14 +74,18 @@ namespace app.ViewModel.Reservas
 
                         OnPropertyChanged("AllReservas");
                     }
+                    else if (responseReservas.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    {
+                        MessageBox.Show("No se encontraron reservas en la base de datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                     else
                     {
-                        throw new Exception($"Error al obtener reservas: {responseReservas.StatusCode}");
+                        MessageBox.Show($"Error al obtener reservas: {responseReservas.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show($"Error: {e.Message}");
+                    MessageBox.Show($"Error inesperado: {e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
