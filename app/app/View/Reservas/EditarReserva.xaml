@@ -35,8 +35,8 @@
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
-            <Border Height="450" Width="800" Background="#8A73C1" CornerRadius="20">
-                <Grid Background="#DDDDDD">
+            <Border Height="450" Width="800" Background="#DDDDDD" CornerRadius="20" BorderBrush="Black" BorderThickness="3 2 3 6">
+                <Grid Background="Transparent">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="5*" />
@@ -60,7 +60,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Datos Usuario y Habitación -->
-                        <Border Padding="20" Background="#EEEEEE" Width="240" CornerRadius="20">
+                        <Border Padding="20" Background="#EEEEEE" Width="240" CornerRadius="20" BorderBrush="Black" BorderThickness="2 4 2 2">
                             <StackPanel>
                                 <StackPanel Margin="0 0 0 20">
                                     <Label Content="A nombre de:" FontSize="16" Margin="15,0" Foreground="Black"></Label>
@@ -99,7 +99,7 @@
                     </Grid>
 
                     <!-- Botón Guardar -->
-                    <Button x:Name="btnGuardarPerfil" Grid.Row="2" Content="Guardar" Width="120" Height="30" Margin="0,14,30,20" Background="{StaticResource BrushColorSecundario}" BorderBrush="{StaticResource BrushColorPrimario}" FontSize="14" Foreground="{StaticResource BrushColorTexto}" HorizontalAlignment="Right" Click="btnGuardarPerfil_Click">
+                    <Button x:Name="btnGuardarPerfil" Grid.Row="2" Content="Guardar" Width="120" Height="30" Margin="0,14,30,20" Background="{StaticResource BrushColorSecundario}" BorderBrush="Purple" BorderThickness="2 1 2 3" FontSize="14" Foreground="{StaticResource BrushColorTexto}" HorizontalAlignment="Right" Click="btnGuardarPerfil_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15" />

@@ -35,7 +35,7 @@
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
-            <Border Grid.Row="1" Width="265" Height="500" CornerRadius="20">
+            <Border Grid.Row="1" Width="265" Height="500" CornerRadius="20" BorderBrush="Purple" BorderThickness="8 5 8 5">
                 <Border.Background>
                     <SolidColorBrush Color="#FFD9D9D9" />
                 </Border.Background>
@@ -58,7 +58,7 @@
 
                     <Button x:Name="btnCerrar" Margin="0 20 0 0" Height="45" Width="160"
                           HorizontalAlignment="Center" Content="Cerrar"
-                          Background="{StaticResource BrushColorSecundario}" BorderBrush="{StaticResource BrushColorPrimario}" FontSize="14" Click="btnCerrar_Click">
+                          Background="{StaticResource BrushColorSecundario}" BorderBrush="Purple" BorderThickness="3 2 3 4" FontSize="18" Click="btnCerrar_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="20"/>

@@ -3,12 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\mainreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\mainreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\view\\usuarios\\mainusuarios\\mainusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\mainusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\view\\usuarios\\mainusuarios\\mainusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\mainusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\mainreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\mainreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\editarreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\editarreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\buscadorreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\buscadorreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\crearreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\crearreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\informacionreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\informacionreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\viewmodel\\usuarios\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\view\\usuarios\\mainusuarios\\mainusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\mainusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\view\\usuarios\\mainusuarios\\notification.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
@@ -93,11 +117,72 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "BuscadorReservas.xaml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\BuscadorReservas.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\BuscadorReservas.xaml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\BuscadorReservas.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\BuscadorReservas.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-17T14:50:42.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CrearReservas.xaml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\CrearReservas.xaml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\CrearReservas.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-17T14:50:37.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EditarReserva.xaml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\EditarReserva.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\EditarReserva.xaml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\EditarReserva.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\EditarReserva.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-17T14:47:46.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "InformacionReserva.xaml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\InformacionReserva.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\InformacionReserva.xaml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\InformacionReserva.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\InformacionReserva.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-17T14:46:12.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainReservas.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\MainReservas.xaml.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml.cs",
+              "RelativeToolTip": "app\\View\\Reservas\\MainReservas.xaml.cs",
+              "ViewState": "AgIAAPoAAAAAAAAAAAAxwBUBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T14:36:09.623Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "UsuarioViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
@@ -105,13 +190,11 @@
               "RelativeToolTip": "app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
               "ViewState": "AgIAADMCAAAAAAAAAAAIwFQCAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T18:15:03.575Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-31T18:15:03.575Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainUsuario.xaml",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml",
@@ -119,25 +202,36 @@
               "RelativeToolTip": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-02-10T15:04:28.079Z",
-              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MainReservas.xaml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\MainReservas.xaml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\MainReservas.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-17T14:32:22.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "CrearReservas.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Reservas\\CrearReservas.xaml.cs",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml.cs",
               "RelativeToolTip": "app\\View\\Reservas\\CrearReservas.xaml.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAA1wEIAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAQwEEAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-15T13:33:25.935Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "SettingsData.settings",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\SettingsData.settings",
               "RelativeDocumentMoniker": "app\\SettingsData.settings",
@@ -148,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\App.config",
               "RelativeDocumentMoniker": "app\\App.config",
@@ -160,19 +254,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "MainUsuario.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
               "RelativeToolTip": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAuwEYAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAEkBAAAAAAAAAAAAAF4BAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T02:46:00.602Z"
+              "WhenOpened": "2025-02-10T02:46:00.602Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\App.xaml.cs",
               "RelativeDocumentMoniker": "app\\App.xaml.cs",
@@ -184,18 +279,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\App.xaml",
               "RelativeDocumentMoniker": "app\\App.xaml",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\App.xaml",
               "RelativeToolTip": "app\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-10T02:21:37.157Z"
+              "WhenOpened": "2025-02-10T02:21:37.157Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "RegistroPerfil.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
@@ -207,7 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "notification.png",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\notification.png",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\notification.png",
@@ -218,7 +314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 22,
               "Title": "Pre_Registro.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\Pre_Registros\\Pre_Registro.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\Pre_Registros\\Pre_Registro.xaml.cs",
@@ -230,7 +326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "ResourcePart.cs",
               "DocumentMoniker": "C:\\Users\\srleo\\AppData\\Local\\Temp\\.vsdbgsrc\\3714f74b82eacc6cf8dcf1e32980b0908d4f8b447d25d4eb08ff1424a7b57c02\\ResourcePart.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\srleo\\AppData\\Local\\Temp\\.vsdbgsrc\\3714f74b82eacc6cf8dcf1e32980b0908d4f8b447d25d4eb08ff1424a7b57c02\\ResourcePart.cs",
@@ -242,7 +338,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "ValidacionPassword.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\CambiarContrase\u00F1a\\ValidacionPassword.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\CambiarContrase\u00F1a\\ValidacionPassword.cs",
@@ -254,7 +350,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "RepositoryUsuario.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\ViewModel\\Repositories\\RepositoryUsuarios\\RepositoryUsuario.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Repositories\\RepositoryUsuarios\\RepositoryUsuario.cs",
@@ -266,7 +362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "UsuarioBase.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\Models\\Usuarios\\UsuarioBase.cs",
               "RelativeDocumentMoniker": "app\\Models\\Usuarios\\UsuarioBase.cs",
@@ -278,18 +374,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "CambiarContrase\u00F1a.xaml",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\CambiarContrase\u00F1a\\CambiarContrase\u00F1a.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\CambiarContrase\u00F1a\\CambiarContrase\u00F1a.xaml",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\CambiarContrase\u00F1a\\CambiarContrase\u00F1a.xaml",
               "RelativeToolTip": "app\\View\\Usuarios\\CambiarContrase\u00F1a\\CambiarContrase\u00F1a.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-10T22:24:23.234Z"
+              "WhenOpened": "2025-02-10T22:24:23.234Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "RepositoryBase.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\ViewModel\\Repositories\\RepositoryBase.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Repositories\\RepositoryBase.cs",
@@ -301,18 +398,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 24,
               "Title": "RegistroUsuario.xaml",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
               "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-10T20:29:16.538Z"
+              "WhenOpened": "2025-02-10T20:29:16.538Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 23,
               "Title": "CodigoDeVerificacion.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
@@ -324,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 25,
               "Title": "RegistroPerfilViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
@@ -336,14 +434,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "CodigoDeVerificacion.xaml",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml",
               "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-10T19:08:37.244Z"
+              "WhenOpened": "2025-02-10T19:08:37.244Z",
+              "EditorCaption": ""
             }
           ]
         }
