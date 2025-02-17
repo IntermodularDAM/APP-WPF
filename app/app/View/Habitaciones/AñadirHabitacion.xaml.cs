@@ -94,25 +94,24 @@ namespace app.View.Habitaciones
             try
             {
                 // Validación de capacidad según tipo de habitación
-                if (tipo == "individual" && capacidad != "1")
+                if (tipo == "Individual" && capacidad != "1")
                 {
                     MessageBox.Show("Habitaciones individuales solo tienen capacidad para una persona", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                else if (tipo == "doble" && capacidad != "2")
+                else if (tipo == "Doble" && capacidad != "2")
                 {
                     MessageBox.Show("Habitaciones dobles solo tienen capacidad para dos personas", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                else if (tipo == "triple" && capacidad != "3")
+                else if (tipo == "Triple" && capacidad != "3")
                 {
                     MessageBox.Show("Habitaciones triples solo tienen capacidad para tres personas", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                else if (tipo == "suite" && capacidad != "4" && capacidad != "5" && capacidad != "8")
+                else if (tipo == "Suite" && capacidad != "4" && capacidad != "5")
                 {
-                    MessageBox.Show("Suites pueden tener capacidad para 4, 5 o 8 personas", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
+                    MessageBox.Show("Suites pueden tener capacidad para 4 o 5 personas", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
