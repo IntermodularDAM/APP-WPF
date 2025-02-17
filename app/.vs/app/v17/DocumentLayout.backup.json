@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\editarreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\editarreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\mainreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\view\\reservas\\mainreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\mainreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\usuario\\desktop\\app-wpf\\app\\app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\settingsdata.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
@@ -105,7 +105,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -134,7 +134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EditarReserva.xaml",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\EditarReserva.xaml",
               "RelativeDocumentMoniker": "app\\View\\Reservas\\EditarReserva.xaml",
@@ -146,25 +146,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainReservas.xaml",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml",
               "RelativeDocumentMoniker": "app\\View\\Reservas\\MainReservas.xaml",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml",
               "RelativeToolTip": "app\\View\\Reservas\\MainReservas.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-16T17:06:01.791Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-16T17:06:01.791Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "CrearReservas.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Reservas\\CrearReservas.xaml.cs",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml.cs",
               "RelativeToolTip": "app\\View\\Reservas\\CrearReservas.xaml.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAxwEUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAD0AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-15T15:06:07.361Z",
               "EditorCaption": ""
