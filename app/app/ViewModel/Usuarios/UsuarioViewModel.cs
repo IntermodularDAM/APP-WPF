@@ -32,44 +32,10 @@ namespace app.ViewModel.Usuarios
 {
     public class UsuarioViewModel : ViewModelBase
     {
-        //Rutas Get Usuarios y Perfil
-        private const string ApiUrlAllAdministradores = "http://127.0.0.1:3505/Administrador/getAllAdministradores";
-        private const string ApiUrlAllEmpleados = "http://127.0.0.1:3505/Empleado/getAllEmpleados";
-        private const string ApiUrlAllClientes= "http://127.0.0.1:3505/Cliente/getAllClientes";
-        private const string ApiUrlTodosLosUsuarios = "http://127.0.0.1:3505/Usuario/todosLosUsuarios";
-
-        //Rutas Editar Eliminar Perfiles 
-        private const string ApiUrlEliminarAdministrador = "http://127.0.0.1:3505/Administrador/eliminarAdministrador";
-        private const string ApiUrlEliminarEmpleado = "http://127.0.0.1:3505/Empleado/eliminarEmpleado";
-        private const string ApiUrlEliminarCliente = "http://127.0.0.1:3505/Cliente/eliminarCliente";
-
-
-        //Rutas Verificación de correo
-        private const string ApiUrlEmailDisponible = "http://127.0.0.1:3505/Usuario/emailDisponible";
-
-        //Rutas Editar Usuarios 
-        private const string ApiUrlEditarPerfilAdminitrador = "http://127.0.0.1:3505/Administrador/editarAdministrador";
-        private const string ApiUrlEditarPerfilEmpleado= "http://127.0.0.1:3505/Empleado/editarEmpleado";
-        private const string ApiUrlEditarPerfilCliente= "http://127.0.0.1:3505/Cliente/editarCliente";
-
-        //Rutas Editar Usuarios 
-        private const string ApiUrlBuscarPerfilAdminitrador = "http://127.0.0.1:3505/Administrador/buscarAdministrador";
-        private const string ApiUrlBuscarPerfilEmpleado = "http://127.0.0.1:3505/Empleado/buscarEmpleado";
-        private const string ApiUrlBuscarPerfilCliente = "http://127.0.0.1:3505/Cliente/buscarCliente";
 
         //Autenticación
         private const string ApiUrlLogIn = "http://127.0.0.1:3505/Usuario/logIn";
 
-        //Recuperar Contraseña
-        private const string ApiUrlRecuperarPassword = "http://127.0.0.1:3505/Usuario/recuperarPassword";
-
-
-        //Registro Usuarios/Perfiles
-        private const string ApiUrlRegistroUsuario = "http://127.0.0.1:3505/Usuario/registroUsuario";
-        private const string ApiUrlVerificarUsuario = "http://127.0.0.1:3505/Usuario/verificarUsuario";
-
-        //Cambiar Contraseña
-        private const string ApiUrlCambiarPassword = "http://127.0.0.1:3505/Usuario/cambiarPassword";
 
         //Variables-Binding LogIn para el inicio de sesion y propiedades de tipo comando que validaran el login
         private string _logInMail = "";
@@ -81,9 +47,7 @@ namespace app.ViewModel.Usuarios
                 //Estos comando se inician en el constructor del UsuarioViewModel                
 
         public ICommand LogInCommand { get; } //No se implenta set dado que solo la clase command deberia inicilizarla
-        public ICommand RecoverCommand { get; }
-        public ICommand ShowPasswordCommand { get; }
-        public ICommand RememberPasswordCommand { get; }
+        public ICommand DeleteCommand { get; }
         public string LogInMail { get => _logInMail; set { _logInMail = value; OnPropertyChanged("LogInMail"); } }
         public SecureString Password { get => _password; set { _password = value; OnPropertyChanged("Password"); } }
         public string LogInError { get => _logInError; set { _logInError = value; OnPropertyChanged("LogInError"); } }
@@ -96,21 +60,30 @@ namespace app.ViewModel.Usuarios
         private string _emailPreregistroConfirmacion = "";
         private string _emailPreregistroConfirmacion2 = "";
         private string _rolSeleccionado = "";
-        public string EmailPreRegistro { get => _emailPreregistro; set { _emailPreregistro = value; OnPropertyChanged("EmailPreRegistro"); } }
-        public string EmailPreregistroConfirmacion { get => _emailPreregistroConfirmacion; set { _emailPreregistroConfirmacion = value; OnPropertyChanged("EmailPreregistroConfirmacion"); } }
-        public string EmailPreregistroConfirmacion2 { get => _emailPreregistroConfirmacion2; set { _emailPreregistroConfirmacion2 = value; OnPropertyChanged("EmailPreregistroConfirmacion2"); } }
-        public string RolSeleccionado { get => _rolSeleccionado; set  { _rolSeleccionado = value; OnPropertyChanged("RolSeleccionado"); } }
-
         //Datos CambioPassword ValidationRule
         private string _passwordd = "";
         private string _passwordConfirm = "";
         private string _passwordConfirm2 = "";
+        public string EmailPreRegistro { get => _emailPreregistro; set { _emailPreregistro = value; OnPropertyChanged("EmailPreRegistro"); } }
+        public string EmailPreregistroConfirmacion { get => _emailPreregistroConfirmacion; set { _emailPreregistroConfirmacion = value; OnPropertyChanged("EmailPreregistroConfirmacion"); } }
+        public string EmailPreregistroConfirmacion2 { get => _emailPreregistroConfirmacion2; set { _emailPreregistroConfirmacion2 = value; OnPropertyChanged("EmailPreregistroConfirmacion2"); } }
+        public string RolSeleccionado { get => _rolSeleccionado; set  { _rolSeleccionado = value; OnPropertyChanged("RolSeleccionado"); } }
         public string Passwordd { get => _passwordd;  set { _passwordd = value; OnPropertyChanged("Passwordd"); } }
         public string PasswordConfirm { get => _passwordConfirm;  set { _passwordConfirm = value; OnPropertyChanged("PasswordConfirm"); } }
         public string PasswordConfirm2 { get => _passwordConfirm2;  set { _passwordConfirm2 = value; OnPropertyChanged("PasswordConfirm2"); } }
 
 
         private static UsuarioViewModel _instance;
+
+        private ObservableCollection<UsuarioBase> allPerfiles;
+
+        private ObservableCollection<Usuario> allUsers;
+        public ObservableCollection<UsuarioBase> AllPerfiles { get => allPerfiles; set { allPerfiles = value; OnPropertyChanged("AllPerfiles"); } }
+        public ObservableCollection<Usuario> AllUsers { get => allUsers; set { allUsers = value; OnPropertyChanged("AllUsers"); } }
+
+        private UsuarioBase usuarioSeleccionado;
+
+        public UsuarioBase UsuarioSeleccionado { get => usuarioSeleccionado; set { usuarioSeleccionado = value; OnPropertyChanged("UsuarioSeleccionado"); CommandManager.InvalidateRequerySuggested(); } } //CommandManager.InvalidateRequerySuggested(); Notifica que CanExecute ha cambiado
         public static UsuarioViewModel Instance
         {
             get
@@ -130,6 +103,8 @@ namespace app.ViewModel.Usuarios
             //Se inicializa los comando mediante la clase generica que cree en el directorio raiz de viewModel
             LogInCommand = new ViewModelCommand(ExecuteLogInCommand, CanExecuteLogInCommand);
 
+            DeleteCommand = new ViewModelCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
+
             // Constructor privado para evitar instancias externas
             allPerfiles = new ObservableCollection<UsuarioBase>();
             allUsers = new ObservableCollection<Usuario>();
@@ -137,6 +112,8 @@ namespace app.ViewModel.Usuarios
             _ = CargarTodosLosUsuarios();
         }
 
+
+        //Commands LogIn
         private bool CanExecuteLogInCommand(object obj)
         {
             bool validData;
@@ -190,13 +167,6 @@ namespace app.ViewModel.Usuarios
                                 return;
                             }
                         }
-
-                        //var ventanaActual = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
-                        //if (ventanaActual != null)
-                        //{
-                        //    ventanaActual.Close();
-                        //    h.Show();
-                        //} 
                     }
                     else if (resultCode == false)
                     {
@@ -234,10 +204,46 @@ namespace app.ViewModel.Usuarios
 
         }
 
-        private ObservableCollection<UsuarioBase> allPerfiles;
-        private ObservableCollection<Usuario> allUsers;
-        public ObservableCollection<UsuarioBase> AllPerfiles { get => allPerfiles; set { allPerfiles = value; OnPropertyChanged("AllPerfiles"); } }
-        public ObservableCollection<Usuario> AllUsers{ get => allUsers; set { allUsers = value; OnPropertyChanged("AllUsers"); } }
+        //Commands Delete
+        private bool CanExecuteDeleteCommand(object obj)
+        {
+            Console.WriteLine("Comando Verficacion.");
+            return obj is UsuarioBase usuario && usuario == UsuarioSeleccionado;
+        }
+
+        private async void ExecuteDeleteCommand(object obj)
+        {
+
+            Console.WriteLine("Comando ejecutado correctamente.");
+
+            MessageBox.Show(UsuarioSeleccionado._id+" "+ UsuarioSeleccionado.rol.ToString());
+
+            var result = MessageBox.Show("¿Estás seguro de que quieres eliminar la cuenta seleccionada?",
+                                         "Confirmar eliminación",
+                                         MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                var response = await _usuarioRepository.Delete(UsuarioSeleccionado._id.ToString(),UsuarioSeleccionado.rol.ToString());
+            
+
+                if (response)
+                {
+                    MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Aquí podrías actualizar la lista de usuarios eliminando el usuario borrado
+                    //allPerfiles.Remove(UsuarioSeleccionado);
+                    var stringResponse = CargarTodosLosUsuarios();
+                    UsuarioSeleccionado = null; // Deseleccionar usuario después de eliminar
+                    MessageBox.Show($"{stringResponse}");   
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error al eliminar el usuario. Intenta de nuevo.");
+                    //UsuarioSeleccionado = null; // Deseleccionar usuario después de eliminar
+                }
+            }
+        }
 
 
 
@@ -250,11 +256,11 @@ namespace app.ViewModel.Usuarios
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.token);
                     client.DefaultRequestHeaders.Add("x-user-role", SettingsData.Default.rol); // Enviar el rol en el encabezado
 
-                    HttpResponseMessage responseAdministradores = await client.GetAsync(ApiUrlAllAdministradores);
-                    HttpResponseMessage responseEmpleados = await client.GetAsync(ApiUrlAllEmpleados);
-                    HttpResponseMessage responseCliente = await client.GetAsync(ApiUrlAllClientes);
+                    HttpResponseMessage responseAdministradores = await client.GetAsync(ApiRouteUsuarios.Administrador.GetAll);
+                    HttpResponseMessage responseEmpleados = await client.GetAsync(ApiRouteUsuarios.Empleado.GetAll);
+                    HttpResponseMessage responseCliente = await client.GetAsync(ApiRouteUsuarios.Cliente.GetAll);
 
-                    HttpResponseMessage responseUsuarios = await client.GetAsync(ApiUrlTodosLosUsuarios);
+                    HttpResponseMessage responseUsuarios = await client.GetAsync(ApiRouteUsuarios.Usuario.TodosLosUsuarios);
 
                     if (responseUsuarios.StatusCode == HttpStatusCode.NotFound || responseAdministradores.StatusCode == HttpStatusCode.NotFound || responseEmpleados.StatusCode == HttpStatusCode.NotFound || responseCliente.StatusCode == HttpStatusCode.NotFound)
                     {
@@ -314,7 +320,6 @@ namespace app.ViewModel.Usuarios
                                     registro = administrador.registro,
                                     rutaFoto = "http://127.0.0.1:3505/" + administrador.rutaFoto,
                                 });
-                            
                         }
 
                         foreach (var empleado in empleadosResponse.data) 
@@ -400,15 +405,15 @@ namespace app.ViewModel.Usuarios
 
             string rutaEliminar = "";
             if (role == "Administrador")
-                rutaEliminar = ApiUrlEliminarAdministrador;
+                rutaEliminar = ApiRouteUsuarios.Administrador.Eliminar;
             if (role == "Empleado")
-                rutaEliminar = ApiUrlEliminarEmpleado;
+                rutaEliminar = ApiRouteUsuarios.Empleado.Eliminar;
             if (role == "Cliente")
-                rutaEliminar = ApiUrlEliminarCliente;
+                rutaEliminar = ApiRouteUsuarios.Cliente.Eliminar;
 
             using (var client = new HttpClient()) {
                 try {
-
+           
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UserSession.Instance.Token);
                     client.DefaultRequestHeaders.Add("x-user-role", UserSession.Instance.Data["rol"].ToString());
 
@@ -449,7 +454,7 @@ namespace app.ViewModel.Usuarios
                     var json = JsonConvert.SerializeObject(new {email = emailDisponible});
                     var content = new StringContent (json,Encoding.UTF8,"application/json");
 
-                    var responseEmail = await cliente.PostAsync(ApiUrlEmailDisponible, content);
+                    var responseEmail = await cliente.PostAsync(ApiRouteUsuarios.Usuario.EmailDisponible, content);
 
                     if (responseEmail.IsSuccessStatusCode)
                     {
@@ -472,16 +477,16 @@ namespace app.ViewModel.Usuarios
         public async Task<HttpResponseMessage> EditarPerfil(string id,string rol, MultipartFormDataContent usuarioEditar) {
             string rutaPerfilEditar = "";
 
-            if (rol == "Administrador"){ rutaPerfilEditar = $"{ApiUrlEditarPerfilAdminitrador}/{id}"; }
-            else if (rol == "Empleado") { rutaPerfilEditar = $"{ApiUrlEditarPerfilEmpleado}/{id}"; }
-            else if (rol == "Cliente") { rutaPerfilEditar = $"{ApiUrlEditarPerfilCliente}/{id}"; }
+            if (rol == "Administrador"){ rutaPerfilEditar = $"{ApiRouteUsuarios.Administrador.Editar}/{id}"; }
+            else if (rol == "Empleado") { rutaPerfilEditar = $"{ApiRouteUsuarios.Empleado.Editar}/{id}"; }
+            else if (rol == "Cliente") { rutaPerfilEditar = $"{ApiRouteUsuarios.Cliente.Editar}/{id}"; }
             else { MessageBox.Show("Error de progrmacion. Llamar al desarrollador", "Error :", MessageBoxButton.OK, MessageBoxImage.Error); }
 
             using (var client = new HttpClient()) {
                 try {
 
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UserSession.Instance.Token);
-                    client.DefaultRequestHeaders.Add("x-user-role", UserSession.Instance.Data["rol"].ToString());
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",SettingsData.Default.token);
+                    client.DefaultRequestHeaders.Add("x-user-role", SettingsData.Default.token);
 
                     HttpResponseMessage response = await client.PutAsync(rutaPerfilEditar, usuarioEditar);
 
@@ -506,15 +511,15 @@ namespace app.ViewModel.Usuarios
         }
 
         public async void Buscar(string rol,MultipartFormDataContent usuarioBuscar) {
-            string rutaBuscar = rol == "Administrador" ? ApiUrlBuscarPerfilAdminitrador :
-                                rol == "Empleado" ? ApiUrlBuscarPerfilEmpleado : ApiUrlBuscarPerfilCliente;
+            string rutaBuscar = rol == "Administrador" ? ApiRouteUsuarios.Administrador.Buscar :
+                                rol == "Empleado" ? ApiRouteUsuarios.Empleado.Buscar : ApiRouteUsuarios.Cliente.Buscar;
 
             using (var client = new HttpClient()) 
             {
                 try
                 {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", UserSession.Instance.Token);
-                    client.DefaultRequestHeaders.Add("x-user-role", UserSession.Instance.Data["rol"].ToString());
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.token);
+                    client.DefaultRequestHeaders.Add("x-user-role", SettingsData.Default.rol);
 
                     HttpResponseMessage respuesta = await client.PostAsync(rutaBuscar, usuarioBuscar);
 
@@ -612,43 +617,6 @@ namespace app.ViewModel.Usuarios
             }
         }
 
-
-        public async Task<HttpResponseMessage> LogIn(Usuario UsuarioNuevo)
-        {
-            using (var cliente = new HttpClient())
-            {
-                var json = JsonConvert.SerializeObject(UsuarioNuevo);
-                Debug.WriteLine(json);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                try
-                {
-                    HttpResponseMessage response = await cliente.PostAsync(ApiUrlLogIn, content);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var contenido = await response.Content.ReadAsStringAsync();
-                        var result =  JsonConvert.DeserializeObject<dynamic>(contenido);
-                        Debug.WriteLine("Perfil logeado o 1/2");
-                        Debug.WriteLine("Contenido: "+contenido);
-
-                        return response;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Success / no");
-                        Debug.WriteLine($"Error: {response.StatusCode}");
-                        return response;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"Exception: {ex.Message}");
-                    return null;
-                }
-            }
-        }
-
         public async Task<HttpResponseMessage> RecuperarPassword(string _email) {
 
             using (var cliente = new HttpClient()) {
@@ -657,7 +625,7 @@ namespace app.ViewModel.Usuarios
                     var json = JsonConvert.SerializeObject(new {email = _email });
                     var content = new StringContent(json, Encoding.UTF8, "application/json"); 
 
-                    var response = await cliente.PostAsync(ApiUrlRecuperarPassword, content);
+                    var response = await cliente.PostAsync(ApiRouteUsuarios.Usuario.RecuperarPassword, content);
 
                     var contentError = await response.Content.ReadAsStringAsync();
 
@@ -683,7 +651,7 @@ namespace app.ViewModel.Usuarios
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",SettingsData.Default.token);
                     client.DefaultRequestHeaders.Add("x-user-role",SettingsData.Default.rol);
 
-                    HttpResponseMessage response = await client.PostAsync(ApiUrlCambiarPassword, content);
+                    HttpResponseMessage response = await client.PostAsync(ApiRouteUsuarios.Usuario.CambiarPassword, content);
 
                     var contentError = await response.Content.ReadAsStringAsync();
 
@@ -716,7 +684,7 @@ namespace app.ViewModel.Usuarios
 
                 try
                 {
-                    HttpResponseMessage response = await cliente.PostAsync(ApiUrlRegistroUsuario, content);
+                    HttpResponseMessage response = await cliente.PostAsync(ApiRouteUsuarios.Usuario.Registro, content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -747,7 +715,7 @@ namespace app.ViewModel.Usuarios
 
                 try
                 {
-                    HttpResponseMessage response = await cliente.PostAsync(ApiUrlVerificarUsuario, content);
+                    HttpResponseMessage response = await cliente.PostAsync(ApiRouteUsuarios.Usuario.Verificar, content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -767,7 +735,6 @@ namespace app.ViewModel.Usuarios
                 }
             }
         }
-
 
         //Notificacion base
         private void ShowNotification(dynamic content)
@@ -795,7 +762,41 @@ namespace app.ViewModel.Usuarios
             return match.Success ? match.Groups[1].Value : "No se encontró contenido en <pre>";
         }
 
+        //public async Task<HttpResponseMessage> LogIn(Usuario UsuarioNuevo)
+        //{
+        //    using (var cliente = new HttpClient())
+        //    {
+        //        var json = JsonConvert.SerializeObject(UsuarioNuevo);
+        //        Debug.WriteLine(json);
+        //        var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+        //        try
+        //        {
+        //            HttpResponseMessage response = await cliente.PostAsync(ApiUrlLogIn, content);
+
+        //            if (response.IsSuccessStatusCode)
+        //            {
+        //                var contenido = await response.Content.ReadAsStringAsync();
+        //                var result = JsonConvert.DeserializeObject<dynamic>(contenido);
+        //                Debug.WriteLine("Perfil logeado o 1/2");
+        //                Debug.WriteLine("Contenido: " + contenido);
+
+        //                return response;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Success / no");
+        //                Debug.WriteLine($"Error: {response.StatusCode}");
+        //                return response;
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Debug.WriteLine($"Exception: {ex.Message}");
+        //            return null;
+        //        }
+        //    }
+        //}
     }
 }
 

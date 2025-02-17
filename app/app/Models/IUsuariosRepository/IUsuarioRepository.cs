@@ -15,7 +15,7 @@ namespace app.Models.IUsuariosRepository
         Task<dynamic> AuthenticateUser(NetworkCredential credential);
         void Add(Usuario usuario);
         void Update(string id, string rol, MultipartFormDataContent usuarioEditar);
-        void Delete(string id, string role);
+        Task<bool> Delete(string id, string role);
         bool Access(string token);
 
         IEnumerable<Usuario> GetAll();

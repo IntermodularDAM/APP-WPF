@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:app.View.Usuarios.MainUsuarios"
+        xmlns:local="clr-namespace:app.View.Usuarios.MainUsuarios" xmlns:usuarios="clr-namespace:app.ViewModel.Usuarios" 
         mc:Ignorable="d"
           Title="MainUsuario" Height="600" Width="1000"
         WindowStyle="none"
@@ -11,13 +11,18 @@
         ResizeMode="NoResize"
         AllowsTransparency="True" 
         Background="Transparent" Loaded="Window_Loaded"
+        DataContext="{x:Static usuarios:UsuarioViewModel.Instance}"
         >
-    
+
     <Window.Resources>
+
+
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../../Dictionary1.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+
         </ResourceDictionary>
         <!-- Estilo personalizado para GridViewColumnHeader -->
 
@@ -92,7 +97,6 @@
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
-                        <Image  Stretch="None" Margin="0,0,0,0" Source="/View/Usuarios/MainUsuarios/notification.png" MouseDown="Image_MouseDown_1"  />
                     </StackPanel>
                     <!--Ficha-->
                     <Label x:Name="txtTituloBuscador"  Grid.Row="1" FontWeight="Bold" FontSize="35" Content="Buscador" Foreground="#CD6CE0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center"></Label>
@@ -207,7 +211,7 @@
                     </Canvas>
                     <!--Listas-->
                     <DataGrid x:Name="DataGridPerfilUsuarios" HeadersVisibility="None" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="370" VerticalAlignment="Top" HorizontalAlignment="Center" AutoGenerateColumns="False" GridLinesVisibility="None" Background="White" BorderBrush="Transparent" BorderThickness="0"  CanUserAddRows="False" 
-                          ItemsSource="{Binding AllPerfiles}" >
+                          ItemsSource="{Binding AllPerfiles}"  SelectedItem="{Binding UsuarioSeleccionado, Mode=TwoWay}" >
                         <DataGrid.RowStyle>
                             <Style TargetType="DataGridRow">
                                 <!-- Fondo predeterminado -->
@@ -350,7 +354,8 @@
                                                     </Style>
                                                 </Button.Resources>
                                             </Button>
-                                            <Button x:Name="btnEliminar" Content="Eliminar" Width="80" Height="25" Margin="0,3" Background="#8C52FF" BorderBrush="White" Cursor="Hand" Foreground="White"  Click="btnBorrar_Click"  >
+                                            <Button x:Name="btnEliminar" Command="{Binding DataContext.DeleteCommand, 
+                                                                                    RelativeSource={RelativeSource AncestorType=Window}}"  CommandParameter="{Binding}"  Content="Eliminar" Width="80" Height="25" Margin="0,3" Background="#8C52FF" BorderBrush="White" Cursor="Hand" Foreground="White"   >
                                                 <Button.Resources>
                                                     <Style TargetType="Border">
                                                         <Setter Property="CornerRadius" Value="10"/>
@@ -384,7 +389,7 @@
                     </DataGrid>
 
                     <ListView x:Name="ListViewPerfilUsuarios" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="0,74,0,0" Width="700" Height="350" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="White" BorderBrush="Transparent" BorderThickness="0"    
-                          ItemsSource="{Binding AllPerfiles}" >
+                          ItemsSource="{Binding AllPerfiles}" SelectedItem="{Binding UsuarioSeleccionado, Mode=TwoWay}" >
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <!-- Fondo predeterminado -->
@@ -443,7 +448,10 @@
                                                     <Button x:Name="btnInfo" Cursor="Hand"  Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Click="btnInfo_Click" >
                                                         <Image Source="/View/Usuarios/MainUsuarios/info.png" ></Image>
                                                     </Button>
-                                                    <Button x:Name="btnBorrar" Cursor="Hand"  Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Click="btnBorrar_Click">
+                                                    <Button x:Name="btnBorrar" Cursor="Hand"  Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" 
+                                                            Command="{Binding DataContext.DeleteCommand, 
+                                                                                RelativeSource={RelativeSource AncestorType=Window}}"
+                                                             CommandParameter="{Binding}">
                                                         <Image Source="/View/Usuarios/MainUsuarios/delete.png" ></Image>
                                                     </Button>
                                                 </StackPanel>
