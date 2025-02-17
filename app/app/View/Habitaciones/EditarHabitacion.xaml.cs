@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,7 +36,7 @@ namespace app.View.Habitaciones
         public string ImagenBase64 { get; private set; }
 
         // Constructor actualizado para recibir las opciones como parámetros
-        public EditarHabitacion(string nombre, string tipo, int capacidad, double precio, string descripcion, bool camaExtra, bool cuna, double precioOriginal, bool estado, string imagenBase64 = null)
+        public EditarHabitacion(string nombre, string tipo, int capacidad, double precio, string descripcion, bool camaExtra, bool cuna, double precioOriginal, bool estado, string imagenBase64)
         {
             InitializeComponent();
 
@@ -62,10 +62,8 @@ namespace app.View.Habitaciones
             SegundaOpcion.IsChecked = cuna;
 
             // Si existe una imagen, establecerla
-            if (!string.IsNullOrEmpty(imagenBase64))
-            {
-                ImagenBase64 = imagenBase64;
-            }
+            ImagenBase64 = imagenBase64;
+            
         }
 
 
@@ -111,8 +109,12 @@ namespace app.View.Habitaciones
                 CamaExtra = PrimeraOpcion.IsChecked == true;
                 Cuna = SegundaOpcion.IsChecked == true;
 
-                // Obtener la imagen seleccionada y convertirla a Base64
-                ImagenBase64 = ObtenerImagenBase64();
+                // Si la imagen no se ha seleccionado, mostrar advertencia
+                if (string.IsNullOrEmpty(ImagenBase64))
+                {
+                    MessageBox.Show("Por favor, selecciona una imagen antes de actualizar.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
 
                 // Cerrar la ventana con éxito
                 DialogResult = true;
@@ -124,34 +126,36 @@ namespace app.View.Habitaciones
             }
         }
 
-
-
-        private string ObtenerImagenBase64()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                byte[] imageBytes = File.ReadAllBytes(openFileDialog.FileName);
-                FilePathTextBox.Text = openFileDialog.FileName; // Mostrar la ruta del archivo seleccionado
-                return Convert.ToBase64String(imageBytes);
-            }
-            return string.Empty; // Retorna vacío si no se seleccionó imagen
-        }
-
-
-
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            // Llamamos a la función que selecciona y convierte la imagen
-            string base64Imagen = ObtenerImagenBase64();
+            // Crear un cuadro de diálogo para seleccionar el archivo de la imagen
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Imagenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png"; // Filtrar solo imágenes
 
-            if (!string.IsNullOrEmpty(base64Imagen))
+            // Mostrar el cuadro de diálogo
+            bool? result = openFileDialog.ShowDialog();
+            if (result == true)
             {
-                ImagenBase64 = base64Imagen;
+                // Obtener la ruta de la imagen seleccionada
+                string imagePath = openFileDialog.FileName;
+
+                try
+                {
+                    // Leer la imagen como un array de bytes
+                    byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+
+                    // Convertir los bytes a una cadena Base64
+                    ImagenBase64 = Convert.ToBase64String(imageBytes);
+
+                    // Aquí puedes mostrar un mensaje de confirmación
+                    MessageBox.Show("Imagen seleccionada y convertida a Base64.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al leer la imagen: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
-
 
 
         private void CancelarButton_Click(object sender, RoutedEventArgs e)

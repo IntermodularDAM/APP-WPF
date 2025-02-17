@@ -19,7 +19,7 @@ namespace app.Models.Habitaciones
         public decimal? precio_noche_original { get; set; }
         public bool tieneOferta { get; set; }
         public bool estado { get; set; }
-        public string ImagenBase64 { get; set; }
+        public string imagenBase64 { get; set; }
 
     }
 
