@@ -1,4 +1,4 @@
-﻿using IntermodularWPF;
+using IntermodularWPF;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

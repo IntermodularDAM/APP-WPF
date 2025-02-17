@@ -1,4 +1,4 @@
-﻿using app.Models.Habitaciones;
+using app.Models.Habitaciones;
 using app.Models.Reservas;
 using app.View.Home;
 using app.View.Usuarios.InicioDeSesion;
@@ -148,9 +148,9 @@ namespace app.View.Habitaciones
                 // Cargar la imagen de la habitación desde Base64 (si existe)
                 Image imagen = new Image { Width = 150, Height = 150 };  // Aumenté un poco el tamaño para mejor visualización
 
-                if (!string.IsNullOrEmpty(habitacion.ImagenBase64))
+                if (!string.IsNullOrEmpty(habitacion.imagenBase64))
                 {
-                    imagen.Source = ConvertBase64ToImage(habitacion.ImagenBase64);
+                    imagen.Source = ConvertBase64ToImage(habitacion.imagenBase64);
                 }
                 else
                 {
@@ -273,7 +273,7 @@ namespace app.View.Habitaciones
                 habitacion.opciones.Cuna,      // Igualmente, para "Cuna"
                 precioOriginal,
                 estado,
-                habitacion.ImagenBase64
+                habitacion.imagenBase64
             );
 
             if (editarWindow.ShowDialog() == true)
@@ -311,7 +311,7 @@ namespace app.View.Habitaciones
                 habitacion.capacidad = nuevaCapacidad;
                 habitacion.descripcion = nuevaDescripcion;
                 habitacion.opciones = nuevaOpcion;
-                habitacion.ImagenBase64 = nuevaImagen;
+                habitacion.imagenBase64 = nuevaImagen;
                 habitacion.tieneOferta = tieneOferta;
 
                 // Actualizar precio y estado en MongoDB
