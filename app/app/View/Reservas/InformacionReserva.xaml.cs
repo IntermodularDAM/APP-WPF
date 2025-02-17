@@ -28,7 +28,7 @@ namespace app.View.Reservas
             _reserva = reserva; // Almacena la reserva pasada desde el MainWindow
 
             // Asigna los valores de la reserva a los controles de la interfaz
-            txtNombre.Text = $"A nombre de: {_reserva.id_usu}";
+            txtNombre.Text = $"A nombre de: {SettingsData.Default.nombre}";
             txtUsuario.Text = _reserva.id_usu;
             txtHabitacion.Text = _reserva.id_hab;
             txtFechaEntrada.Text = _reserva.fecha_check_in;

@@ -47,24 +47,24 @@ namespace app.View.Reservas
         /// <summary>
         /// Carga las reservas desde la API.
         /// </summary>
-        private async Task LoadReservationsAsync()
-        {
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    var response = await client.GetStringAsync("http://localhost:3505/Reserva/getAll");
-                    var reservations = JsonConvert.DeserializeObject<List<ReservaBase>>(response);
+        //private async Task LoadReservationsAsync()
+        //{
+        //    try
+        //    {
+        //        using (HttpClient client = new HttpClient())
+        //        {
+        //            var response = await client.GetStringAsync("http://localhost:3505/Reserva/getAll");
+        //            var reservations = JsonConvert.DeserializeObject<List<ReservaBase>>(response);
 
-                    Reservas = new ObservableCollection<ReservaBase>(reservations);
-                    DataGridReservas.ItemsSource = Reservas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al cargar las reservas: {ex.Message}");
-            }
-        }
+        //            Reservas = new ObservableCollection<ReservaBase>(reservations);
+        //            DataGridReservas.ItemsSource = Reservas;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error al cargar las reservas: {ex.Message}");
+        //    }
+        //}
 
         private void btnBuscadorReserva_Click(object sender, RoutedEventArgs e)
         {
