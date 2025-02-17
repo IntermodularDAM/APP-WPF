@@ -109,10 +109,9 @@ namespace app.View.Habitaciones
                     MessageBox.Show("Habitaciones triples solo tienen capacidad para tres personas", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                else if (tipo == "Suite" && capacidad != "4" && capacidad != "5" && capacidad != "8")
+                else if (tipo == "Suite" && capacidad != "4" && capacidad != "5")
                 {
-                    MessageBox.Show("Suites pueden tener capacidad para 4, 5 o 8 personas", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
+                    MessageBox.Show("Suites pueden tener capacidad para 4 o 5 personas", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
