@@ -1,5 +1,8 @@
 ﻿using app.Models.Reservas;
+using app.View.Habitaciones;
 using app.View.Home;
+using app.View.Usuarios.CambiarContraseña;
+using app.View.Usuarios.MainUsuarios;
 using app.ViewModel.Reservas;
 using Newtonsoft.Json;
 using System;
@@ -36,6 +39,9 @@ namespace app.View.Reservas
 
             //Reservas = new ObservableCollection<ReservaBase>();
             //DataGridPerfilUsuarios.ItemsSource = Reservas;
+
+            txtUsuarioRol.Text = SettingsData.Default.rol;
+            txtUsuarioSession.Text = SettingsData.Default.nombre;
         }
 
         /// <summary>
@@ -202,6 +208,46 @@ namespace app.View.Reservas
             }
         }
 
+        private void MenuCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            //_viewModel.IsViewVisible = true;
+            SettingsData.Default.token = "";
+            SettingsData.Default.appToken = "";
+            SettingsData.Default.idPerfil = "";
+            SettingsData.Default.Save();
+
+            //// Verifica si LogIn ya existe y está oculto
+            //foreach (Window window in Application.Current.Windows)
+            //{
+            //    if (window is InicioDeSesion.LogIn logInView)
+            //    {
+            //        logInView.Show();
+            //        this.Close();
+            //        return;
+            //    }
+            //}
+
+            // Si no encuentra LogIn, crea una nueva instancia (en caso de que se haya cerrado completamente)
+            var newLogIn = new app.View.Usuarios.InicioDeSesion.LogIn();
+            newLogIn.Show();
+            this.Close();
+
+
+        }
+
+        private void MenuCambiarContraseña_Click(object sender, RoutedEventArgs e)
+        {
+            app.View.Usuarios.CambiarContraseña.CambiarContraseña cam = new app.View.Usuarios.CambiarContraseña.CambiarContraseña();
+            cam.Owner = this;
+            cam.ShowDialog();
+
+        }
+
+        private void MenuApagar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             viewModel.CargarTodasLasReservas();
@@ -211,6 +257,20 @@ namespace app.View.Reservas
         {
             Inicio ventanaMain = new Inicio();
             ventanaMain.Show();
+            this.Close();
+        }
+
+        private void btnUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            MainUsuario mainUser = new MainUsuario();
+            mainUser.Show();
+            this.Close();
+        }
+
+        private void btnHabitaciones_Click(object sender, RoutedEventArgs e)
+        {
+            BuscadorHabitaciones mainHabit = new BuscadorHabitaciones();
+            mainHabit.Show();
             this.Close();
         }
     }

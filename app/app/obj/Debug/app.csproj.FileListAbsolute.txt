@@ -178,12 +178,10 @@ C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.cs
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.csproj.Up2Date
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.exe
 C:\Users\srleo\Documents\GitHub\IntermodularDAM\APP-WPF\app\app\obj\Debug\app.pdb
-
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InicioDeSesion\CustomControls\BindablePasswordBox.g.cs
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InicioDeSesion\LogIn.g.cs
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InicioDeSesion\CustomControls\BindablePasswordBox.baml
 C:\Users\ivapandev.EDU\APP-WPF\app\app\obj\Debug\View\Usuarios\InicioDeSesion\LogIn.baml
-
 C:\Users\Usuario\Desktop\APP-WPF\app\app\bin\Debug\app.exe.config
 C:\Users\Usuario\Desktop\APP-WPF\app\app\bin\Debug\app.exe
 C:\Users\Usuario\Desktop\APP-WPF\app\app\bin\Debug\app.pdb
