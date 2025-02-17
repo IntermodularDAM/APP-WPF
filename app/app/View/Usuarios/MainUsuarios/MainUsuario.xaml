@@ -135,14 +135,10 @@
                                 </DatePicker.Resources>
                             </DatePicker>
 
-                            <Label Content="Ciudad"  FontSize="14" Margin="20,10,0,0"  />
-                            <TextBox x:Name="txtCiudad" Margin="20,0" FontSize="16" Height="35">
-                                <TextBox.Resources>
-                                    <Style TargetType="Border">
-                                        <Setter Property="CornerRadius" Value="5"/>
-                                    </Style>
-                                </TextBox.Resources>
-                            </TextBox>
+                            <Label Content="Situación Actual"  FontSize="14" Margin="20,10,0,0"  />
+                            <StackPanel >
+                                <CheckBox x:Name="txtBaja" Content="De Baja" Margin="20,10,0,0" />
+                            </StackPanel>
 
                             <Label Content="DNI / NIE" FontSize="14" Margin="20,10,0,0"  />
                             <TextBox x:Name="txtDni"  Margin="20,0" FontSize="16" Height="35" >
@@ -152,9 +148,6 @@
                                     </Style>
                                 </TextBox.Resources>
                             </TextBox>
-
-
-
 
                             <Button x:Name="btnBuscar"  Content="Buscar" Height="45" Width="130" Margin="0,20,0,10" Background="#CD6CE0" BorderBrush="White" Foreground="White" FontSize="14" Click="Button_Click">
                                 <Button.Resources>
@@ -437,7 +430,7 @@
                                     <GridViewColumn Header="ID Usuario"    DisplayMemberBinding="{Binding idUsuario}" />
                                     <GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding apellido}" />
                                     <GridViewColumn Header="Dni" DisplayMemberBinding="{Binding dni}" />
-                                    <GridViewColumn Header="Rol" DisplayMemberBinding="{Binding date}" />
+                                    <GridViewColumn Header="Fecha" DisplayMemberBinding="{Binding date}" />
                                     <GridViewColumn Header="Acción" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>

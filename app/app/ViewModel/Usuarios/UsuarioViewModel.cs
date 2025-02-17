@@ -239,7 +239,7 @@ namespace app.ViewModel.Usuarios
                 }
                 else
                 {
-                    MessageBox.Show("Hubo un error al eliminar el usuario. Intenta de nuevo.");
+                    //MessageBox.Show("Hubo un error al eliminar el usuario. Intenta de nuevo.");
                     //UsuarioSeleccionado = null; // Deseleccionar usuario después de eliminar
                 }
             }
@@ -318,6 +318,7 @@ namespace app.ViewModel.Usuarios
                                     ciudad = administrador.ciudad,
                                     sexo = administrador.sexo,
                                     registro = administrador.registro,
+                                    baja = administrador.baja,
                                     rutaFoto = "http://127.0.0.1:3505/" + administrador.rutaFoto,
                                 });
                         }
@@ -337,6 +338,7 @@ namespace app.ViewModel.Usuarios
                                     ciudad = empleado.ciudad,
                                     sexo = empleado.sexo,
                                     registro = empleado.registro,
+                                    baja = empleado.baja,
                                     rutaFoto = "http://127.0.0.1:3505/" + empleado.rutaFoto,
                                 });
                         }
@@ -356,6 +358,7 @@ namespace app.ViewModel.Usuarios
                                 ciudad = cliente.ciudad,
                                 sexo = cliente.sexo,
                                 registro = cliente.registro,
+                                baja = cliente.baja,
                                 rutaFoto = "http://127.0.0.1:3505/" + cliente.rutaFoto,
                             });
                         }
@@ -373,10 +376,12 @@ namespace app.ViewModel.Usuarios
                         dynamic empleadoResponse = JsonConvert.DeserializeObject<dynamic>(jsonEmpleado);
                         dynamic clienteResponse = JsonConvert.DeserializeObject<dynamic>(jsonCliente);
 
-                        if (usuarioResponse.message == "Invalid Token"|| administradorResponse.message == "Invalid Token" || empleadoResponse.message == "Invalid Token" || clienteResponse.message == "Invalid Token") {
+                        if (usuarioResponse.ReasonPhrase == "Token Expired" || administradorResponse.ReasonPhrase == "Token Expired" || empleadoResponse.ReasonPhrase == "Token Expired" || clienteResponse.ReasonPhrase == "Token Expired")
+                        {
+                            ClearSettings();    
                             return SettingsData.Default._419;
-                            
-                        } else {
+                        }
+                        else {
 
                             Debug.Write($"WPF : Error 500 : " +
                                 $"\nAdministrador status: {responseAdministradores.StatusCode} , Contenido : {jsonAdministrador} " +
@@ -486,7 +491,7 @@ namespace app.ViewModel.Usuarios
                 try {
 
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",SettingsData.Default.token);
-                    client.DefaultRequestHeaders.Add("x-user-role", SettingsData.Default.token);
+                    client.DefaultRequestHeaders.Add("x-user-role", SettingsData.Default.rol);
 
                     HttpResponseMessage response = await client.PutAsync(rutaPerfilEditar, usuarioEditar);
 

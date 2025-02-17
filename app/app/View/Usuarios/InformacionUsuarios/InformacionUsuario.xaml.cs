@@ -48,7 +48,8 @@ namespace app.View.Usuarios.InformacionUsuarios
             txtCiudad.Text = infoPerfil.ciudad;
             txtRol.Text = infoPerfil.rol;
             txtDni.Text = infoPerfil.dni;
-            txtDate.Text = infoPerfil.date;
+            txtAlta.Text = infoPerfil.registro;
+            txtBaja.Text = infoPerfil.baja;
             txtEmail.Text = infoUsuario.email;
             string imageUrl = infoPerfil.rutaFoto; // Ruta de la API
             BitmapImage bitmap = new BitmapImage();

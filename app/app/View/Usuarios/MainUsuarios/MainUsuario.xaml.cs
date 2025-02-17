@@ -102,9 +102,19 @@ namespace app.View.Usuarios.MainUsuarios
             else { MessageBox.Show("Por favor, selecciona una usuario para editar.", "Error.",MessageBoxButton.OK,MessageBoxImage.Error); return; }
 
 
-            EditarUsuario edit = new EditarUsuario(usuarioSeleccionado._id,usuarioSeleccionado.rol,  _viewModel);
-            edit.Owner = this;
-            edit.ShowDialog();
+            if (sender is Button button && button.DataContext is UsuarioBase usuario)
+            {
+                // Se obtiene el usuario correcto de la fila del botón presionado
+                EditarUsuario edit = new EditarUsuario(usuario._id, usuario.rol, _viewModel);
+                edit.Owner = this;
+                edit.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un usuario válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
 
             CargaUsuariosSession();
         }
@@ -117,10 +127,21 @@ namespace app.View.Usuarios.MainUsuarios
             else if (ListViewPerfilUsuarios.SelectedItem != null) { usuarioSeleccionado = (UsuarioBase)ListViewPerfilUsuarios.SelectedItem; }
             else { MessageBox.Show("Por favor, selecciona una usuario para editar.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error); return; }
 
-            InformacionUsuario info = new InformacionUsuario(usuarioSeleccionado._id,_viewModel); 
-            
-            info.Owner = this;
-            info.ShowDialog();
+
+            if (sender is Button button && button.DataContext is UsuarioBase usuario)
+            {
+                // Se obtiene el usuario correcto de la fila del botón presionado
+                InformacionUsuario info = new InformacionUsuario(usuario._id, _viewModel);
+                info.Owner = this;
+                info.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un usuario válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        
+
 
         }
 
@@ -191,11 +212,13 @@ namespace app.View.Usuarios.MainUsuarios
             if (!string.IsNullOrEmpty(txtDni.Text))
                 _multipartFormDataContent.Add(new StringContent(txtDni.Text.Trim()), "dni");
 
-            if (!string.IsNullOrEmpty(txtCiudad.Text))
-                _multipartFormDataContent.Add(new StringContent(txtCiudad.Text.Trim()), "ciudad");
-
             if (!string.IsNullOrEmpty(txtDate.Text))
                 _multipartFormDataContent.Add(new StringContent(txtDate.Text.Trim()), "date");
+            if (txtBaja.IsChecked == true)
+            {
+                _multipartFormDataContent.Add(new StringContent("true"), "baja");
+            }
+      
 
             if (!_multipartFormDataContent.Any(c => c.Headers.ContentDisposition.Name.Trim('"') == "rol"))
             {
@@ -218,7 +241,7 @@ namespace app.View.Usuarios.MainUsuarios
         {
             txtNombre.Text = string.Empty; // Vaciar el TextBox
             txtDni.Text = string.Empty; // Vaciar el TextBox
-            txtCiudad.Text = string.Empty; // Vaciar el TextBox
+            txtBaja.IsChecked = false; // Vaciar el TextBox
             txtDate.SelectedDate = null; // Vaciar el DatePicker
             txtRol.SelectedIndex = -1; // Restablecer el ComboBox
         }
@@ -288,6 +311,7 @@ namespace app.View.Usuarios.MainUsuarios
                 Notificacion not = new Notificacion("Session Terminada", "Por favor inicie session.");
                 not.Owner = this;
                 not.ShowDialog();
+                
                 InicioDeSesion.LogIn log = new InicioDeSesion.LogIn();
                 log.Show();
                 this.Close();
