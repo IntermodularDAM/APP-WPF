@@ -86,7 +86,7 @@ namespace app.View.Usuarios.CambiarContraseña
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //_viewModel.Password = "";
+            _viewModel.Passwordd = "";
             _viewModel.PasswordConfirm = "";
             _viewModel.PasswordConfirm2 = "";
             this.Close();
@@ -108,7 +108,9 @@ namespace app.View.Usuarios.CambiarContraseña
                 Notificacion not = new Notificacion("Error de conexión.", "Por favor revise  su conexión al servidor.");
                 not.Owner = this;
                 not.ShowDialog();
-
+                _viewModel.Passwordd = "";
+                _viewModel.PasswordConfirm = "";
+                _viewModel.PasswordConfirm2 = "";
                 btnCambiar.IsEnabled = true;
 
             }
@@ -116,11 +118,11 @@ namespace app.View.Usuarios.CambiarContraseña
             {
                 var result200= await response.Content.ReadAsStringAsync();
                 var _200 = JsonConvert.DeserializeObject<dynamic>(result200);
-                Notificacion not = new Notificacion(_200.header.ToString(), _200.message.ToString());
+                Notificacion not = new Notificacion(_200.ReasonPhrase.ToString(), _200.Content.ToString());
                 not.Owner = this;
                 not.ShowDialog();
 
-                //_viewModel.Password = "";
+                _viewModel.Passwordd = "";
                 _viewModel.PasswordConfirm = "";
                 _viewModel.PasswordConfirm2 = "";
                 this.Close();
@@ -129,12 +131,18 @@ namespace app.View.Usuarios.CambiarContraseña
             else {
                 var resultError = await response.Content.ReadAsStringAsync();
                 var error = JsonConvert.DeserializeObject<dynamic>(resultError);
-                Notificacion not = new Notificacion(error.message.ToString(), error.status.ToString());
+                Notificacion not = new Notificacion(error.ReasonPhrase.ToString(), error.Content.ToString());
                 not.Owner = this;
                 not.ShowDialog();
+                _viewModel.Passwordd = "";
+                _viewModel.PasswordConfirm = "";
+                _viewModel.PasswordConfirm2 = "";
                 btnCambiar.IsEnabled = true;
             }
 
+            _viewModel.Passwordd = "";
+            _viewModel.PasswordConfirm = "";
+            _viewModel.PasswordConfirm2 = "";
             btnCambiar.IsEnabled = true;    
         }
 

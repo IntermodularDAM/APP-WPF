@@ -28,12 +28,12 @@
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
-            <Border Grid.Row="1" Width="265" Height="550" CornerRadius="20" >
+            <Border Grid.Row="1" Width="265" Height="565" CornerRadius="20" >
                 <Border.Background>
                     <SolidColorBrush Color="#FFD9D9D9" />
                 </Border.Background>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Ellipse x:Name="imgPerfil"  Width="200" Height="200">
+                    <Ellipse x:Name="imgPerfil"  Width="150" Height="150">
                         <Ellipse.Fill>
                             <VisualBrush>
                                 <VisualBrush.Visual>
@@ -53,8 +53,10 @@
                     <TextBlock x:Name="txtEmail" Text="Leo@peremaria.com" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
                     <TextBlock Text="DNI" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
                     <TextBlock x:Name="txtDni" Text="Y8262855G" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF000000"/>
-                    <TextBlock Text="Fecha nacimiento" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
-                    <TextBlock x:Name="txtDate" Text="13/04/2023" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,10" Foreground="#FF000000"/>
+                    <TextBlock Text="Fecha de Alta" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
+                    <TextBlock x:Name="txtAlta" Text="13/04/2023" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,10" Foreground="#FF000000"/>
+                     <TextBlock Text="Fecha de Baja" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0" Foreground="#FF838383"/>
+                    <TextBlock x:Name="txtBaja" Text="13/04/2023" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,10" Foreground="#FF000000"/>
 
                     <Button x:Name="btnCerrar"  Height="45" Width="160"
                           HorizontalAlignment="Center"   Content="Cerrar"

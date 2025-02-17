@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace app.ViewModel.Repositories.RepositoryUsuarios
     public class RepositoryUsuario : RepositoryBase, IUsuarioRepository
     {
 
-
+        //Repository de CommandLogin
         public async Task<dynamic> AuthenticateUser(NetworkCredential credential)
         {
             
@@ -77,7 +78,89 @@ namespace app.ViewModel.Repositories.RepositoryUsuarios
             
         }
 
+        //Repository de CommandDelete
+        public async Task<bool> Delete(string id, string role)
+        {
+            string rutaEliminar = "";
+            if (role == "Administrador")
+                rutaEliminar = ApiRouteUsuarios.Administrador.Eliminar;
+            if (role == "Empleado")
+                rutaEliminar = ApiRouteUsuarios.Empleado.Eliminar;
+            if (role == "Cliente")
+                rutaEliminar = ApiRouteUsuarios.Cliente.Eliminar;
 
+  
+            try
+            {
+                Debug.WriteLine("Entro en eliminar");
+                Debug.WriteLine(SettingsData.Default.rol);
+                Debug.WriteLine("Entro en eliminar");
+                API.DefaultRequestHeaders.Clear();
+                API.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SettingsData.Default.token);
+                API.DefaultRequestHeaders.Add("x-user-role", SettingsData.Default.rol);
+
+                var json = JsonConvert.SerializeObject(new { _id = id, rol = role });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Delete,
+                    RequestUri = new Uri(rutaEliminar),
+                    Content = content
+                };
+
+                var response = await API.SendAsync(request);
+
+
+                if (response == null)
+                {
+                    Debug.WriteLine("Error respuesta nula");
+                    dynamic nullContet = new { ReasonPhrase = "Error de conexión.", Content = "Por favor revise su conexión al servidor." };
+                    ShowNotification(nullContet);
+                    return false;
+                }
+
+                var jsonContent = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("Respuesta satisfactoria");
+                    dynamic responseData = JsonConvert.DeserializeObject<dynamic>(jsonContent);
+                    ShowNotification(responseData); 
+                    return true;
+                }
+                else
+                {
+                    //La respuesta puede ser json o html
+                    string contentType = response.Content.Headers.ContentType?.MediaType ?? "unknown";
+                    if (contentType == "application/json")
+                    { //Si es JSON
+                        Debug.WriteLine("No success / json");
+                        Debug.WriteLine($"{jsonContent}");
+                        var errorContet = JsonConvert.DeserializeObject<dynamic>(jsonContent);
+                        ShowNotification(errorContet);
+                        return false;
+                    }
+                    else
+                    { //SI es HTML
+                        Debug.WriteLine("No success / html");
+                        string contenidoExtraido = ExtractPreContent(jsonContent);
+                        dynamic errorHtml = new { ReasonPhrase = response.ReasonPhrase, Content = contenidoExtraido };
+                        ShowNotification(errorHtml);
+                        return false;
+                    }
+                }
+
+            }
+            catch (Exception e) {
+                Debug.WriteLine("WTF");
+                Debug.WriteLine("Error desconocido: " + e);
+                dynamic exceptionContet = new { ReasonPhrase = "Exception Delete.", Content = e.Message.ToString() };
+                ShowNotification(exceptionContet);
+                return false; 
+            }
+        }
+        
         public bool Access(string token)
         {
             throw new NotImplementedException();
@@ -86,10 +169,7 @@ namespace app.ViewModel.Repositories.RepositoryUsuarios
         {
             throw new NotImplementedException();
         }
-        public void Delete(string id, string role)
-        {
-            throw new NotImplementedException();
-        }
+
         public IEnumerable<Usuario> GetAll()
         {
             throw new NotImplementedException();
