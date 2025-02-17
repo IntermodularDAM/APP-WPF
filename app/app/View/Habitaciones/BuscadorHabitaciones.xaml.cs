@@ -1,4 +1,4 @@
-﻿using app.Models.Habitaciones;
+using app.Models.Habitaciones;
 using app.Models.Reservas;
 using app.View.Home;
 using app.View.Usuarios.InicioDeSesion;
@@ -148,13 +148,14 @@ namespace app.View.Habitaciones
                 // Cargar la imagen de la habitación desde Base64 (si existe)
                 Image imagen = new Image { Width = 150, Height = 150 };  // Aumenté un poco el tamaño para mejor visualización
 
-                if (!string.IsNullOrEmpty(habitacion.ImagenBase64))
+                if (!string.IsNullOrEmpty(habitacion.imagenBase64))
                 {
-                    imagen.Source = ConvertBase64ToImage(habitacion.ImagenBase64);
+                    imagen.Source = ConvertBase64ToImage(habitacion.imagenBase64);
                 }
                 else
                 {
-                    imagen.Source = new BitmapImage(new Uri("/Image/habitacion.png", UriKind.Relative)); // Imagen predeterminada
+                    imagen.Source = new BitmapImage(new Uri("pack://application:,,,/Image/habitacion.png", UriKind.Absolute));
+                    // Imagen predeterminada
                 }
 
                 var nombre = new Label
@@ -272,7 +273,7 @@ namespace app.View.Habitaciones
                 habitacion.opciones.Cuna,      // Igualmente, para "Cuna"
                 precioOriginal,
                 estado,
-                habitacion.ImagenBase64
+                habitacion.imagenBase64
             );
 
             if (editarWindow.ShowDialog() == true)
@@ -310,7 +311,7 @@ namespace app.View.Habitaciones
                 habitacion.capacidad = nuevaCapacidad;
                 habitacion.descripcion = nuevaDescripcion;
                 habitacion.opciones = nuevaOpcion;
-                habitacion.ImagenBase64 = nuevaImagen;
+                habitacion.imagenBase64 = nuevaImagen;
                 habitacion.tieneOferta = tieneOferta;
 
                 // Actualizar precio y estado en MongoDB
@@ -332,7 +333,6 @@ namespace app.View.Habitaciones
                     if (resultadoMongo.ModifiedCount > 0)
                     {
                         MessageBox.Show("Precio y estado actualizados correctamente en MongoDB.");
-                        btn_Buscar_Click(null, null);
                     }
                     else
                     {
@@ -363,47 +363,44 @@ namespace app.View.Habitaciones
         }
 
 
-
         private async void EliminarHabitacion(Habitacion habitacion)
         {
             var reservasResponse = await httpClient.GetAsync("http://127.0.0.1:3505/Reserva/getAll");
             reservasResponse.EnsureSuccessStatusCode();
             var reservasJson = await reservasResponse.Content.ReadAsStringAsync();
-
-            // Deserializar las reservas
-            var reservas = JsonConvert.DeserializeObject<List<ReservaBase>>(reservasJson);
-
+        
+            // Deserializar la respuesta usando ApiResponse<List<ReservaBase>>
+            var reservasResponseData = JsonConvert.DeserializeObject<ApiResponse<List<ReservaBase>>>(reservasJson);
+        
+            // Ahora accedemos a la lista de reservas
+            var reservas = reservasResponseData.reservas;
+        
             if (habitacion == null)
             {
-
                 MessageBox.Show("No se ha seleccionado ninguna habitación para eliminar.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-
             }
             else if ((habitacion.estado == true) || (reservas.Any(r => r.id_hab == habitacion._id)))
             {
-
                 MessageBox.Show("No puedes eliminar la habitación del sistema", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-
             }
-
+        
             try
             {
                 // Confirmar la eliminación
                 var confirmacion = MessageBox.Show($"¿Estás seguro de que deseas eliminar la habitación con ID: {habitacion._id}?", "Eliminar Habitación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (confirmacion != MessageBoxResult.Yes) return;
-
+        
                 // Enviar la solicitud DELETE a la API para eliminar la habitación
                 var response = await httpClient.DeleteAsync($"http://127.0.0.1:3505/Habitacion/Eliminar/{habitacion._id}");
-
+        
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show($"Habitación con ID: {habitacion._id} eliminada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-
+        
                     // Actualizar la lista de habitaciones
                     btn_Buscar_Click(null, null); // Asegúrate de que este método recargue la lista correctamente
-                                                  // Asegúrate de que este método también tenga un propósito claro
                 }
                 else
                 {
@@ -415,7 +412,6 @@ namespace app.View.Habitaciones
                 MessageBox.Show($"Error al eliminar la habitación: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
 
 
         // Evento del botón "Ofertas"
