@@ -55,11 +55,6 @@ namespace app.View.Reservas
             }
         }
 
-        public EditarReserva()
-        {
-            InitializeComponent();
-        }
-
         private async void btnGuardarPerfil_Click(object sender, RoutedEventArgs e)
         {
             // Obtener los valores editados
