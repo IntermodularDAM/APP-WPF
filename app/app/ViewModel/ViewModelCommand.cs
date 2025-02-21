@@ -33,7 +33,8 @@ namespace app.ViewModel
         }
 
 
-        //Se subcribe o se da de baja en el evento segun si es necesario por lo que se implementa de la siguite manera (asi aparece cuando se implementa la clase: public event EventHandler CanExecuteChanged;)
+        //Se subcribe o se da de baja en el evento segun si es necesario por lo que se implementa de la siguite manera
+        //(asi aparece cuando se implementa la clase: public event EventHandler CanExecuteChanged;)
         public event EventHandler CanExecuteChanged 
         {
             //RequerySuggested se produce cuando se detecta que el comando ha cambiado.

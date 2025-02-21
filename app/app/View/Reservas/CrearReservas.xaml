@@ -80,7 +80,13 @@
                     <Label Content="Fecha de Salida" FontSize="24" Margin="0 20 0 0" Foreground="#5B4B8A"/>
                     <DatePicker x:Name="dpFechaSalida" Width="300" Height="50" BorderBrush="#8A73C1"/>
                     <Label Content="Cantidad de Personas" FontSize="24" Margin="0 20 0 0" Foreground="#5B4B8A"/>
-                    <TextBox x:Name="txtCantidadPersonas" Width="300" Height="50" FontSize="22" BorderBrush="#8A73C1"/>
+                    <ComboBox x:Name="txtCantidadPersonas" Width="300" Height="50" FontSize="22" BorderBrush="#8A73C1">
+                        <ComboBoxItem Content="1"/>
+                        <ComboBoxItem Content="2"/>
+                        <ComboBoxItem Content="3"/>
+                        <ComboBoxItem Content="4"/>
+                        <ComboBoxItem Content="5"/>
+                    </ComboBox>
 
                     <Label Content="Extras" FontSize="24" Margin="0 20 0 0" Foreground="#5B4B8A"></Label>
                     <CheckBox x:Name="chkCamaExtra" BorderThickness="7" Content="Cama Extra" Width="300" Height="50" FontSize="20" BorderBrush="#8A73C1" Click="chkCamaExtra_Checked"></CheckBox>
