@@ -46,28 +46,6 @@ namespace app.View.Reservas
             _viewModelR.CargarTodasLasReservas();
         }
 
-        public void CargarTodasHabitaciones()
-        {
-            // Cargar los datos desde la API o base de datos y asignarlos a AllHabitaciones
-            using (HttpClient client = new HttpClient())
-            {
-                var response = client.GetStringAsync("http://localhost:3505/Habitacion/habitaciones").Result;
-                var habitaciones = JsonConvert.DeserializeObject<List<Habitacion>>(response);
-                AllHabitaciones = new ObservableCollection<Habitacion>(habitaciones);
-            }
-        }
-
-        public void CargarTodasReservas()
-        {
-            // Cargar las reservas desde la API o base de datos y asignarlas a AllReservas
-            using (HttpClient client = new HttpClient())
-            {
-                var response = client.GetStringAsync("http://localhost:3505/Reserva/getAll").Result;
-                var reservas = JsonConvert.DeserializeObject<List<ReservaBase>>(response);
-                AllReservas = new ObservableCollection<ReservaBase>(reservas);
-            }
-        }
-
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
             try
