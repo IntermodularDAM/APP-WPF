@@ -1,5 +1,8 @@
 ﻿using app.Models.Reservas;
+using app.View.Habitaciones;
 using app.View.Home;
+using app.View.Usuarios.CambiarContraseña;
+using app.View.Usuarios.MainUsuarios;
 using app.ViewModel.Reservas;
 using Newtonsoft.Json;
 using System;
@@ -36,6 +39,10 @@ namespace app.View.Reservas
 
             //Reservas = new ObservableCollection<ReservaBase>();
             //DataGridPerfilUsuarios.ItemsSource = Reservas;
+
+            //Menu perfil
+            txtUsuarioRol.Text = SettingsData.Default.rol;
+            txtUsuarioSession.Text = SettingsData.Default.nombre;
         }
 
         /// <summary>
@@ -207,7 +214,74 @@ namespace app.View.Reservas
             viewModel.CargarTodasLasReservas();
         }
 
-        private void btnVolver_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseDown(object sender, RoutedEventArgs e)
+        {
+            Inicio ventanaMain = new Inicio();
+            ventanaMain.Show();
+            this.Close();
+        }
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Inicio inicio = new Inicio();
+            inicio.Show();
+            this.Close();
+        }
+
+        private void MenuCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            //_viewModel.IsViewVisible = true;
+            SettingsData.Default.token = "";
+            SettingsData.Default.appToken = "";
+            SettingsData.Default.idPerfil = "";
+            SettingsData.Default.Save();
+
+            //// Verifica si LogIn ya existe y está oculto
+            //foreach (Window window in Application.Current.Windows)
+            //{
+            //    if (window is InicioDeSesion.LogIn logInView)
+            //    {
+            //        logInView.Show();
+            //        this.Close();
+            //        return;
+            //    }
+            //}
+
+            // Si no encuentra LogIn, crea una nueva instancia (en caso de que se haya cerrado completamente)
+            var newLogIn = new Usuarios.InicioDeSesion.LogIn();
+            newLogIn.Show();
+            this.Close();
+
+
+        }
+
+        private void MenuCambiarContraseña_Click(object sender, RoutedEventArgs e)
+        {
+            Usuarios.CambiarContraseña.CambiarContraseña cam = new Usuarios.CambiarContraseña.CambiarContraseña();
+            cam.Owner = this;
+            cam.ShowDialog();
+
+        }
+
+        private void MenuApagar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnHabitaciones_Click(object sender, RoutedEventArgs e)
+        {
+            BuscadorHabitaciones mainHab = new BuscadorHabitaciones();
+            mainHab.Show();
+            this.Close();
+        }
+
+        private void btnUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            MainUsuario mainUsu = new MainUsuario();
+            mainUsu.Show();
+            this.Close();
+        }
+
+        private void btnPrincipal_Click(object sender, RoutedEventArgs e)
         {
             Inicio ventanaMain = new Inicio();
             ventanaMain.Show();

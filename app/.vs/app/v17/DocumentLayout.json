@@ -3,28 +3,72 @@
   "WorkspaceRootPath": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\ivapandev.edu\\app-wpf\\app\\app\\viewmodel\\usuarios\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\reservas\\crearreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\crearreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\settingsdata.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|c:\\users\\ivapandev.edu\\app-wpf\\app\\app\\settingsdata.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\settingsdata.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\crearreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\reservas\\mainreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\mainreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\reservas\\mainreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\mainreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\reservas\\buscadorreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\buscadorreservas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\reservas\\buscadorreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\buscadorreservas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\reservas\\editarreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\editarreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\reservas\\informacionreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\reservas\\informacionreserva.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registrousuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registrousuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\habitaciones\\buscadorhabitaciones.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\habitaciones\\buscadorhabitaciones.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\viewmodel\\usuarios\\registrousuarios\\registroperfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\registrousuarios\\registroperfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\usuarios\\mainusuarios\\mainusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\mainusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\usuarios\\mainusuarios\\notification.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\notification.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\usuarios\\mainusuarios\\mainusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\mainusuarios\\mainusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\dictionary1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\dictionary1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\viewmodel\\usuarios\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registroperfil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -37,9 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\srleo\\AppData\\Local\\Temp\\.vsdbgsrc\\3714f74b82eacc6cf8dcf1e32980b0908d4f8b447d25d4eb08ff1424a7b57c02\\ResourcePart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\models\\usuarios\\usuariobase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,14 +111,6 @@
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\codigodeverificacion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\registrousuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\registrousuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\viewmodel\\usuarios\\registrousuarios\\registroperfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\viewmodel\\usuarios\\registrousuarios\\registroperfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\view\\usuarios\\registrousuarios\\codigodeverificacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{078A7339-6118-4A34-924C-6DD845134F4E}|app\\app.csproj|solutionrelative:app\\view\\usuarios\\registrousuarios\\codigodeverificacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
@@ -89,25 +122,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 15,
               "Title": "UsuarioViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
               "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
               "RelativeToolTip": "app\\ViewModel\\Usuarios\\UsuarioViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAACYAAAAAAAAAAAAQwBcAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-31T18:15:03.575Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "MainUsuario.xaml",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml",
@@ -119,6 +151,144 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RegistroUsuario.xaml",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
+              "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-10T20:29:16.538Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CrearReservas.xaml",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\CrearReservas.xaml",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\CrearReservas.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-13T14:51:57.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CrearReservas.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\CrearReservas.xaml.cs",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\CrearReservas.xaml.cs",
+              "RelativeToolTip": "app\\View\\Reservas\\CrearReservas.xaml.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAAAEAAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T14:45:50.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EditarReserva.xaml",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\EditarReserva.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\EditarReserva.xaml",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\EditarReserva.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\EditarReserva.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-12T19:50:18.301Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InformacionReserva.xaml",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\InformacionReserva.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\InformacionReserva.xaml",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\InformacionReserva.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\InformacionReserva.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-12T19:48:01.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BuscadorReservas.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\BuscadorReservas.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\BuscadorReservas.xaml.cs",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\BuscadorReservas.xaml.cs",
+              "RelativeToolTip": "app\\View\\Reservas\\BuscadorReservas.xaml.cs",
+              "ViewState": "AQIAALkAAAAAAAAAAAAYwMkAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T19:46:52.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BuscadorReservas.xaml",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\BuscadorReservas.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\BuscadorReservas.xaml",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\BuscadorReservas.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\BuscadorReservas.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-12T19:44:31.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Dictionary1.xaml",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\Dictionary1.xaml",
+              "RelativeDocumentMoniker": "app\\Dictionary1.xaml",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\Dictionary1.xaml",
+              "RelativeToolTip": "app\\Dictionary1.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-12T19:08:12.542Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BuscadorHabitaciones.xaml",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Habitaciones\\BuscadorHabitaciones.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Habitaciones\\BuscadorHabitaciones.xaml",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Habitaciones\\BuscadorHabitaciones.xaml",
+              "RelativeToolTip": "app\\View\\Habitaciones\\BuscadorHabitaciones.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-12T19:04:27.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MainUsuario.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
+              "RelativeToolTip": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
+              "ViewState": "AQIAAJUAAAAAAAAAAAAwwKoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T02:46:00.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainReservas.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml.cs",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\MainReservas.xaml.cs",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml.cs",
+              "RelativeToolTip": "app\\View\\Reservas\\MainReservas.xaml.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACcAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T18:48:58.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainReservas.xaml",
+              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml",
+              "RelativeDocumentMoniker": "app\\View\\Reservas\\MainReservas.xaml",
+              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Reservas\\MainReservas.xaml",
+              "RelativeToolTip": "app\\View\\Reservas\\MainReservas.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-12T18:45:37.321Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "SettingsData.settings",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\SettingsData.settings",
@@ -126,35 +296,23 @@
               "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\SettingsData.settings",
               "RelativeToolTip": "app\\SettingsData.settings",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002767|",
-              "WhenOpened": "2025-02-11T17:33:21.731Z"
+              "WhenOpened": "2025-02-11T17:33:21.731Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 18,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\App.config",
               "RelativeDocumentMoniker": "app\\App.config",
               "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\App.config",
               "RelativeToolTip": "app\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2025-02-11T16:58:28.711Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MainUsuario.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
-              "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
-              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
-              "RelativeToolTip": "app\\View\\Usuarios\\MainUsuarios\\MainUsuario.xaml.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAuwEYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T02:46:00.602Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 19,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\App.xaml.cs",
               "RelativeDocumentMoniker": "app\\App.xaml.cs",
@@ -166,18 +324,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 17,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\App.xaml",
               "RelativeDocumentMoniker": "app\\App.xaml",
               "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\App.xaml",
               "RelativeToolTip": "app\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-10T02:21:37.157Z"
+              "WhenOpened": "2025-02-10T02:21:37.157Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 16,
               "Title": "RegistroPerfil.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroPerfil.xaml.cs",
@@ -189,18 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "notification.png",
-              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\notification.png",
-              "RelativeDocumentMoniker": "app\\View\\Usuarios\\MainUsuarios\\notification.png",
-              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\MainUsuarios\\notification.png",
-              "RelativeToolTip": "app\\View\\Usuarios\\MainUsuarios\\notification.png",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-02-11T17:00:00.097Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 25,
               "Title": "Pre_Registro.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\Pre_Registros\\Pre_Registro.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\Pre_Registros\\Pre_Registro.xaml.cs",
@@ -212,20 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ResourcePart.cs [Solo lectura]",
-              "DocumentMoniker": "C:\\Users\\srleo\\AppData\\Local\\Temp\\.vsdbgsrc\\3714f74b82eacc6cf8dcf1e32980b0908d4f8b447d25d4eb08ff1424a7b57c02\\ResourcePart.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\srleo\\AppData\\Local\\Temp\\.vsdbgsrc\\3714f74b82eacc6cf8dcf1e32980b0908d4f8b447d25d4eb08ff1424a7b57c02\\ResourcePart.cs",
-              "ToolTip": "C:\\Users\\srleo\\AppData\\Local\\Temp\\.vsdbgsrc\\3714f74b82eacc6cf8dcf1e32980b0908d4f8b447d25d4eb08ff1424a7b57c02\\ResourcePart.cs [Solo lectura]",
-              "RelativeToolTip": "..\\..\\..\\srleo\\AppData\\Local\\Temp\\.vsdbgsrc\\3714f74b82eacc6cf8dcf1e32980b0908d4f8b447d25d4eb08ff1424a7b57c02\\ResourcePart.cs [Solo lectura]",
-              "ViewState": "AgIAABoAAAAAAAAAAAAhwCsAAAAEAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T16:49:51.218Z",
-              "EditorCaption": " [Solo lectura]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 24,
               "Title": "ValidacionPassword.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\CambiarContrase\u00F1a\\ValidacionPassword.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\CambiarContrase\u00F1a\\ValidacionPassword.cs",
@@ -237,7 +372,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 21,
               "Title": "RepositoryUsuario.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\ViewModel\\Repositories\\RepositoryUsuarios\\RepositoryUsuario.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Repositories\\RepositoryUsuarios\\RepositoryUsuario.cs",
@@ -249,7 +384,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 20,
               "Title": "UsuarioBase.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\Models\\Usuarios\\UsuarioBase.cs",
               "RelativeDocumentMoniker": "app\\Models\\Usuarios\\UsuarioBase.cs",
@@ -261,7 +396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 23,
               "Title": "CambiarContrase\u00F1a.xaml",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\CambiarContrase\u00F1a\\CambiarContrase\u00F1a.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\CambiarContrase\u00F1a\\CambiarContrase\u00F1a.xaml",
@@ -272,7 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 22,
               "Title": "RepositoryBase.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\ViewModel\\Repositories\\RepositoryBase.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Repositories\\RepositoryBase.cs",
@@ -284,18 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "RegistroUsuario.xaml",
-              "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
-              "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
-              "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
-              "RelativeToolTip": "app\\View\\Usuarios\\RegistroUsuarios\\RegistroUsuario.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-10T20:29:16.538Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 26,
               "Title": "CodigoDeVerificacion.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml.cs",
@@ -307,19 +431,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 11,
               "Title": "RegistroPerfilViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
               "RelativeDocumentMoniker": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
               "ToolTip": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
               "RelativeToolTip": "app\\ViewModel\\Usuarios\\RegistroUsuarios\\RegistroPerfilViewModel.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T20:28:04.246Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 27,
               "Title": "CodigoDeVerificacion.xaml",
               "DocumentMoniker": "C:\\Users\\ivapandev.EDU\\APP-WPF\\app\\app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml",
               "RelativeDocumentMoniker": "app\\View\\Usuarios\\RegistroUsuarios\\CodigoDeVerificacion.xaml",

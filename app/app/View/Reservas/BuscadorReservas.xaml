@@ -32,16 +32,17 @@
 
             <!-- Header Section -->
             <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
-                <Image Width="50" Margin="20 0 20 0" Source="/View/Reservas/Logo-Night-Days.png"/>
-                <TextBlock Text="Night Days" FontSize="32" Height="50" FontWeight="Bold" Foreground="#5B4B8A"/>
-
+                <DockPanel>
+                    <Image Height="40" VerticalAlignment="Top" Margin="20,0,0,0" Source="/View/Usuarios/MainUsuarios/logo_night_days.png" Cursor="Hand" MouseDown="Image_MouseDown"  />
+                    <Label Content="Hotel Night Day's" FontSize="27" Margin="5,0,0,0" FontWeight="Bold" MouseDown="TextBlock_MouseDown" Cursor="Hand" />
+                </DockPanel>
                 <Separator Margin="20 0 90 0"/>
 
                 <Border BorderBrush="#5B4B8A" BorderThickness="0 0 0 3" Width="250">
                     <TextBlock Text="Realice su Reserva" FontSize="26" Width="210" Height="35" Foreground="#5B4B8A"/>
                 </Border>
 
-                <Button Content="Volver" Height="40" Width="160" Margin="200 0 0 0" Click="Button_Click" Background="#8A73C1" Foreground="White" BorderBrush="#5B4B8A" BorderThickness="2"/>
+                <Button Content="Volver" Height="40" Width="160" Margin="140 0 0 0" Click="Button_Click" Background="#8A73C1" Foreground="White" BorderBrush="#5B4B8A" BorderThickness="2"/>
             </StackPanel>
 
             <!-- Main Content -->

@@ -1,5 +1,6 @@
 ﻿using app.Models.Habitaciones;
 using app.Models.Reservas;
+using app.View.Home;
 using app.ViewModel.Habitaciones;
 using app.ViewModel.Reservas;
 using Newtonsoft.Json;
@@ -207,6 +208,18 @@ namespace app.View.Reservas
         {
             MainReservas ventanaMain = new MainReservas();
             ventanaMain.Show();
+            this.Close();
+        }
+        private void Image_MouseDown(object sender, RoutedEventArgs e)
+        {
+            Inicio ventanaMain = new Inicio();
+            ventanaMain.Show();
+            this.Close();
+        }
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Inicio inicio = new Inicio();
+            inicio.Show();
             this.Close();
         }
 

@@ -15,6 +15,8 @@ using app.View.Usuarios.RegistroUsuarios;
 using app.ViewModel.Usuarios;
 using app.View.Usuarios.InicioDeSesion;
 using Newtonsoft.Json;
+using app.View.Reservas;
+using app.View.Habitaciones;
 
 namespace app.View.Usuarios.MainUsuarios
 {
@@ -336,6 +338,18 @@ namespace app.View.Usuarios.MainUsuarios
             Application.Current.Shutdown();
         }
 
- 
+        private void btnReservas_Click(object sender, RoutedEventArgs e)
+        {
+            MainReservas mainRes = new MainReservas();
+            mainRes.Show();
+            this.Close();
+        }
+
+        private void btnHabitaciones_Click(object sender, RoutedEventArgs e)
+        {
+            BuscadorHabitaciones mainHab = new BuscadorHabitaciones();
+            mainHab.Show();
+            this.Close();
+        }
     }
 }
