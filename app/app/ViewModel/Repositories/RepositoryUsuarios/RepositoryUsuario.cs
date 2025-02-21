@@ -181,7 +181,8 @@ namespace app.ViewModel.Repositories.RepositoryUsuarios
         //Notificacion base
         private void ShowNotification(dynamic content)
         {
-            //Decidi recibir los datos asi dado asi es como un respose regresa algunas respuestas automaticas, de manera que todos mis end points son iguales para swe homogeneo
+            //Decidi recibir los datos asi dado asi es como un respose regresa algunas respuestas automaticas,
+            //de manera que todos mis end points son iguales para swe homogeneo
             Notificacion not = new Notificacion(content.ReasonPhrase.ToString(), content.Content.ToString());
             //Se busca la venta actual para poder bloquear la ventana que lo ejecuta.
             not.Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
@@ -200,7 +201,9 @@ namespace app.ViewModel.Repositories.RepositoryUsuarios
         //Funcion que gestiona una solicitud HTML del servidor devolviendo el pre
         string ExtractPreContent(string html)
         {
+            //Se usa la clase Regex.Match para encontrar la primera ocurrencia de un texto que esté dentro de las etiquetas <pre>...</pre>.
             var match = Regex.Match(html, @"<pre>(.*?)<\/pre>", RegexOptions.Singleline);
+            //Si se encontró, match.Groups[1].Value devuelve el contenido capturado entre <pre> y </pre>.
             return match.Success ? match.Groups[1].Value : "No se encontró contenido en <pre>";
         }
     }

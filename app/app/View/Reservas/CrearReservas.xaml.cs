@@ -52,6 +52,16 @@ namespace app.View.Reservas
                     return;
                 }
 
+                ComboBoxItem itemSeleccionado = (ComboBoxItem)txtCantidadPersonas.SelectedItem;
+                string personasSeleccionadas = itemSeleccionado.Content.ToString();
+
+                bool capacidad = Int32.Parse(personasSeleccionadas) <= _habitacion.capacidad ? true : false;
+
+                if (!capacidad)
+                {
+                    MessageBox.Show($"El número de huspedes debe de ser igual o menor que {_habitacion.capacidad}", "Error de Capacidad", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 // Crear la reserva
                 var reserva = new ReservaBase
                 {

@@ -73,7 +73,6 @@ namespace app.ViewModel.Usuarios
         public string PasswordConfirm2 { get => _passwordConfirm2;  set { _passwordConfirm2 = value; OnPropertyChanged("PasswordConfirm2"); } }
 
 
-        private static UsuarioViewModel _instance;
 
         private ObservableCollection<UsuarioBase> allPerfiles;
 
@@ -83,7 +82,10 @@ namespace app.ViewModel.Usuarios
 
         private UsuarioBase usuarioSeleccionado;
 
-        public UsuarioBase UsuarioSeleccionado { get => usuarioSeleccionado; set { usuarioSeleccionado = value; OnPropertyChanged("UsuarioSeleccionado"); CommandManager.InvalidateRequerySuggested(); } } //CommandManager.InvalidateRequerySuggested(); Notifica que CanExecute ha cambiado
+        public UsuarioBase UsuarioSeleccionado { get => usuarioSeleccionado; set { usuarioSeleccionado = value; OnPropertyChanged("UsuarioSeleccionado"); CommandManager.InvalidateRequerySuggested(); } } 
+        //CommandManager.InvalidateRequerySuggested(); Notifica que CanExecute ha cambiado
+      
+        private static UsuarioViewModel _instance;
         public static UsuarioViewModel Instance
         {
             get
@@ -262,7 +264,10 @@ namespace app.ViewModel.Usuarios
 
                     HttpResponseMessage responseUsuarios = await client.GetAsync(ApiRouteUsuarios.Usuario.TodosLosUsuarios);
 
-                    if (responseUsuarios.StatusCode == HttpStatusCode.NotFound || responseAdministradores.StatusCode == HttpStatusCode.NotFound || responseEmpleados.StatusCode == HttpStatusCode.NotFound || responseCliente.StatusCode == HttpStatusCode.NotFound)
+                    if (responseUsuarios.StatusCode == HttpStatusCode.NotFound || 
+                        responseAdministradores.StatusCode == HttpStatusCode.NotFound
+                        || responseEmpleados.StatusCode == HttpStatusCode.NotFound
+                        || responseCliente.StatusCode == HttpStatusCode.NotFound)
                     {
                         return SettingsData.Default._404;
                     }
@@ -273,18 +278,17 @@ namespace app.ViewModel.Usuarios
 
                     var jsonUsuario = await responseUsuarios.Content.ReadAsStringAsync();
 
-                    if (responseAdministradores.IsSuccessStatusCode && responseCliente.IsSuccessStatusCode && responseEmpleados.IsSuccessStatusCode && responseUsuarios.IsSuccessStatusCode)
+                    if (responseAdministradores.IsSuccessStatusCode &&
+                        responseCliente.IsSuccessStatusCode && 
+                        responseEmpleados.IsSuccessStatusCode &&
+                        responseUsuarios.IsSuccessStatusCode)
                     {
-                        // Muestra el JSON crudo para depuración
-                        //MessageBox.Show($"JSON Administradores: {jsonAdministrador}, \n JSON Empleados : {jsonEmpleado}, JSON Clientes: {jsonCliente}");
 
                         var administradoresResponse = JsonConvert.DeserializeObject<ApiResponse<List<Administrador>>>(jsonAdministrador);
                         var empleadosResponse = JsonConvert.DeserializeObject<ApiResponse<List<Empleado>>>(jsonEmpleado);
                         var clientesResponse = JsonConvert.DeserializeObject<ApiResponse<List<Cliente>>>(jsonCliente);
 
                         var usuariosResponse = JsonConvert.DeserializeObject<ApiResponse<List<Usuario>>>(jsonUsuario);
-
-                        //MessageBox.Show($"Adminitradores : {administradoresResponse.data.Count()}, \n Empleado : {empleadosResponse.data.Count()} \n Cliente : {clientesResponse.data.Count()}");
 
                         AllPerfiles = new ObservableCollection<UsuarioBase>();
                         AllUsers= new ObservableCollection<Usuario>();
@@ -300,9 +304,7 @@ namespace app.ViewModel.Usuarios
                                     emailApp = user.emailApp,
 
                                 });
-
                         }
-
                         foreach (var administrador in administradoresResponse.data) 
                         {
                             if (!string.IsNullOrEmpty(administrador._id) && administrador != null)
@@ -322,7 +324,6 @@ namespace app.ViewModel.Usuarios
                                     rutaFoto = "http://127.0.0.1:3505/" + administrador.rutaFoto,
                                 });
                         }
-
                         foreach (var empleado in empleadosResponse.data) 
                         {
                             if (!string.IsNullOrEmpty(empleado._id) && empleado != null)
@@ -342,7 +343,6 @@ namespace app.ViewModel.Usuarios
                                     rutaFoto = "http://127.0.0.1:3505/" + empleado.rutaFoto,
                                 });
                         }
-
                         foreach (var cliente in clientesResponse.data) 
                         {
                             if (!string.IsNullOrEmpty(cliente._id) && cliente!= null)
@@ -362,27 +362,24 @@ namespace app.ViewModel.Usuarios
                                 rutaFoto = "http://127.0.0.1:3505/" + cliente.rutaFoto,
                             });
                         }
-
                         OnPropertyChanged("AllPerfiles");
                         OnPropertyChanged("AllUsers");
-
                         return SettingsData.Default._200;
-
                     }
                     else {
-
                         dynamic usuarioResponse = JsonConvert.DeserializeObject<dynamic>(jsonUsuario);
                         dynamic administradorResponse = JsonConvert.DeserializeObject<dynamic>(jsonAdministrador);
                         dynamic empleadoResponse = JsonConvert.DeserializeObject<dynamic>(jsonEmpleado);
                         dynamic clienteResponse = JsonConvert.DeserializeObject<dynamic>(jsonCliente);
-
-                        if (usuarioResponse.ReasonPhrase == "Token Expired" || administradorResponse.ReasonPhrase == "Token Expired" || empleadoResponse.ReasonPhrase == "Token Expired" || clienteResponse.ReasonPhrase == "Token Expired")
+                        if (usuarioResponse.ReasonPhrase == "Token Expired" ||
+                            administradorResponse.ReasonPhrase == "Token Expired" ||
+                            empleadoResponse.ReasonPhrase == "Token Expired" ||
+                            clienteResponse.ReasonPhrase == "Token Expired")
                         {
                             ClearSettings();    
                             return SettingsData.Default._419;
                         }
                         else {
-
                             Debug.Write($"WPF : Error 500 : " +
                                 $"\nAdministrador status: {responseAdministradores.StatusCode} , Contenido : {jsonAdministrador} " +
                                 $"\nEmpleado status: {responseEmpleados.StatusCode}, Contenido : {jsonEmpleado}" +
@@ -390,7 +387,6 @@ namespace app.ViewModel.Usuarios
                                 $"\nUsuarios status: {responseUsuarios.StatusCode}, Contenido : {jsonUsuario}");
 
                             return SettingsData.Default._500;
-
                         }
                     }     
                 }
@@ -402,7 +398,6 @@ namespace app.ViewModel.Usuarios
                     return SettingsData.Default._503;
                 }
             }
-
         }
 
         //Sin Ruta
@@ -677,12 +672,8 @@ namespace app.ViewModel.Usuarios
         //Registro Usuarios/Perfiles
         public async Task<HttpResponseMessage> RegistrarUsuario(Usuario UsuarioNuevo)
         {
-
-
             using (var cliente = new HttpClient())
             {
-                
-
                 var json = JsonConvert.SerializeObject(UsuarioNuevo);
                 Debug.WriteLine(json);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -751,7 +742,7 @@ namespace app.ViewModel.Usuarios
             not.ShowDialog();
         }
 
-        //En caso nesecario se borran los datos almacenos.
+        //En caso nesecario se borran los datos almacenados.
         private void ClearSettings()
         {
             SettingsData.Default.token = "";
